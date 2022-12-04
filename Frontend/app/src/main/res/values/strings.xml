@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">eDnevnik</string>
+    <string name="specijalizantSlika">Slika specijalizanta</string>
+    <string name="specijalizantImePrezime">Ime i prezime specijalizanta</string>
+    <string name="specijalizantTrenutniOdjel">Trenutni odjel na kojem se specijalizant nalazi</string>
 </resources>
