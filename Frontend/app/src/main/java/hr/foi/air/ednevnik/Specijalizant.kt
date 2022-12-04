@@ -5,5 +5,6 @@ class Specijalizant (
     var ime : String = "",
     var prezime : String = "",
     var email : String = "",
+    var lokacija : String = "",
         ) {
 }
