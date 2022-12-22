@@ -21,7 +21,7 @@ public class SpecijalozantController {
     private SpecijalizantService specijalizantService;
 
     @GetMapping("/get")
-    public ResponseEntity<List<Specijalizant>> GetJobs(@RequestParam List<String> categories){
+    public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
         var specijalizanti = specijalizantService.sviSpecijalizanti();
         try{
             if(specijalizanti==null){
