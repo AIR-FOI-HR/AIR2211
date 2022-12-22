@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hr.foi.air.ednevnik.R
-import hr.foi.air.ednevnik.Specijalizant
+import com.example.core.entities.Specijalizant
 
-class SpecijalizantAdapter (private val context: Context, specijalizantArrayList: ArrayList<Specijalizant>)
+class SpecijalizantAdapter (private val context: Context, specijalizantArrayList: ArrayList<com.example.core.entities.Specijalizant>)
     : RecyclerView.Adapter<SpecijalizantAdapter.ViewHolder>(){
 
     val listaSpecijalizanata = specijalizantArrayList
@@ -25,7 +25,7 @@ class SpecijalizantAdapter (private val context: Context, specijalizantArrayList
     }
 
     override fun onBindViewHolder(holder: SpecijalizantAdapter.ViewHolder, position: Int) {
-        val model: Specijalizant = listaSpecijalizanata[position]
+        val model: com.example.core.entities.Specijalizant = listaSpecijalizanata[position]
         holder.specijalizantImePrezime.text = model.ime + " " + model.prezime
         holder.specijalizantLokacija.text = model.lokacija
     }

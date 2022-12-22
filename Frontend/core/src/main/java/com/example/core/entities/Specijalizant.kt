@@ -1,4 +1,4 @@
-package hr.foi.air.ednevnik
+package com.example.core.entities
 
 class Specijalizant (
     var id : Int? = null,

@@ -14,10 +14,34 @@ class MainActivity : AppCompatActivity() {
         val specijalizantiRV = findViewById<RecyclerView>(R.id.specijalizantiRecycler)
 
         //Hardkodirana lista specijalizanata
-        val specijalizantiLista : ArrayList<Specijalizant> = ArrayList<Specijalizant>()
-        specijalizantiLista.add(Specijalizant(1, "Marko", "Markic", "", "Odjel dermatologije"))
-        specijalizantiLista.add(Specijalizant(2, "Ivan", "Ivic", "", "Odjel kirurgije"))
-        specijalizantiLista.add(Specijalizant(3, "Ana", "Anic", "", "Hitna pomoc"))
+        val specijalizantiLista : ArrayList<com.example.core.entities.Specijalizant> = ArrayList<com.example.core.entities.Specijalizant>()
+        specijalizantiLista.add(
+            com.example.core.entities.Specijalizant(
+                1,
+                "Marko",
+                "Markic",
+                "",
+                "Odjel dermatologije"
+            )
+        )
+        specijalizantiLista.add(
+            com.example.core.entities.Specijalizant(
+                2,
+                "Ivan",
+                "Ivic",
+                "",
+                "Odjel kirurgije"
+            )
+        )
+        specijalizantiLista.add(
+            com.example.core.entities.Specijalizant(
+                3,
+                "Ana",
+                "Anic",
+                "",
+                "Hitna pomoc"
+            )
+        )
 
         val specijalizantAdapter = SpecijalizantAdapter(this, specijalizantiLista)
 
