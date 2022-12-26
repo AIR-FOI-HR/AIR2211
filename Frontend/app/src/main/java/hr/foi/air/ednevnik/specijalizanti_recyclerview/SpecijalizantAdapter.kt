@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hr.foi.air.ednevnik.R
 import com.example.core.entities.Specijalizant
 
-class SpecijalizantAdapter (private val context: Context, specijalizantArrayList: ArrayList<com.example.core.entities.Specijalizant>)
+class SpecijalizantAdapter (private val context: Context, specijalizantArrayList: ArrayList<Specijalizant>?)
     : RecyclerView.Adapter<SpecijalizantAdapter.ViewHolder>(){
 
     val listaSpecijalizanata = specijalizantArrayList
@@ -25,12 +25,12 @@ class SpecijalizantAdapter (private val context: Context, specijalizantArrayList
     }
 
     override fun onBindViewHolder(holder: SpecijalizantAdapter.ViewHolder, position: Int) {
-        val model: com.example.core.entities.Specijalizant = listaSpecijalizanata[position]
+        val model: com.example.core.entities.Specijalizant = listaSpecijalizanata?.get(position) ?: Specijalizant()
         holder.specijalizantImePrezime.text = model.ime + " " + model.prezime
         holder.specijalizantLokacija.text = model.lokacija
     }
 
     override fun getItemCount(): Int {
-        return listaSpecijalizanata.size
+        return listaSpecijalizanata?.size ?: 0
     }
 }

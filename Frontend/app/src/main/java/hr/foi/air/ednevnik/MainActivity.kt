@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.core.entities.Specijalizant
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.specijalizanti_recyclerview.SpecijalizantAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -14,34 +16,8 @@ class MainActivity : AppCompatActivity() {
         val specijalizantiRV = findViewById<RecyclerView>(R.id.specijalizantiRecycler)
 
         //Hardkodirana lista specijalizanata
-        val specijalizantiLista : ArrayList<com.example.core.entities.Specijalizant> = ArrayList<com.example.core.entities.Specijalizant>()
-        specijalizantiLista.add(
-            com.example.core.entities.Specijalizant(
-                1,
-                "Marko",
-                "Markic",
-                "",
-                "Odjel dermatologije"
-            )
-        )
-        specijalizantiLista.add(
-            com.example.core.entities.Specijalizant(
-                2,
-                "Ivan",
-                "Ivic",
-                "",
-                "Odjel kirurgije"
-            )
-        )
-        specijalizantiLista.add(
-            com.example.core.entities.Specijalizant(
-                3,
-                "Ana",
-                "Anic",
-                "",
-                "Hitna pomoc"
-            )
-        )
+        val specijalizantiLista : ArrayList<Specijalizant>? = WebServis.specijalizanti//ArrayList<com.example.core.entities.Specijalizant>()
+
 
         val specijalizantAdapter = SpecijalizantAdapter(this, specijalizantiLista)
 
