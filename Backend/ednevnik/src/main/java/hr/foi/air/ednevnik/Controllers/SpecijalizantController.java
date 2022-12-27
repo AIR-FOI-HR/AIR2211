@@ -3,26 +3,22 @@ package hr.foi.air.ednevnik.Controllers;
 import hr.foi.air.ednevnik.Entities.Specijalizant;
 import hr.foi.air.ednevnik.Services.SpecijalizantService;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 
-import javax.swing.text.html.HTML;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @CrossOrigin
 @RequestMapping("/specijalizanti")
-public class SpecijalozantController {
+public class SpecijalizantController {
     private SpecijalizantService specijalizantService;
-
     @GetMapping("/get")
     public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
-        var specijalizanti = specijalizantService.sviSpecijalizanti();
+        var specijalizanti = specijalizantService.sviSpecijalizanti(); //dohvacanje liste specijalizanata
         try{
             if(specijalizanti==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

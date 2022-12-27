@@ -1,25 +1,21 @@
 package hr.foi.air.ednevnik.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "Specijalizant")
+@Table(name = "specijalizant")
 public class Specijalizant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "id_specijalizant")
     private Integer id_specijalizant;
 

@@ -15,6 +15,7 @@ public class SpecijalizantService {
     private final SpecijalizantRepository specijalizantRepository;
 
     public List<Specijalizant> sviSpecijalizanti(){
+
         List<Specijalizant> specijalizanti = new ArrayList<>();
 
         specijalizanti.addAll(specijalizantRepository.findAll());
