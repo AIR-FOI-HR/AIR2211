@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/specijalizantiFragment">
+
+    <fragment
+        android:id="@+id/specijalizantiFragment"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantiFragment"
+        android:label="SpecialistListFragment" />
+
+</navigation>

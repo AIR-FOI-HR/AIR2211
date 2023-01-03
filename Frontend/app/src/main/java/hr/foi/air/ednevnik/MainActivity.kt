@@ -5,25 +5,18 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.Specijalizant
-import com.example.ws.WebServis
+import com.example.ws.SpecijalizantiWebServis
+import hr.foi.air.ednevnik.databinding.ActivityMainBinding
 import hr.foi.air.ednevnik.specijalizanti_recyclerview.SpecijalizantAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.lista_specijalizanata)
-
-        val specijalizantiRV = findViewById<RecyclerView>(R.id.specijalizantiRecycler)
-
-        //Hardkodirana lista specijalizanata
-        val specijalizantiLista : ArrayList<Specijalizant>? = WebServis.specijalizanti//ArrayList<com.example.core.entities.Specijalizant>()
-
-
-        val specijalizantAdapter = SpecijalizantAdapter(this, specijalizantiLista)
-
-        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        specijalizantiRV.layoutManager = linearLayoutManager
-        specijalizantiRV.adapter = specijalizantAdapter
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+
 }

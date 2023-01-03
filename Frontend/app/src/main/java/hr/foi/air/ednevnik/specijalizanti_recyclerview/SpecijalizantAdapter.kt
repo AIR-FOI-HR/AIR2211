@@ -1,6 +1,5 @@
 package hr.foi.air.ednevnik.specijalizanti_recyclerview
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,29 +7,40 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hr.foi.air.ednevnik.R
 import com.example.core.entities.Specijalizant
+import hr.foi.air.ednevnik.databinding.ListaSpecijalizantBinding
 
-class SpecijalizantAdapter (private val context: Context, specijalizantArrayList: ArrayList<Specijalizant>?)
-    : RecyclerView.Adapter<SpecijalizantAdapter.ViewHolder>(){
+class SpecijalizantAdapter (
+    private var specijalizantArrayList: ArrayList<Specijalizant> = arrayListOf()
+) : RecyclerView.Adapter<SpecijalizantAdapter.SpecijalizantiViewHolder>(){
 
-    val listaSpecijalizanata = specijalizantArrayList
-
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-        val specijalizantImePrezime : TextView = itemView.findViewById(R.id.spcijalizantIme)
-        val specijalizantLokacija : TextView = itemView.findViewById(R.id.spcijalizantTrenutniOdjel)
+    inner class SpecijalizantiViewHolder(private val binding : ListaSpecijalizantBinding)
+        : RecyclerView.ViewHolder(binding.root)
+    {
+        fun bind(specijalizant: Specijalizant) {
+            binding.spcijalizantIme.text = "${specijalizant.ime} ${specijalizant.prezime}"
+            binding.spcijalizantTrenutniOdjel.text = specijalizant.email
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecijalizantAdapter.ViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.lista_specijalizant, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecijalizantiViewHolder {
+        val binding =
+            ListaSpecijalizantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SpecijalizantiViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SpecijalizantAdapter.ViewHolder, position: Int) {
-        val model: com.example.core.entities.Specijalizant = listaSpecijalizanata?.get(position) ?: Specijalizant()
-        holder.specijalizantImePrezime.text = model.ime + " " + model.prezime
-        holder.specijalizantLokacija.text = model.lokacija
+    override fun onBindViewHolder(holder: SpecijalizantiViewHolder, position: Int) {
+        val specijalizant = specijalizantArrayList[position]
+        holder.bind(specijalizant)
+
     }
 
     override fun getItemCount(): Int {
-        return listaSpecijalizanata?.size ?: 0
+        return specijalizantArrayList.size
+    }
+
+    fun setData(newData: List<Specijalizant>) {
+        specijalizantArrayList.clear()
+        specijalizantArrayList.addAll(newData)
+        notifyDataSetChanged()
     }
 }
