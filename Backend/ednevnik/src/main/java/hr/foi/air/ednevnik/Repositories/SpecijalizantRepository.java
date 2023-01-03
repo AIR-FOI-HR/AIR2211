@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface SpecijalizantRepository extends JpaRepository<Specijalizant, Integer> {
     List<Specijalizant> findAll();
 
-    Optional<Specijalizant> findById(Integer id);
+    Optional<Specijalizant> findAllByIdSpecijalizant(int id);
 
 }

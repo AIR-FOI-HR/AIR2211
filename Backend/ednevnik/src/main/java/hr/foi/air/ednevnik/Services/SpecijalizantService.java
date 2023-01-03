@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,9 +25,8 @@ public class SpecijalizantService {
         return specijalizanti;
     }
 
-    public Specijalizant specijalizantById(Integer id){
-        Specijalizant specijalizant = new Specijalizant();
-        specijalizantRepository.findById(id);
+    public Optional<Specijalizant> specijalizantById(int id){
+        Optional<Specijalizant> specijalizant = specijalizantRepository.findAllByIdSpecijalizant(id);
         return specijalizant;
     }
 

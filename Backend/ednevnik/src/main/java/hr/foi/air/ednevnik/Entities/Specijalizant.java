@@ -1,44 +1,102 @@
 package hr.foi.air.ednevnik.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name = "specijalizant")
 public class Specijalizant {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_specijalizant")
-    private Integer id_specijalizant;
-
-    @Column(name = "ime")
+    @Column(name = "id_specijalizant", nullable = false)
+    private int idSpecijalizant;
+    @Basic
+    @Column(name = "ime", nullable = false, length = 255)
     private String ime;
-
-    @Column(name = "prezime")
+    @Basic
+    @Column(name = "prezime", nullable = false, length = 255)
     private String prezime;
-
-    @Column(name = "email")
+    @Basic
+    @Column(name = "email", nullable = false, length = 255)
     private String email;
-
-    @Column(name = "lozinka")
+    @Basic
+    @Column(name = "lozinka", nullable = false, length = 255)
     private String lozinka;
-
-    @Column(name = "slika")
+    @Basic
+    @Column(name = "slika", nullable = true, length = 255)
     private String slika;
 
-    public Specijalizant(String ime, String prezime, String email, String lozinka, String slika){
-        this.ime=ime;
-        this.prezime=prezime;
-        this.email=email;
-        this.lozinka=lozinka;
-        this.slika=slika;
+    public int getIdSpecijalizant() {
+        return idSpecijalizant;
+    }
+
+    public void setIdSpecijalizant(int idSpecijalizant) {
+        this.idSpecijalizant = idSpecijalizant;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Specijalizant that = (Specijalizant) o;
+
+        if (idSpecijalizant != that.idSpecijalizant) return false;
+        if (ime != null ? !ime.equals(that.ime) : that.ime != null) return false;
+        if (prezime != null ? !prezime.equals(that.prezime) : that.prezime != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (lozinka != null ? !lozinka.equals(that.lozinka) : that.lozinka != null) return false;
+        if (slika != null ? !slika.equals(that.slika) : that.slika != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idSpecijalizant;
+        result = 31 * result + (ime != null ? ime.hashCode() : 0);
+        result = 31 * result + (prezime != null ? prezime.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (lozinka != null ? lozinka.hashCode() : 0);
+        result = 31 * result + (slika != null ? slika.hashCode() : 0);
+        return result;
     }
 }
