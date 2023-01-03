@@ -24,4 +24,10 @@ public class SpecijalizantService {
         return specijalizanti;
     }
 
+    public Specijalizant specijalizantById(Integer id){
+        Specijalizant specijalizant = new Specijalizant();
+        specijalizantRepository.findById(id);
+        return specijalizant;
+    }
+
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/specijalizanti")
 public class SpecijalizantController {
     private SpecijalizantService specijalizantService;
-    @GetMapping("/get")
+    @GetMapping("/getAll")
     public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
         var specijalizanti = specijalizantService.sviSpecijalizanti(); //dohvacanje liste specijalizanata
         try{
@@ -25,6 +25,20 @@ public class SpecijalizantController {
             }
             else
                 return new ResponseEntity<>(specijalizanti, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Specijalizant> GetSpecijalizantById(@PathVariable Integer id){
+        var specijalizant = specijalizantService.specijalizantById(id);
+        try{
+            if(specijalizant==null){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(specijalizant, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
