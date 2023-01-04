@@ -3,4 +3,7 @@
     <string name="specijalizantSlika">Slika specijalizanta</string>
     <string name="specijalizantImePrezime">Ime i prezime specijalizanta</string>
     <string name="specijalizantTrenutniOdjel">Trenutni odjel na kojem se specijalizant nalazi</string>
+    <string name="napredakRadovi">Radovi: 3/6</string>
+    <string name="dnevnik">DNEVNIK</string>
+    <string name="knjizica">KNJIŽICA</string>
 </resources>
