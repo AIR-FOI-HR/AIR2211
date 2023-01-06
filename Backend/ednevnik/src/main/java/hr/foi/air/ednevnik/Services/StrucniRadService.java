@@ -27,4 +27,22 @@ public class StrucniRadService {
         return strucniRad;
     }
 
+    public StrucniRad AddStrucniRad(int specijalizacija, String naslovRad, String objavljenU) {
+        StrucniRad strucniRad = new StrucniRad();
+        strucniRad.setSpecijalizacija(specijalizacija);
+        strucniRad.setNaslovRad(naslovRad);
+        strucniRad.setObjavljenU(objavljenU);
+        return strucniRadRepository.save(strucniRad);
+    }
+
+    public Long DeleteStrucniRad(int id) {
+        if(strucniRadRepository.existsById(id))
+        {
+            return strucniRadRepository.deleteByIdRad(id);
+        }
+        else{
+            return 0L;
+        }
+
+    }
 }

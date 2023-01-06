@@ -45,4 +45,28 @@ public class StrucniRadController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    // strucni_radovi/add?specijalizacija=3&naslovRad=naslov&objavljenU=casopis - primjer dodavanja sturcnog rada
+    // strucni_radovi/add?specijalizacija=3&naslovRad=naslov - primjer dodavanja strucnog rada bez polja "objavljen_u"
+    @RequestMapping("/add")
+    @ResponseBody
+    public ResponseEntity<StrucniRad> AddStrucniRad(@RequestParam int specijalizacija, @RequestParam String naslovRad, @RequestParam(required=false) String objavljenU){
+        var strucniRad = strucniRadService.AddStrucniRad(specijalizacija, naslovRad, objavljenU);
+        try{
+            if(strucniRad==null){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(strucniRad, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Long DeleteStrucniRad(@PathVariable int id){
+        return strucniRadService.DeleteStrucniRad(id);
+    }
+
 }
