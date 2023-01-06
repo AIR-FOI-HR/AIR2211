@@ -45,4 +45,21 @@ public class StrucniRadService {
         }
 
     }
+
+    public StrucniRad UpdateStrucniRad(int id, String specijalizacija, String naslovRad, String objavljenU) {
+        Optional<StrucniRad> strucniRadZaUpdate = StrucniRadById(id);
+        if(strucniRadZaUpdate.isEmpty())
+        {
+            return null;
+        }
+        else{
+            StrucniRad strucniRad = new StrucniRad();
+            strucniRad.setIdRad(id);
+            if(specijalizacija==null) { strucniRad.setSpecijalizacija(strucniRadZaUpdate.get().getSpecijalizacija()); } else{ strucniRad.setSpecijalizacija(Integer.parseInt(specijalizacija)); }
+            if(naslovRad==null) { strucniRad.setNaslovRad(strucniRadZaUpdate.get().getNaslovRad()); } else{ strucniRad.setNaslovRad(naslovRad); }
+            if(objavljenU==null) { strucniRad.setObjavljenU(strucniRadZaUpdate.get().getObjavljenU()); } else if(objavljenU.equals("null")){strucniRad.setObjavljenU(null);} else{ strucniRad.setObjavljenU(objavljenU); }
+            return strucniRadRepository.save(strucniRad);
+        }
+
+    }
 }

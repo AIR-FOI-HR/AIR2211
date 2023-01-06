@@ -69,4 +69,23 @@ public class StrucniRadController {
         return strucniRadService.DeleteStrucniRad(id);
     }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResponseEntity<StrucniRad> UpdateStrucniRad(@RequestParam int id, @RequestParam(required=false) String specijalizacija, @RequestParam(required=false) String naslovRad, @RequestParam(required=false) String objavljenU){
+        System.out.println(id);
+        System.out.println(specijalizacija);
+        System.out.println(naslovRad);
+        System.out.println(objavljenU);
+        var strucniRad = strucniRadService.UpdateStrucniRad(id, specijalizacija, naslovRad, objavljenU);
+        try{
+            if(strucniRad==null){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(strucniRad, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
