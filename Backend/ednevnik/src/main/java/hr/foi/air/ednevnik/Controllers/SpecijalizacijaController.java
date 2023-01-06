@@ -1,9 +1,7 @@
 package hr.foi.air.ednevnik.Controllers;
 
 import hr.foi.air.ednevnik.Entities.Specijalizacija;
-import hr.foi.air.ednevnik.Entities.Specijalizant;
 import hr.foi.air.ednevnik.Services.SpecijalizacijaService;
-import hr.foi.air.ednevnik.Services.SpecijalizantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +20,7 @@ public class SpecijalizacijaController {
 
     @GetMapping("/getAllBySpecijalizantId/{id_specijalizant}")
     public ResponseEntity<List<Specijalizacija>> GetSpecijalizacijeBySpecijalizantId(@PathVariable int id_specijalizant){
-        var specijalizacije = specijalizacijaService.sveSpecijalizacijeBySpecijalizantId(id_specijalizant);
+        var specijalizacije = specijalizacijaService.SpecijalizacijeBySpecijalizantId(id_specijalizant);
         try{
             if(specijalizacije==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -36,7 +34,7 @@ public class SpecijalizacijaController {
 
     @GetMapping("/getActiveBySpecijalizantId/{id_specijalizant}")
     public ResponseEntity<Optional<Specijalizacija>> GetAktivnaSpecijalizacijaBySpecijalizantId(@PathVariable int id_specijalizant){
-        var specijalizacija = specijalizacijaService.aktivnaSpecijalizacijaBySpecijalizantId(id_specijalizant);
+        var specijalizacija = specijalizacijaService.AktivnaSpecijalizacijaBySpecijalizantId(id_specijalizant);
         try{
             if(specijalizacija==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -50,7 +48,7 @@ public class SpecijalizacijaController {
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Optional<Specijalizacija>> GetSpecijalizacijaById(@PathVariable int id){
-        var specijalizacija = specijalizacijaService.specijalizacijaById(id);
+        var specijalizacija = specijalizacijaService.SpecijalizacijaById(id);
         try{
             if(specijalizacija==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
