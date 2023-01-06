@@ -21,8 +21,8 @@ public class DnevnaAktivnostController {
     private DnevnaAktivnostService dnevnaAktivnostService;
 
     @GetMapping("/getAllBySpecijalizacijaId/{specijalizacija_id}")
-    public ResponseEntity<List<DnevnaAktivnost>> GetAktivnosti(@PathVariable int specijalizacija_id){
-        var aktivnosti = dnevnaAktivnostService.sveAktivnosti(specijalizacija_id);
+    public ResponseEntity<List<DnevnaAktivnost>> GetAktivnostiBySpecijalizacija(@PathVariable int specijalizacija_id){
+        var aktivnosti = dnevnaAktivnostService.DnevneAktivnostiBySpecijalizacija(specijalizacija_id);
         try{
             if(aktivnosti.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -36,7 +36,7 @@ public class DnevnaAktivnostController {
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Optional<DnevnaAktivnost>> GetAktivnostById(@PathVariable int id){
-        var aktivnost = dnevnaAktivnostService.dnevnaAktivnostById(id);
+        var aktivnost = dnevnaAktivnostService.DnevnaAktivnostById(id);
         try{
             if(aktivnost==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

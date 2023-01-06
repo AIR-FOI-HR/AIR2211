@@ -16,17 +16,14 @@ import java.util.Optional;
 public class DnevnaAktivnostService {
     private final DnevnaAktivnostRepository dnevnaAktivnostRepository;
 
-    public List<DnevnaAktivnost> sveAktivnosti(int id){
+    public List<DnevnaAktivnost> DnevneAktivnostiBySpecijalizacija(int id){
 
         List<DnevnaAktivnost> dnevneAktivnosti = new ArrayList<>();
-
         dnevneAktivnosti.addAll(dnevnaAktivnostRepository.findAllBySpecijalizacija(id));
-        System.out.print(dnevneAktivnosti);
-
         return dnevneAktivnosti;
     }
 
-    public Optional<DnevnaAktivnost> dnevnaAktivnostById(int id){
+    public Optional<DnevnaAktivnost> DnevnaAktivnostById(int id){
         Optional<DnevnaAktivnost> dnevnaAktivnost = dnevnaAktivnostRepository.findByIdAktivnost(id);
         return dnevnaAktivnost;
     }

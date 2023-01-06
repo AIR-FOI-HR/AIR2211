@@ -1,7 +1,9 @@
 package hr.foi.air.ednevnik.Controllers;
 
+import hr.foi.air.ednevnik.Entities.SlucajBolesnika;
 import hr.foi.air.ednevnik.Entities.Specijalizant;
 import hr.foi.air.ednevnik.Entities.StrucniRad;
+import hr.foi.air.ednevnik.Services.SlucajBolesnikaService;
 import hr.foi.air.ednevnik.Services.SpecijalizantService;
 import hr.foi.air.ednevnik.Services.StrucniRadService;
 import lombok.AllArgsConstructor;
@@ -15,34 +17,34 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/strucni_radovi")
-public class StrucniRadController {
+@RequestMapping("/slucajevi_bolesnika")
+public class SlucajBolesnikaController {
 
-    private StrucniRadService strucniRadService;
+    private SlucajBolesnikaService slucajBolesnikaService;
 
     @GetMapping("/getAllBySpecijalizacijaId/{specijalizacija_id}")
-    public ResponseEntity<List<StrucniRad>> GetStrucniRadoviBySpecijalizacija(@PathVariable int specijalizacija_id){
-        var strucni_radovi = strucniRadService.StrucniRadoviBySpecijalizacija(specijalizacija_id);
+    public ResponseEntity<List<SlucajBolesnika>> GetSlucajeviBolesnikaBySpecijalizacija(@PathVariable int specijalizacija_id){
+        var slucajevi_bolesnika = slucajBolesnikaService.SlucajeviBolesnikaBySpecijalizacija(specijalizacija_id);
         try{
-            if(strucni_radovi==null){
+            if(slucajevi_bolesnika==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(strucni_radovi, HttpStatus.OK);
+                return new ResponseEntity<>(slucajevi_bolesnika, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<StrucniRad>> GetStrucniRadById(@PathVariable int id){
-        var strucni_rad = strucniRadService.StrucniRadById(id);
+    public ResponseEntity<Optional<SlucajBolesnika>> GetSlucajBolesnikaById(@PathVariable int id){
+        var slucaj_bolesnika = slucajBolesnikaService.SlucajBolesnikaById(id);
         try{
-            if(strucni_rad==null){
+            if(slucaj_bolesnika==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(strucni_rad, HttpStatus.OK);
+                return new ResponseEntity<>(slucaj_bolesnika, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

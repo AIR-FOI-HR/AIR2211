@@ -22,7 +22,7 @@ public class SpecijalizantController {
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
-        var specijalizanti = specijalizantService.sviSpecijalizanti(); //dohvacanje liste specijalizanata
+        var specijalizanti = specijalizantService.SviSpecijalizanti();
         try{
             if(specijalizanti==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -36,7 +36,7 @@ public class SpecijalizantController {
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Optional<Specijalizant>> GetSpecijalizantById(@PathVariable int id){
-        var specijalizant = specijalizantService.specijalizantById(id);
+        var specijalizant = specijalizantService.SpecijalizantById(id);
         try{
             if(specijalizant==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

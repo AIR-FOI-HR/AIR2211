@@ -15,17 +15,14 @@ public class SpecijalizantService {
 
     private final SpecijalizantRepository specijalizantRepository;
 
-    public List<Specijalizant> sviSpecijalizanti(){
+    public List<Specijalizant> SviSpecijalizanti(){
 
         List<Specijalizant> specijalizanti = new ArrayList<>();
-
         specijalizanti.addAll(specijalizantRepository.findAll());
-        System.out.print(specijalizanti);
-
         return specijalizanti;
     }
 
-    public Optional<Specijalizant> specijalizantById(int id){
+    public Optional<Specijalizant> SpecijalizantById(int id){
         Optional<Specijalizant> specijalizant = specijalizantRepository.findAllByIdSpecijalizant(id);
         return specijalizant;
     }

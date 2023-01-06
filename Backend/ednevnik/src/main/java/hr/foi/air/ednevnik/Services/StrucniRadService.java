@@ -17,17 +17,14 @@ public class StrucniRadService {
 
     private final StrucniRadRepository strucniRadRepository;
 
-    public List<StrucniRad> sviStrucniRadovi(int id){
+    public List<StrucniRad> StrucniRadoviBySpecijalizacija(int id){
 
         List<StrucniRad> strucniRadovi = new ArrayList<>();
-
         strucniRadovi.addAll(strucniRadRepository.findAllBySpecijalizacija(id));
-        System.out.print(strucniRadovi);
-
         return strucniRadovi;
     }
 
-    public Optional<StrucniRad> strucniRadById(int id){
+    public Optional<StrucniRad> StrucniRadById(int id){
         Optional<StrucniRad> strucniRad = strucniRadRepository.findByIdRad(id);
         return strucniRad;
     }
