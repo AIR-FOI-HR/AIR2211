@@ -1,9 +1,7 @@
 package hr.foi.air.ednevnik.Controllers;
 
 import hr.foi.air.ednevnik.Entities.DnevnaAktivnost;
-import hr.foi.air.ednevnik.Entities.Specijalizant;
 import hr.foi.air.ednevnik.Services.DnevnaAktivnostService;
-import hr.foi.air.ednevnik.Services.SpecijalizantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +20,13 @@ public class DnevnaAktivnostController {
 
     @GetMapping("/getAllBySpecijalizacijaId/{specijalizacija_id}")
     public ResponseEntity<List<DnevnaAktivnost>> GetAktivnostiBySpecijalizacija(@PathVariable int specijalizacija_id){
-        var aktivnosti = dnevnaAktivnostService.DnevneAktivnostiBySpecijalizacija(specijalizacija_id);
+        var dnevneAktivnosti = dnevnaAktivnostService.DnevneAktivnostiBySpecijalizacija(specijalizacija_id);
         try{
-            if(aktivnosti.isEmpty()){
+            if(dnevneAktivnosti.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(aktivnosti, HttpStatus.OK);
+                return new ResponseEntity<>(dnevneAktivnosti, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
@@ -36,13 +34,13 @@ public class DnevnaAktivnostController {
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Optional<DnevnaAktivnost>> GetAktivnostById(@PathVariable int id){
-        var aktivnost = dnevnaAktivnostService.DnevnaAktivnostById(id);
+        var dnevnaAktivnost = dnevnaAktivnostService.DnevnaAktivnostById(id);
         try{
-            if(aktivnost==null){
+            if(dnevnaAktivnost==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(aktivnost, HttpStatus.OK);
+                return new ResponseEntity<>(dnevnaAktivnost, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

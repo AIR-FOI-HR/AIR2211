@@ -1,46 +1,45 @@
 package hr.foi.air.ednevnik.Controllers;
 
-import hr.foi.air.ednevnik.Entities.Specijalizant;
-import hr.foi.air.ednevnik.Services.SpecijalizantService;
+import hr.foi.air.ednevnik.Entities.*;
+import hr.foi.air.ednevnik.Services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/specijalizanti")
-public class SpecijalizantController {
+@RequestMapping("/pitanja")
+public class PitanjeController {
 
-    private SpecijalizantService specijalizantService;
+    private PitanjeService pitanjeService;
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
-        var specijalizanti = specijalizantService.SviSpecijalizanti();
+    @GetMapping("/getAllByProvjeraId/{provjera_id}")
+    public ResponseEntity<List<Pitanje>> GetPitanjaByProvjeraZnanja(@PathVariable int provjera_id){
+        var pitanja = pitanjeService.PitanjaByProvjeraZnanja(provjera_id);
         try{
-            if(specijalizanti==null){
+            if(pitanja==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(specijalizanti, HttpStatus.OK);
+                return new ResponseEntity<>(pitanja, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<Specijalizant>> GetSpecijalizantById(@PathVariable int id){
-        var specijalizant = specijalizantService.SpecijalizantById(id);
+    public ResponseEntity<Optional<Pitanje>> GetPitanjeById(@PathVariable int id){
+        var pitanje = pitanjeService.ProvjeraZnanjaById(id);
         try{
-            if(specijalizant==null){
+            if(pitanje==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(specijalizant, HttpStatus.OK);
+                return new ResponseEntity<>(pitanje, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

@@ -1,11 +1,7 @@
 package hr.foi.air.ednevnik.Services;
 
 import hr.foi.air.ednevnik.Entities.SlucajBolesnika;
-import hr.foi.air.ednevnik.Entities.Specijalizant;
-import hr.foi.air.ednevnik.Entities.StrucniRad;
 import hr.foi.air.ednevnik.Repositories.SlucajBolesnikaRepository;
-import hr.foi.air.ednevnik.Repositories.SpecijalizantRepository;
-import hr.foi.air.ednevnik.Repositories.StrucniRadRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +17,14 @@ public class SlucajBolesnikaService {
 
     public List<SlucajBolesnika> SlucajeviBolesnikaBySpecijalizacija(int id){
 
-        List<SlucajBolesnika> slucajevi_bolesnika = new ArrayList<>();
-        slucajevi_bolesnika.addAll(slucajBolesnikaRepository.findAllBySpecijalizacija(id));
-        return slucajevi_bolesnika;
+        List<SlucajBolesnika> slucajeviBolesnika = new ArrayList<>();
+        slucajeviBolesnika.addAll(slucajBolesnikaRepository.findAllBySpecijalizacija(id));
+        return slucajeviBolesnika;
     }
 
     public Optional<SlucajBolesnika> SlucajBolesnikaById(int id){
-        Optional<SlucajBolesnika> strucniRad = slucajBolesnikaRepository.findByIdSlucaj(id);
-        return strucniRad;
+        Optional<SlucajBolesnika> slucajBolesnika = slucajBolesnikaRepository.findByIdSlucaj(id);
+        return slucajBolesnika;
     }
 
 }

@@ -1,46 +1,45 @@
 package hr.foi.air.ednevnik.Controllers;
 
-import hr.foi.air.ednevnik.Entities.StrucniRad;
-import hr.foi.air.ednevnik.Services.StrucniRadService;
+import hr.foi.air.ednevnik.Entities.ProvjeraZnanja;
+import hr.foi.air.ednevnik.Services.ProvjeraZnanjaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/strucni_radovi")
-public class StrucniRadController {
+@RequestMapping("/provjere_znanja")
+public class ProvjeraZnanjaController {
 
-    private StrucniRadService strucniRadService;
+    private ProvjeraZnanjaService provjeraZnanjaService;
 
     @GetMapping("/getAllBySpecijalizacijaId/{specijalizacija_id}")
-    public ResponseEntity<List<StrucniRad>> GetStrucniRadoviBySpecijalizacija(@PathVariable int specijalizacija_id){
-        var strucniRadovi = strucniRadService.StrucniRadoviBySpecijalizacija(specijalizacija_id);
+    public ResponseEntity<List<ProvjeraZnanja>> GetProvjereZnanjaBySpecijalizacija(@PathVariable int specijalizacija_id){
+        var provjereZnanja = provjeraZnanjaService.ProvjereZnanjaBySpecijalizacija(specijalizacija_id);
         try{
-            if(strucniRadovi==null){
+            if(provjereZnanja==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(strucniRadovi, HttpStatus.OK);
+                return new ResponseEntity<>(provjereZnanja, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<StrucniRad>> GetStrucniRadById(@PathVariable int id){
-        var strucniRad = strucniRadService.StrucniRadById(id);
+    public ResponseEntity<Optional<ProvjeraZnanja>> GetProvjeraZnanjaById(@PathVariable int id){
+        var provjeraZnanja = provjeraZnanjaService.ProvjeraZnanjaById(id);
         try{
-            if(strucniRad==null){
+            if(provjeraZnanja==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(strucniRad, HttpStatus.OK);
+                return new ResponseEntity<>(provjeraZnanja, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
