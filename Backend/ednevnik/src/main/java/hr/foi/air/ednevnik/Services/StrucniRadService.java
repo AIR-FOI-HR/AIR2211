@@ -27,39 +27,21 @@ public class StrucniRadService {
         return strucniRad;
     }
 
-    public StrucniRad AddStrucniRad(int specijalizacija, String naslovRad, String objavljenU) {
-        StrucniRad strucniRad = new StrucniRad();
-        strucniRad.setSpecijalizacija(specijalizacija);
-        strucniRad.setNaslovRad(naslovRad);
-        strucniRad.setObjavljenU(objavljenU);
+    public StrucniRad AddStrucniRad(StrucniRad strucniRad) {
         return strucniRadRepository.save(strucniRad);
     }
 
     public Long DeleteStrucniRad(int id) {
         if(strucniRadRepository.existsById(id))
-        {
-            return strucniRadRepository.deleteByIdRad(id);
-        }
-        else{
-            return 0L;
-        }
+        { return strucniRadRepository.deleteByIdRad(id); }
+        else { return 0L; }
 
     }
 
-    public StrucniRad UpdateStrucniRad(int id, String specijalizacija, String naslovRad, String objavljenU) {
-        Optional<StrucniRad> strucniRadZaUpdate = StrucniRadById(id);
-        if(strucniRadZaUpdate.isEmpty())
-        {
-            return null;
-        }
-        else{
-            StrucniRad strucniRad = new StrucniRad();
-            strucniRad.setIdRad(id);
-            if(specijalizacija==null) { strucniRad.setSpecijalizacija(strucniRadZaUpdate.get().getSpecijalizacija()); } else{ strucniRad.setSpecijalizacija(Integer.parseInt(specijalizacija)); }
-            if(naslovRad==null) { strucniRad.setNaslovRad(strucniRadZaUpdate.get().getNaslovRad()); } else{ strucniRad.setNaslovRad(naslovRad); }
-            if(objavljenU==null) { strucniRad.setObjavljenU(strucniRadZaUpdate.get().getObjavljenU()); } else if(objavljenU.equals("null")){strucniRad.setObjavljenU(null);} else{ strucniRad.setObjavljenU(objavljenU); }
-            return strucniRadRepository.save(strucniRad);
-        }
+    public StrucniRad UpdateStrucniRad(StrucniRad updatedStrucniRad) {
+        Optional<StrucniRad> strucniRadZaUpdate = StrucniRadById(updatedStrucniRad.getIdRad());
+        if(strucniRadZaUpdate.isEmpty()) { return null; }
+        else { return strucniRadRepository.save(updatedStrucniRad); }
 
     }
 }
