@@ -27,4 +27,17 @@ public class SlucajBolesnikaService {
         return slucajBolesnika;
     }
 
+    public SlucajBolesnika AddSlucajBolesnika(SlucajBolesnika slucajBolesnika) { return slucajBolesnikaRepository.save(slucajBolesnika); }
+
+    public Long DeleteSlucajBolesnika(int id) {
+        if(slucajBolesnikaRepository.existsById(id)) { return slucajBolesnikaRepository.deleteByIdSlucaj(id); }
+        else { return 0L; }
+    }
+
+    public SlucajBolesnika UpdateSlucajBolesnika(SlucajBolesnika updatedSlucajBolesnika) {
+        Optional<SlucajBolesnika> slucajBolesnikaZaUpdate = SlucajBolesnikaById(updatedSlucajBolesnika.getIdSlucaj());
+        if(slucajBolesnikaZaUpdate.isEmpty()) { return null; }
+        else { return slucajBolesnikaRepository.save(updatedSlucajBolesnika); }
+    }
+
 }

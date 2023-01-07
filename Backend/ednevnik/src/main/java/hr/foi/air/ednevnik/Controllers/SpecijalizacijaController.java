@@ -22,7 +22,7 @@ public class SpecijalizacijaController {
     public ResponseEntity<List<Specijalizacija>> GetSpecijalizacijeBySpecijalizantId(@PathVariable int id_specijalizant){
         var specijalizacije = specijalizacijaService.SpecijalizacijeBySpecijalizantId(id_specijalizant);
         try{
-            if(specijalizacije==null){
+            if(specijalizacije.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class SpecijalizacijaController {
     public ResponseEntity<Optional<Specijalizacija>> GetAktivnaSpecijalizacijaBySpecijalizantId(@PathVariable int id_specijalizant){
         var specijalizacija = specijalizacijaService.AktivnaSpecijalizacijaBySpecijalizantId(id_specijalizant);
         try{
-            if(specijalizacija==null){
+            if(specijalizacija.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -50,11 +50,46 @@ public class SpecijalizacijaController {
     public ResponseEntity<Optional<Specijalizacija>> GetSpecijalizacijaById(@PathVariable int id){
         var specijalizacija = specijalizacijaService.SpecijalizacijaById(id);
         try{
-            if(specijalizacija==null){
+            if(specijalizacija.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
                 return new ResponseEntity<>(specijalizacija, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public ResponseEntity<Specijalizacija> AddSpecijalizacija(@RequestBody Specijalizacija specijalizacija){
+        try{
+            specijalizacijaService.AddSpecijalizacija(specijalizacija);
+            return new ResponseEntity<>(specijalizacija, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Long> DeleteSpecijalizacija(@PathVariable int id){
+        try{
+            Long odgovor = specijalizacijaService.DeleteSpecijalizacija(id);
+            if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
+            else {return new ResponseEntity<>(odgovor, HttpStatus.OK);}
+        }catch (Exception e){
+            return new ResponseEntity<>(0L, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResponseEntity<Specijalizacija> UpdateSpecijalizacija(@RequestBody Specijalizacija specijalizacija){
+        try{
+            Specijalizacija odgovor = specijalizacijaService.UpdateSpecijalizacija(specijalizacija);
+            if(odgovor==null) {return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);}
+            else {return new ResponseEntity<>(specijalizacija, HttpStatus.OK);}
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

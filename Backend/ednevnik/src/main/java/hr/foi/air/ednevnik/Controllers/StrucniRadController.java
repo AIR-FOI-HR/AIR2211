@@ -22,7 +22,7 @@ public class StrucniRadController {
     public ResponseEntity<List<StrucniRad>> GetStrucniRadoviBySpecijalizacija(@PathVariable int specijalizacija_id){
         var strucniRadovi = strucniRadService.StrucniRadoviBySpecijalizacija(specijalizacija_id);
         try{
-            if(strucniRadovi==null){
+            if(strucniRadovi.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class StrucniRadController {
     public ResponseEntity<Optional<StrucniRad>> GetStrucniRadById(@PathVariable int id){
         var strucniRad = strucniRadService.StrucniRadById(id);
         try{
-            if(strucniRad==null){
+            if(strucniRad.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -45,4 +45,40 @@ public class StrucniRadController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public ResponseEntity<StrucniRad> AddStrucniRad(@RequestBody StrucniRad strucniRad){
+        try{
+            strucniRadService.AddStrucniRad(strucniRad);
+            return new ResponseEntity<>(strucniRad, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Long> DeleteStrucniRad(@PathVariable int id){
+        try{
+            Long odgovor = strucniRadService.DeleteStrucniRad(id);
+            if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
+            else {return new ResponseEntity<>(odgovor, HttpStatus.OK);}
+        }catch (Exception e){
+            return new ResponseEntity<>(0L, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResponseEntity<StrucniRad> UpdateStrucniRad(@RequestBody StrucniRad strucniRad){
+        try{
+            StrucniRad odgovor = strucniRadService.UpdateStrucniRad(strucniRad);
+            if(odgovor==null) {return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);}
+            else {return new ResponseEntity<>(strucniRad, HttpStatus.OK);}
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

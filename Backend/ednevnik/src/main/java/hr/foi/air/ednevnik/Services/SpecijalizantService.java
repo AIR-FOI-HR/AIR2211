@@ -32,4 +32,17 @@ public class SpecijalizantService {
         return specijalizantRepository.findAllSpecijalizantiByMentorId(idMentor);
     }
 
+    public Specijalizant AddSpecijalizant(Specijalizant specijalizant) { return specijalizantRepository.save(specijalizant); }
+
+    public Long DeleteSpecijalizant(int id) {
+        if(specijalizantRepository.existsById(id)) { return specijalizantRepository.deleteByIdSpecijalizant(id); }
+        else { return 0L; }
+    }
+
+    public Specijalizant UpdateSpecijalizant(Specijalizant updateSpecijalizant) {
+        Optional<Specijalizant> specijalizantZaUpdate = SpecijalizantById(updateSpecijalizant.getIdSpecijalizant());
+        if(specijalizantZaUpdate.isEmpty()) { return null; }
+        else { return specijalizantRepository.save(updateSpecijalizant); }
+    }
+
 }
