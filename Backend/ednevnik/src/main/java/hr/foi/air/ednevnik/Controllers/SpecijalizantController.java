@@ -22,7 +22,7 @@ public class SpecijalizantController {
     public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
         var specijalizanti = specijalizantService.SviSpecijalizanti();
         try{
-            if(specijalizanti==null){
+            if(specijalizanti.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class SpecijalizantController {
     public ResponseEntity<Optional<Specijalizant>> GetSpecijalizantById(@PathVariable int id){
         var specijalizant = specijalizantService.SpecijalizantById(id);
         try{
-            if(specijalizant==null){
+            if(specijalizant.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -45,4 +45,20 @@ public class SpecijalizantController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @GetMapping("/getAllByMentor/{id_mentor}")
+    public ResponseEntity<List<Specijalizant>> GetSpecijalizantiByMentor(@PathVariable int id_mentor){
+        var specijalizanti = specijalizantService.SpecijalizantiByMentor(id_mentor);
+        try{
+            if(specijalizanti.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(specijalizanti, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
