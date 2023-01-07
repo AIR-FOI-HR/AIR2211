@@ -21,7 +21,7 @@ public class ProvjeraZnanjaController {
     public ResponseEntity<List<ProvjeraZnanja>> GetProvjereZnanjaBySpecijalizacija(@PathVariable int specijalizacija_id){
         var provjereZnanja = provjeraZnanjaService.ProvjereZnanjaBySpecijalizacija(specijalizacija_id);
         try{
-            if(provjereZnanja==null){
+            if(provjereZnanja.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -35,7 +35,7 @@ public class ProvjeraZnanjaController {
     public ResponseEntity<Optional<ProvjeraZnanja>> GetProvjeraZnanjaById(@PathVariable int id){
         var provjeraZnanja = provjeraZnanjaService.ProvjeraZnanjaById(id);
         try{
-            if(provjeraZnanja==null){
+            if(provjeraZnanja.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else

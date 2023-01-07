@@ -21,7 +21,7 @@ public class PitanjeController {
     public ResponseEntity<List<Pitanje>> GetPitanjaByProvjeraZnanja(@PathVariable int provjera_id){
         var pitanja = pitanjeService.PitanjaByProvjeraZnanja(provjera_id);
         try{
-            if(pitanja==null){
+            if(pitanja.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -35,7 +35,7 @@ public class PitanjeController {
     public ResponseEntity<Optional<Pitanje>> GetPitanjeById(@PathVariable int id){
         var pitanje = pitanjeService.ProvjeraZnanjaById(id);
         try{
-            if(pitanje==null){
+            if(pitanje.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else

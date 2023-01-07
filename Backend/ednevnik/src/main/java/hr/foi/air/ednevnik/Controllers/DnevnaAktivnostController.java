@@ -36,7 +36,7 @@ public class DnevnaAktivnostController {
     public ResponseEntity<Optional<DnevnaAktivnost>> GetAktivnostById(@PathVariable int id){
         var dnevnaAktivnost = dnevnaAktivnostService.DnevnaAktivnostById(id);
         try{
-            if(dnevnaAktivnost==null){
+            if(dnevnaAktivnost.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else

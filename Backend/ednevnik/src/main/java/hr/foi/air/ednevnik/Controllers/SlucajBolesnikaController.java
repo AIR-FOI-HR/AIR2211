@@ -22,7 +22,7 @@ public class SlucajBolesnikaController {
     public ResponseEntity<List<SlucajBolesnika>> GetSlucajeviBolesnikaBySpecijalizacija(@PathVariable int specijalizacija_id){
         var slucajeviBolesnika = slucajBolesnikaService.SlucajeviBolesnikaBySpecijalizacija(specijalizacija_id);
         try{
-            if(slucajeviBolesnika==null){
+            if(slucajeviBolesnika.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class SlucajBolesnikaController {
     public ResponseEntity<Optional<SlucajBolesnika>> GetSlucajBolesnikaById(@PathVariable int id){
         var slucajBolesnika = slucajBolesnikaService.SlucajBolesnikaById(id);
         try{
-            if(slucajBolesnika==null){
+            if(slucajBolesnika.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else

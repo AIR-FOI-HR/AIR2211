@@ -22,7 +22,7 @@ public class SpecijalizacijaController {
     public ResponseEntity<List<Specijalizacija>> GetSpecijalizacijeBySpecijalizantId(@PathVariable int id_specijalizant){
         var specijalizacije = specijalizacijaService.SpecijalizacijeBySpecijalizantId(id_specijalizant);
         try{
-            if(specijalizacije==null){
+            if(specijalizacije.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class SpecijalizacijaController {
     public ResponseEntity<Optional<Specijalizacija>> GetAktivnaSpecijalizacijaBySpecijalizantId(@PathVariable int id_specijalizant){
         var specijalizacija = specijalizacijaService.AktivnaSpecijalizacijaBySpecijalizantId(id_specijalizant);
         try{
-            if(specijalizacija==null){
+            if(specijalizacija.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -50,7 +50,7 @@ public class SpecijalizacijaController {
     public ResponseEntity<Optional<Specijalizacija>> GetSpecijalizacijaById(@PathVariable int id){
         var specijalizacija = specijalizacijaService.SpecijalizacijaById(id);
         try{
-            if(specijalizacija==null){
+            if(specijalizacija.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else

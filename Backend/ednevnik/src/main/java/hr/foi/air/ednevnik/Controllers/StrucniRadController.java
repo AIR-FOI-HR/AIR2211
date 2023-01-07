@@ -22,7 +22,7 @@ public class StrucniRadController {
     public ResponseEntity<List<StrucniRad>> GetStrucniRadoviBySpecijalizacija(@PathVariable int specijalizacija_id){
         var strucniRadovi = strucniRadService.StrucniRadoviBySpecijalizacija(specijalizacija_id);
         try{
-            if(strucniRadovi==null){
+            if(strucniRadovi.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class StrucniRadController {
     public ResponseEntity<Optional<StrucniRad>> GetStrucniRadById(@PathVariable int id){
         var strucniRad = strucniRadService.StrucniRadById(id);
         try{
-            if(strucniRad==null){
+            if(strucniRad.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -72,12 +72,8 @@ public class StrucniRadController {
     @RequestMapping("/update")
     @ResponseBody
     public ResponseEntity<StrucniRad> UpdateStrucniRad(@RequestParam int id, @RequestParam(required=false) String specijalizacija, @RequestParam(required=false) String naslovRad, @RequestParam(required=false) String objavljenU){
-        System.out.println(id);
-        System.out.println(specijalizacija);
-        System.out.println(naslovRad);
-        System.out.println(objavljenU);
-        var strucniRad = strucniRadService.UpdateStrucniRad(id, specijalizacija, naslovRad, objavljenU);
         try{
+            var strucniRad = strucniRadService.UpdateStrucniRad(id, specijalizacija, naslovRad, objavljenU);
             if(strucniRad==null){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }

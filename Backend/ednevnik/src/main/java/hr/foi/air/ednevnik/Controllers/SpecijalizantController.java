@@ -22,7 +22,7 @@ public class SpecijalizantController {
     public ResponseEntity<List<Specijalizant>> GetSpecijalizanti(){
         var specijalizanti = specijalizantService.SviSpecijalizanti();
         try{
-            if(specijalizanti==null){
+            if(specijalizanti.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
@@ -36,7 +36,7 @@ public class SpecijalizantController {
     public ResponseEntity<Optional<Specijalizant>> GetSpecijalizantById(@PathVariable int id){
         var specijalizant = specijalizantService.SpecijalizantById(id);
         try{
-            if(specijalizant==null){
+            if(specijalizant.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
