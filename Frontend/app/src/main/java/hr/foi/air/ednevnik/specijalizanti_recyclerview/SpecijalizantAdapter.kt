@@ -7,13 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hr.foi.air.ednevnik.R
 import com.example.core.entities.Specijalizant
-import hr.foi.air.ednevnik.databinding.ListaSpecijalizantBinding
+import hr.foi.air.ednevnik.databinding.MentorListaSpecijalizantBinding
 
 class SpecijalizantAdapter (
     private var specijalizantArrayList: ArrayList<Specijalizant> = arrayListOf()
 ) : RecyclerView.Adapter<SpecijalizantAdapter.SpecijalizantiViewHolder>(){
 
-    inner class SpecijalizantiViewHolder(private val binding : ListaSpecijalizantBinding)
+    inner class SpecijalizantiViewHolder(private val binding : MentorListaSpecijalizantBinding)
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(specijalizant: Specijalizant) {
@@ -24,7 +24,7 @@ class SpecijalizantAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecijalizantiViewHolder {
         val binding =
-            ListaSpecijalizantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MentorListaSpecijalizantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SpecijalizantiViewHolder(binding)
     }
 

@@ -6,4 +6,15 @@
     <string name="napredakRadovi">Radovi: 3/6</string>
     <string name="dnevnik">DNEVNIK</string>
     <string name="knjizica">KNJIŽICA</string>
+    <string name="dnevnikNaslov">Prvi dan na dermatologiji</string>
+    <string name="tipUnosaDnevnik">Aktivnost</string>
+    <string name="naslovUnosaDnevnika">Prvi dan na dermatologiji</string>
+    <string name="tekstAktivnosti">Lorem ipsum...</string>
+    <string name="dodajSpecijalizaciju">Nova specijalizacija</string>
+    <string name="specijalizanti">Pretraži specijalizante</string>
+    <string name="otvoriSpecijalizaciju">Otvori specijalizaciju</string>
+    <string name="vrsta_specijalizacije">Vrsta specijalizacije</string>
+    <string name="potvrdi">Potvrdi</string>
+    <string name="trenutniNapredak">Trenutni napredak:</string>
+    <string name="novaAktivnost">Nova aktivnost</string>
 </resources>

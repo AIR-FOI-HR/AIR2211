@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.SpecijalizantiWebServis
-import hr.foi.air.ednevnik.databinding.ListaSpecijalizanataBinding
+import hr.foi.air.ednevnik.databinding.MentorListaSpecijalizanataBinding
 import hr.foi.air.ednevnik.specijalizanti_recyclerview.SpecijalizantAdapter
 
 class SpecijalizantiFragment : Fragment(){
 
-    private var _binding: ListaSpecijalizanataBinding? = null
-    private val binding: ListaSpecijalizanataBinding
+    private var _binding: MentorListaSpecijalizanataBinding? = null
+    private val binding: MentorListaSpecijalizanataBinding
         get() = _binding!!
 
     private lateinit var specijalizantListAdapter: SpecijalizantAdapter
@@ -25,7 +25,7 @@ class SpecijalizantiFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ListaSpecijalizanataBinding.inflate(inflater, container, false)
+        _binding = MentorListaSpecijalizanataBinding.inflate(inflater, container, false)
         return binding.root
     }
 

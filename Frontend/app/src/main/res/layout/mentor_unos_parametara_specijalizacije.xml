@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="40dp">
+
+        <ImageView
+            android:id="@+id/specijalizantSlika"
+            android:src="@drawable/person_48px"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:id="@+id/spcijalizantIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="48dp"
+            android:layout_toEndOf="@id/specijalizantSlika"
+            android:text="@string/specijalizantImePrezime"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/labelSpinnerVrstaSpecijalizacije"
+            android:layout_below="@+id/specijalizantSlika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/vrsta_specijalizacije"/>
+
+        <Spinner
+            android:id="@+id/dropdownVrstaSpecijlizacije"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background"
+            android:layout_below="@+id/labelSpinnerVrstaSpecijalizacije"
+            android:spinnerMode="dropdown"/>
+
+        <Button
+            android:id="@+id/gumbPotvrdiSpecijlizaciju"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_corner"
+            android:elevation="10dp"
+            android:text="@string/potvrdi"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

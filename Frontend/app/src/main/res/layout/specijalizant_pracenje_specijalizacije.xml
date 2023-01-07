@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/specijalizantSlika"
+            android:src="@drawable/person_48px"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/spcijalizantTrenutniOdjel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/specijalizantSlika"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="68dp"
+            android:labelFor="@id/spcecijalizantNapredakRadovi"
+            android:text="@string/trenutniNapredak"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <ProgressBar
+            android:id="@+id/napredakSpecijalizacije"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/specijalizantSlika"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:max="100"
+            android:progress="40"
+            />
+
+        <TextView
+            android:id="@+id/spcecijalizantNapredakRadovi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/napredakSpecijalizacije"
+            android:text="@string/napredakRadovi"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/eDnevnikGumb"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/spcecijalizantNapredakRadovi"
+            android:layout_marginTop="300dp"
+            android:background="@drawable/rounded_corner"
+            android:text="@string/dnevnik"
+            android:textSize="16sp"
+            android:elevation="10dp"
+            />
+
+        <Button
+            android:id="@+id/knjizicaGumb"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/eDnevnikGumb"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corner"
+            android:text="@string/knjizica"
+            android:textSize="16sp"
+            android:elevation="10dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
