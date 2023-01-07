@@ -3,6 +3,7 @@ package hr.foi.air.ednevnik.Repositories;
 import hr.foi.air.ednevnik.Entities.Specijalizant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,5 +11,8 @@ public interface SpecijalizantRepository extends JpaRepository<Specijalizant, In
     List<Specijalizant> findAll();
 
     Optional<Specijalizant> findAllByIdSpecijalizant(int id);
+
+    @Transactional
+    Long deleteByIdSpecijalizant(int id);
 
 }

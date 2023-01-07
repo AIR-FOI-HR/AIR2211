@@ -32,16 +32,13 @@ public class StrucniRadService {
     }
 
     public Long DeleteStrucniRad(int id) {
-        if(strucniRadRepository.existsById(id))
-        { return strucniRadRepository.deleteByIdRad(id); }
+        if(strucniRadRepository.existsById(id)) { return strucniRadRepository.deleteByIdRad(id); }
         else { return 0L; }
-
     }
 
     public StrucniRad UpdateStrucniRad(StrucniRad updatedStrucniRad) {
         Optional<StrucniRad> strucniRadZaUpdate = StrucniRadById(updatedStrucniRad.getIdRad());
         if(strucniRadZaUpdate.isEmpty()) { return null; }
         else { return strucniRadRepository.save(updatedStrucniRad); }
-
     }
 }

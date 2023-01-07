@@ -46,9 +46,6 @@ public class StrucniRadController {
         }
     }
 
-
-    // strucni_radovi/add?specijalizacija=3&naslovRad=naslov&objavljenU=casopis - primjer dodavanja sturcnog rada
-    // strucni_radovi/add?specijalizacija=3&naslovRad=naslov - primjer dodavanja strucnog rada bez polja "objavljen_u"
     @RequestMapping("/add")
     @ResponseBody
     public ResponseEntity<StrucniRad> AddStrucniRad(@RequestBody StrucniRad strucniRad){
@@ -62,9 +59,14 @@ public class StrucniRadController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Long> DeleteStrucniRad(@PathVariable int id){
-        Long odgovor = strucniRadService.DeleteStrucniRad(id);
-        if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
-        else {return new ResponseEntity<>(odgovor, HttpStatus.OK);}
+        try{
+            Long odgovor = strucniRadService.DeleteStrucniRad(id);
+            if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
+            else {return new ResponseEntity<>(odgovor, HttpStatus.OK);}
+        }catch (Exception e){
+            return new ResponseEntity<>(0L, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @RequestMapping("/update")

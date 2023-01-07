@@ -31,4 +31,19 @@ public class SpecijalizacijaService {
         return specijalizacija;
     }
 
+    public Specijalizacija AddSpecijalizacija(Specijalizacija specijalizacija) {
+        return specijalizacijaRepository.save(specijalizacija);
+    }
+
+    public Long DeleteSpecijalizacija(int id) {
+        if(specijalizacijaRepository.existsById(id)) { return specijalizacijaRepository.deleteByIdSpecijalizacija(id); }
+        else { return 0L; }
+    }
+
+    public Specijalizacija UpdateSpecijalizacija(Specijalizacija updatedSpecijalizacija) {
+        Optional<Specijalizacija> specijalizacijaZaUpdate = SpecijalizacijaById(updatedSpecijalizacija.getIdSpecijalizacija());
+        if(specijalizacijaZaUpdate.isEmpty()) { return null; }
+        else { return specijalizacijaRepository.save(updatedSpecijalizacija); }
+    }
+
 }

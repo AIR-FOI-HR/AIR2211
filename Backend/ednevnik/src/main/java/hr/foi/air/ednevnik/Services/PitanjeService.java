@@ -22,9 +22,24 @@ public class PitanjeService {
         return pitanja;
     }
 
-    public Optional<Pitanje> ProvjeraZnanjaById(int id){
+    public Optional<Pitanje> PitanjeById(int id){
         Optional<Pitanje> pitanje = pitanjeRepository.findByIdPitanje(id);
         return pitanje;
+    }
+
+    public Pitanje AddPitanje(Pitanje strucniRad) {
+        return pitanjeRepository.save(strucniRad);
+    }
+
+    public Long DeletePitanje(int id) {
+        if(pitanjeRepository.existsById(id)) { return pitanjeRepository.deleteByIdPitanje(id); }
+        else { return 0L; }
+    }
+
+    public Pitanje UpdatePitanje(Pitanje updatedPitanje) {
+        Optional<Pitanje> pitanjeZaUpdate = PitanjeById(updatedPitanje.getIdPitanje());
+        if(pitanjeZaUpdate.isEmpty()) { return null; }
+        else { return pitanjeRepository.save(updatedPitanje); }
     }
 
 }

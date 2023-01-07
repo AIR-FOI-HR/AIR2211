@@ -27,4 +27,17 @@ public class ProvjeraZnanjaService {
         return provjeraZnanja;
     }
 
+    public ProvjeraZnanja AddProvjeraZnanja(ProvjeraZnanja provjeraZnanja) { return provjeraZnanjaRepository.save(provjeraZnanja); }
+
+    public Long DeleteProvjeraZnanja(int id) {
+        if(provjeraZnanjaRepository.existsById(id)) { return provjeraZnanjaRepository.deleteByIdProvjera(id); }
+        else { return 0L; }
+    }
+
+    public ProvjeraZnanja UpdateProvjeraZnanja(ProvjeraZnanja updatedProvjeraZnanja) {
+        Optional<ProvjeraZnanja> provjeraZnanjaZaUpdate = ProvjeraZnanjaById(updatedProvjeraZnanja.getIdProvjera());
+        if(provjeraZnanjaZaUpdate.isEmpty()) { return null; }
+        else { return provjeraZnanjaRepository.save(updatedProvjeraZnanja); }
+    }
+
 }
