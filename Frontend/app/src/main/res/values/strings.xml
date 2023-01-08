@@ -17,4 +17,8 @@
     <string name="potvrdi">Potvrdi</string>
     <string name="trenutniNapredak">Trenutni napredak:</string>
     <string name="novaAktivnost">Nova aktivnost</string>
+    <string name="labelNaslovUnosaDnevnika">Naslov</string>
+    <string name="labelVrstaSpecijalizacije">Vrsta specijalizacije</string>
+    <string name="odjava">Odjavi se</string>
+    <string name="promjeniLozinku">Promijeni lozinku</string>
 </resources>
