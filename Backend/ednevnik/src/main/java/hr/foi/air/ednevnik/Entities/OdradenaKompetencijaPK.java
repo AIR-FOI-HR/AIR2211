@@ -15,6 +15,10 @@ public class OdradenaKompetencijaPK implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int kompetencija;
+    @Column(name = "stupanj", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int stupanj;
 
     public int getSpecijalizacija() {
         return specijalizacija;
@@ -32,6 +36,14 @@ public class OdradenaKompetencijaPK implements Serializable {
         this.kompetencija = kompetencija;
     }
 
+    public int getStupanj() {
+        return stupanj;
+    }
+
+    public void setStupanj(int stupanj) {
+        this.stupanj = stupanj;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +53,7 @@ public class OdradenaKompetencijaPK implements Serializable {
 
         if (specijalizacija != that.specijalizacija) return false;
         if (kompetencija != that.kompetencija) return false;
+        if (stupanj != that.stupanj) return false;
 
         return true;
     }
@@ -49,6 +62,7 @@ public class OdradenaKompetencijaPK implements Serializable {
     public int hashCode() {
         int result = specijalizacija;
         result = 31 * result + kompetencija;
+        result = 31 * result + stupanj;
         return result;
     }
 }
