@@ -1,6 +1,9 @@
 package hr.foi.air.ednevnik.Controllers;
 
+
+import hr.foi.air.ednevnik.Entities.Kompetencija;
 import hr.foi.air.ednevnik.Entities.Zahvat;
+import hr.foi.air.ednevnik.Services.KompetencijaService;
 import hr.foi.air.ednevnik.Services.ZahvatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,20 +15,20 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/zahvati")
-public class ZahvatController {
+@RequestMapping("/kompetencije")
+public class KompetencijaController {
 
-    private ZahvatService zahvatService;
+    private KompetencijaService kompetencijaService;
 
     @GetMapping("/getAllByProgramSpecijalizacijeId/{program_specijalizacije_id}")
-    public ResponseEntity<List<Zahvat>> GetZahvatiByProgramSpecijalizacije(@PathVariable int program_specijalizacije_id){
-        var zahvati = zahvatService.ZahvatiByProgramSpecijalizacije(program_specijalizacije_id);
+    public ResponseEntity<List<Kompetencija>> GetKompetencijeByProgramSpecijalizacije(@PathVariable int program_specijalizacije_id){
+        var kompetencije = kompetencijaService.KompetencijeByProgramSpecijalizacije(program_specijalizacije_id);
         try{
-            if(zahvati.isEmpty()){
+            if(kompetencije.isEmpty()){
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
             else
-                return new ResponseEntity<>(zahvati, HttpStatus.OK);
+                return new ResponseEntity<>(kompetencije, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
