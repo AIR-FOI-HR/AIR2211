@@ -1,6 +1,5 @@
 package hr.foi.air.ednevnik.Controllers;
 
-
 import hr.foi.air.ednevnik.Entities.OdradeniZahvat;
 import hr.foi.air.ednevnik.Services.OdradeniZahvatService;
 import lombok.AllArgsConstructor;
@@ -34,7 +33,7 @@ public class OdradeniZahvatController {
     }
 
     @GetMapping("/getByIds")
-    public ResponseEntity<Optional<OdradeniZahvat>> GetOdradeniZahvatiBySpecijalizacija(@RequestParam int specijalizacija, @RequestParam int zahvat, @RequestParam int stupanj){
+    public ResponseEntity<Optional<OdradeniZahvat>> GetOdradeniZahvatByIds(@RequestParam int specijalizacija, @RequestParam int zahvat, @RequestParam int stupanj){
         var odradeniZahvat = odradeniZahvatService.OdradeniZahvatByIds(specijalizacija, zahvat, stupanj);
         try{
             if(odradeniZahvat.isEmpty()){
@@ -54,7 +53,6 @@ public class OdradeniZahvatController {
             odradeniZahvatService.AddOdradeniZahvat(odradeniZahvat);
             return new ResponseEntity<>(odradeniZahvat, HttpStatus.OK);
         } catch (Exception e){
-            System.out.println(e);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

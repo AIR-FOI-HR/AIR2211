@@ -9,15 +9,12 @@ import java.io.Serializable;
 public class OdradenaKompetencijaPK implements Serializable {
     @Column(name = "specijalizacija", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int specijalizacija;
     @Column(name = "kompetencija", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int kompetencija;
     @Column(name = "stupanj", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int stupanj;
 
     public int getSpecijalizacija() {
