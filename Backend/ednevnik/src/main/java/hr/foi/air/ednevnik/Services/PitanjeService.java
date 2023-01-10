@@ -1,7 +1,7 @@
 package hr.foi.air.ednevnik.Services;
 
-import hr.foi.air.ednevnik.Entities.*;
-import hr.foi.air.ednevnik.Repositories.*;
+import hr.foi.air.ednevnik.Entities.Pitanje;
+import hr.foi.air.ednevnik.Repositories.PitanjeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

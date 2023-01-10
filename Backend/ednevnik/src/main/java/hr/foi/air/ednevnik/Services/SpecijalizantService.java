@@ -1,8 +1,6 @@
 package hr.foi.air.ednevnik.Services;
 
 import hr.foi.air.ednevnik.Entities.Specijalizant;
-import hr.foi.air.ednevnik.Repositories.MentorRepository;
-import hr.foi.air.ednevnik.Repositories.SpecijalizacijaRepository;
 import hr.foi.air.ednevnik.Repositories.SpecijalizantRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

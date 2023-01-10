@@ -9,11 +9,9 @@ import java.io.Serializable;
 public class OdradeniDioSpecijalizacijePK implements Serializable {
     @Column(name = "specijalizacija", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int specijalizacija;
     @Column(name = "dio_specijalizacije", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dioSpecijalizacije;
 
     public int getSpecijalizacija() {

@@ -9,12 +9,13 @@ import java.io.Serializable;
 public class OdradeniZahvatPK implements Serializable {
     @Column(name = "specijalizacija", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int specijalizacija;
     @Column(name = "zahvat", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int zahvat;
+    @Column(name = "stupanj", nullable = false)
+    @Id
+    private int stupanj;
 
     public int getSpecijalizacija() {
         return specijalizacija;
@@ -32,6 +33,14 @@ public class OdradeniZahvatPK implements Serializable {
         this.zahvat = zahvat;
     }
 
+    public int getStupanj() {
+        return stupanj;
+    }
+
+    public void setStupanj(int stupanj) {
+        this.stupanj = stupanj;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +50,7 @@ public class OdradeniZahvatPK implements Serializable {
 
         if (specijalizacija != that.specijalizacija) return false;
         if (zahvat != that.zahvat) return false;
+        if (stupanj != that.stupanj) return false;
 
         return true;
     }
@@ -49,6 +59,7 @@ public class OdradeniZahvatPK implements Serializable {
     public int hashCode() {
         int result = specijalizacija;
         result = 31 * result + zahvat;
+        result = 31 * result + stupanj;
         return result;
     }
 }

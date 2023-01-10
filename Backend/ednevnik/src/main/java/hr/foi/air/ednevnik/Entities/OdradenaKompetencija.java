@@ -15,12 +15,16 @@ public class OdradenaKompetencija {
     @Id
     @Column(name = "kompetencija", nullable = false)
     private int kompetencija;
-    @Basic
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "stupanj", nullable = false)
     private int stupanj;
     @Basic
     @Column(name = "datum", nullable = false)
     private Date datum;
+    @Basic
+    @Column(name = "potpis_mentora", nullable = true)
+    private Byte potpisMentora;
 
     public int getSpecijalizacija() {
         return specijalizacija;
@@ -54,6 +58,14 @@ public class OdradenaKompetencija {
         this.datum = datum;
     }
 
+    public Byte getPotpisMentora() {
+        return potpisMentora;
+    }
+
+    public void setPotpisMentora(Byte potpisMentora) {
+        this.potpisMentora = potpisMentora;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,6 +77,8 @@ public class OdradenaKompetencija {
         if (kompetencija != that.kompetencija) return false;
         if (stupanj != that.stupanj) return false;
         if (datum != null ? !datum.equals(that.datum) : that.datum != null) return false;
+        if (potpisMentora != null ? !potpisMentora.equals(that.potpisMentora) : that.potpisMentora != null)
+            return false;
 
         return true;
     }
@@ -75,6 +89,7 @@ public class OdradenaKompetencija {
         result = 31 * result + kompetencija;
         result = 31 * result + stupanj;
         result = 31 * result + (datum != null ? datum.hashCode() : 0);
+        result = 31 * result + (potpisMentora != null ? potpisMentora.hashCode() : 0);
         return result;
     }
 }
