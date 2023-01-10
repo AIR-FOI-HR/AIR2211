@@ -2,9 +2,7 @@ package hr.foi.air.ednevnik.Controllers;
 
 
 import hr.foi.air.ednevnik.Entities.Kompetencija;
-import hr.foi.air.ednevnik.Entities.Zahvat;
 import hr.foi.air.ednevnik.Services.KompetencijaService;
-import hr.foi.air.ednevnik.Services.ZahvatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

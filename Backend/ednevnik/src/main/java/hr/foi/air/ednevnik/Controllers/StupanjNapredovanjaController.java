@@ -1,6 +1,5 @@
 package hr.foi.air.ednevnik.Controllers;
 
-import hr.foi.air.ednevnik.Entities.StrucniRad;
 import hr.foi.air.ednevnik.Entities.StupanjNapredovanja;
 import hr.foi.air.ednevnik.Services.StupanjNapredovanjaService;
 import lombok.AllArgsConstructor;

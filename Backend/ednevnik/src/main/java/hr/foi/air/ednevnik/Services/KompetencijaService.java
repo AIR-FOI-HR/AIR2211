@@ -2,9 +2,7 @@ package hr.foi.air.ednevnik.Services;
 
 
 import hr.foi.air.ednevnik.Entities.Kompetencija;
-import hr.foi.air.ednevnik.Entities.Zahvat;
 import hr.foi.air.ednevnik.Repositories.KompetencijaRepository;
-import hr.foi.air.ednevnik.Repositories.ZahvatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package hr.foi.air.ednevnik.Repositories;
 
 import hr.foi.air.ednevnik.Entities.SlucajBolesnika;
-import hr.foi.air.ednevnik.Entities.StrucniRad;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
