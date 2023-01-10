@@ -56,4 +56,29 @@ class SpecijalizantiWebServis {
             }
         )
     }
+
+    fun getAllSpecijalizantiByMentorId(mentorId : Int)
+    {
+        val serviceAPI = retrofit.create(SpecijalizantiByMentorApi::class.java)
+        val call : Call<ArrayList<Specijalizant>> = serviceAPI.getSpecijalizantData(mentorId)
+
+        call.enqueue (
+            object : Callback<ArrayList<Specijalizant>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Specijalizant>>,
+                    response: Response<ArrayList<Specijalizant>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _specijalizanti.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<Specijalizant>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 }

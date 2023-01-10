@@ -46,7 +46,7 @@ class SpecijalizantiFragment : Fragment(), View.OnClickListener{
         super.onViewCreated(view, savedInstanceState)
         specijalizantWebServis = SpecijalizantiWebServis()
 
-        specijalizantWebServis.getAllSpecijalizanti()
+        specijalizantWebServis.getAllSpecijalizantiByMentorId(1)
 
         initRecyclerView()
         observeLiveData()
