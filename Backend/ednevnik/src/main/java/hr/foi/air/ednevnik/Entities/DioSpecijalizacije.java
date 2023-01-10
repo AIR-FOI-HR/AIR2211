@@ -13,9 +13,6 @@ public class DioSpecijalizacije {
     @Column(name = "program_specijalizacije", nullable = false)
     private int programSpecijalizacije;
     @Basic
-    @Column(name = "trajanje", nullable = false)
-    private int trajanje;
-    @Basic
     @Column(name = "ustrojstvena_jedinica", nullable = false)
     private int ustrojstvenaJedinica;
 
@@ -35,14 +32,6 @@ public class DioSpecijalizacije {
         this.programSpecijalizacije = programSpecijalizacije;
     }
 
-    public int getTrajanje() {
-        return trajanje;
-    }
-
-    public void setTrajanje(int trajanje) {
-        this.trajanje = trajanje;
-    }
-
     public int getUstrojstvenaJedinica() {
         return ustrojstvenaJedinica;
     }
@@ -60,7 +49,6 @@ public class DioSpecijalizacije {
 
         if (idDioSpecjalizacije != that.idDioSpecjalizacije) return false;
         if (programSpecijalizacije != that.programSpecijalizacije) return false;
-        if (trajanje != that.trajanje) return false;
         if (ustrojstvenaJedinica != that.ustrojstvenaJedinica) return false;
 
         return true;
@@ -70,7 +58,6 @@ public class DioSpecijalizacije {
     public int hashCode() {
         int result = idDioSpecjalizacije;
         result = 31 * result + programSpecijalizacije;
-        result = 31 * result + trajanje;
         result = 31 * result + ustrojstvenaJedinica;
         return result;
     }
