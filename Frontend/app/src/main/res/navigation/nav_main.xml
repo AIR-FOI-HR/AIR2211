@@ -7,6 +7,18 @@
     <fragment
         android:id="@+id/specijalizantiFragment"
         android:name="hr.foi.air.ednevnik.fragment.SpecijalizantiFragment"
-        android:label="SpecialistListFragment" />
+        android:label="SpecialistListFragment" >
+        <action
+            android:id="@+id/action_specijalizantiFragment_to_sviSpecijalizantiFragment"
+            app:destination="@id/sviSpecijalizantiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pracenjeSpecijalizantaFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PracenjeSpecijalizantaFragment"
+        android:label="PracenjeSpecijalizantaFragment" />
+    <fragment
+        android:id="@+id/sviSpecijalizantiFragment"
+        android:name="hr.foi.air.ednevnik.fragment.SviSpecijalizantiFragment"
+        android:label="SviSpecijalizantiFragment" />
 
 </navigation>
