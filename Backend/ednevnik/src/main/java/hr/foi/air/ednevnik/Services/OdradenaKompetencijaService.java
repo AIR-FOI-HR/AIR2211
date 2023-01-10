@@ -1,9 +1,7 @@
 package hr.foi.air.ednevnik.Services;
 
 import hr.foi.air.ednevnik.Entities.OdradenaKompetencija;
-import hr.foi.air.ednevnik.Entities.OdradeniZahvat;
 import hr.foi.air.ednevnik.Repositories.OdradenaKompetencijaRepository;
-import hr.foi.air.ednevnik.Repositories.OdradeniZahvatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +19,8 @@ public class OdradenaKompetencijaService {
     }
 
     public Optional<OdradenaKompetencija> OdradenaKompetencijaByIds(int specijalizacija, int kompetencija, int stupanj){
-        Optional<OdradenaKompetencija> odradeniZahvat = odradenaKompetencijaRepository.findBySpecijalizacijaAndKompetencijaAndStupanj(specijalizacija, kompetencija, stupanj);
-        return odradeniZahvat;
+        Optional<OdradenaKompetencija> odradenaKompetencija = odradenaKompetencijaRepository.findBySpecijalizacijaAndKompetencijaAndStupanj(specijalizacija, kompetencija, stupanj);
+        return odradenaKompetencija;
     }
 
     public OdradenaKompetencija AddOdradenaKompetencija(OdradenaKompetencija odradenaKompetencija) { return odradenaKompetencijaRepository.save(odradenaKompetencija); }
