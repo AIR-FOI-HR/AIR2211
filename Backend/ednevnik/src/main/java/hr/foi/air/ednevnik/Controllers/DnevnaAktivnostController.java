@@ -59,7 +59,7 @@ public class DnevnaAktivnostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Long> DeleteStrucniRad(@PathVariable int id){
+    public ResponseEntity<Long> DeleteDnevnaAktivnost(@PathVariable int id){
         try{
             Long odgovor = dnevnaAktivnostService.DeleteDnevnaAktivnost(id);
             if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
@@ -72,7 +72,7 @@ public class DnevnaAktivnostController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseEntity<DnevnaAktivnost> UpdateStrucniRad(@RequestBody DnevnaAktivnost dnevnaAktivnost){
+    public ResponseEntity<DnevnaAktivnost> UpdateDnevnaAktivnost(@RequestBody DnevnaAktivnost dnevnaAktivnost){
         try{
             DnevnaAktivnost odgovor = dnevnaAktivnostService.UpdateDnevnaAktivnost(dnevnaAktivnost);
             if(odgovor==null) {return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);}

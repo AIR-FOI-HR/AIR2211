@@ -16,7 +16,6 @@ public class DnevnaAktivnostService {
     private final DnevnaAktivnostRepository dnevnaAktivnostRepository;
 
     public List<DnevnaAktivnost> DnevneAktivnostiBySpecijalizacija(int id){
-
         List<DnevnaAktivnost> dnevneAktivnosti = new ArrayList<>();
         dnevneAktivnosti.addAll(dnevnaAktivnostRepository.findAllBySpecijalizacija(id));
         return dnevneAktivnosti;
