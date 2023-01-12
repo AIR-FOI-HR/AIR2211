@@ -21,4 +21,7 @@
     <string name="labelVrstaSpecijalizacije">Vrsta specijalizacije</string>
     <string name="odjava">Odjavi se</string>
     <string name="promjeniLozinku">Promijeni lozinku</string>
+    <string name="strucniRad">Stručni rad</string>
+    <string name="dnevnaAktivnost">Dnevna aktivnost</string>
+    <string name="slucajBolesnika">Slučaj bolesnika</string>
 </resources>

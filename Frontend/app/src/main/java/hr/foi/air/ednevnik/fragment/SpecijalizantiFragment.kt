@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ws.SpecijalizantiWebServis
-import hr.foi.air.ednevnik.R
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaSpecijalizanataBinding
-import hr.foi.air.ednevnik.specijalizanti_recyclerview.SpecijalizantAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.SpecijalizantAdapter
 
-class SpecijalizantiFragment : Fragment(), View.OnClickListener{
+class SpecijalizantiFragment : Fragment(){
 
     private var _binding: MentorListaSpecijalizanataBinding? = null
     private val binding: MentorListaSpecijalizanataBinding
@@ -22,7 +20,7 @@ class SpecijalizantiFragment : Fragment(), View.OnClickListener{
 
     private lateinit var specijalizantListAdapter: SpecijalizantAdapter
 
-    private lateinit var specijalizantWebServis: SpecijalizantiWebServis
+    private lateinit var specijalizantWebServis: WebServis
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +32,6 @@ class SpecijalizantiFragment : Fragment(), View.OnClickListener{
         var gumb = _binding!!.fabNovaSpecijalizacija
 
         gumb.setOnClickListener() {
-            Log.d("TAG","Gumb kliknut")
             val action = SpecijalizantiFragmentDirections.actionSpecijalizantiFragmentToSviSpecijalizantiFragment()
             this.findNavController().navigate(action)
         }
@@ -44,7 +41,7 @@ class SpecijalizantiFragment : Fragment(), View.OnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        specijalizantWebServis = SpecijalizantiWebServis()
+        specijalizantWebServis = WebServis()
 
         specijalizantWebServis.getAllSpecijalizantiByMentorId(1)
 
@@ -60,17 +57,14 @@ class SpecijalizantiFragment : Fragment(), View.OnClickListener{
 
     private fun initRecyclerView() {
         specijalizantListAdapter = SpecijalizantAdapter()
+
+        specijalizantListAdapter.onItemClick = {specijalizant ->
+            Log.d("SpecTAG", "${specijalizant.id_specijalizant}")
+            val action = SpecijalizantiFragmentDirections.actionSpecijalizantiFragmentToPracenjeSpecijalizantaFragment(specijalizant.ime, specijalizant.prezime, specijalizant.id_specijalizant.toString())
+            this.findNavController().navigate(action)
+        }
+
         binding.specijalizantiRecycler.adapter = specijalizantListAdapter
         binding.specijalizantiRecycler.layoutManager = LinearLayoutManager(context)
-    }
-
-    override fun onClick(view: View?) {
-        when(view?.id) {
-            R.id.fabNovaSpecijalizacija -> {
-                Log.d("TAG","Gumb kliknut")
-                val action = SpecijalizantiFragmentDirections.actionSpecijalizantiFragmentToSviSpecijalizantiFragment()
-                view.findNavController().navigate(action)
-            }
-        }
     }
 }

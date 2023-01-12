@@ -10,15 +10,41 @@
         android:label="SpecialistListFragment" >
         <action
             android:id="@+id/action_specijalizantiFragment_to_sviSpecijalizantiFragment"
-            app:destination="@id/sviSpecijalizantiFragment" />
+            app:destination="@id/sviSpecijalizantiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_specijalizantiFragment_to_pracenjeSpecijalizantaFragment"
+            app:destination="@id/pracenjeSpecijalizantaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/pracenjeSpecijalizantaFragment"
         android:name="hr.foi.air.ednevnik.fragment.PracenjeSpecijalizantaFragment"
-        android:label="PracenjeSpecijalizantaFragment" />
+        android:label="PracenjeSpecijalizantaFragment" >
+        <argument
+            android:name="argSpecijalizantIme"
+            app:argType="string" />
+        <argument
+            android:name="argSpecijalizantPrezime"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_slucajeviBolesnikaFragment"
+            app:destination="@id/slucajeviBolesnikaFragment" />
+        <argument
+            android:name="argSpecijalizantId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
         android:name="hr.foi.air.ednevnik.fragment.SviSpecijalizantiFragment"
         android:label="SviSpecijalizantiFragment" />
+    <fragment
+        android:id="@+id/slucajeviBolesnikaFragment"
+        android:name="hr.foi.air.ednevnik.fragment.SlucajeviBolesnikaFragment"
+        android:label="SlucajeviBolesnikaFragment" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

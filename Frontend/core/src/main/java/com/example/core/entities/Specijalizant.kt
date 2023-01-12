@@ -15,7 +15,7 @@ API:
 */
 
 data class Specijalizant (
-    @SerializedName("id_specijalizant")
+    @SerializedName("idSpecijalizant")
     var id_specijalizant : Int? = null,
 
     @SerializedName("ime")

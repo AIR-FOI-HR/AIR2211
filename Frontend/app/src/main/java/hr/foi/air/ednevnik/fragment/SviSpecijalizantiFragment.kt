@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ws.SpecijalizantiWebServis
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaSvihSpecijalizanataBinding
-import hr.foi.air.ednevnik.specijalizanti_recyclerview.SpecijalizantAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.SpecijalizantAdapter
 
 class SviSpecijalizantiFragment : Fragment(){
     private var _binding: MentorListaSvihSpecijalizanataBinding? = null
@@ -17,7 +17,7 @@ class SviSpecijalizantiFragment : Fragment(){
 
     private lateinit var specijalizantListAdapter: SpecijalizantAdapter
 
-    private lateinit var specijalizantWebServis: SpecijalizantiWebServis
+    private lateinit var specijalizantWebServis: WebServis
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +30,7 @@ class SviSpecijalizantiFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        specijalizantWebServis = SpecijalizantiWebServis()
+        specijalizantWebServis = WebServis()
 
         specijalizantWebServis.getAllSpecijalizanti()
 

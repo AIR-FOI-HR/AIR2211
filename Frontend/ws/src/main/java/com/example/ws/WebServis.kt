@@ -3,13 +3,15 @@ package com.example.ws
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.core.entities.SlucajBolesnika
+import com.example.core.entities.Specijalizacija
 import com.example.core.entities.Specijalizant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SpecijalizantiWebServis {
+class WebServis {
 
     companion object {
         private const val BASE_URL: String = "http://104.248.37.213:8080/"
@@ -28,6 +30,8 @@ class SpecijalizantiWebServis {
         )
         .build()
 
+
+    //Specijalizanti
     private val _specijalizanti = MutableLiveData<List<Specijalizant>>()
     val specijalizanti: LiveData<List<Specijalizant>>
         get() = _specijalizanti
@@ -76,6 +80,66 @@ class SpecijalizantiWebServis {
                 }
 
                 override fun onFailure(call: Call<ArrayList<Specijalizant>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Specijalizacija
+    private val _specijalizacija = MutableLiveData<Specijalizacija>()
+    val specijalizacija: LiveData<Specijalizacija>
+        get() = _specijalizacija
+
+    fun getSpecijalizacija(specijalizantId : Int)
+    {
+        val serviceAPI = retrofit.create(SpecijalizacijaBySpecijalizantApi::class.java)
+        val call : Call<Specijalizacija> = serviceAPI.getSpecijalizacijaData(specijalizantId)
+
+        call.enqueue (
+            object : Callback<Specijalizacija>{
+                override fun onResponse(
+                    call: Call<Specijalizacija>,
+                    response: Response<Specijalizacija>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _specijalizacija.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Specijalizacija>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Slucaj bolesnika
+    private val _slucajBolesnika = MutableLiveData<List<SlucajBolesnika>>()
+    val slucajBolesnika: LiveData<List<SlucajBolesnika>>
+        get() = _slucajBolesnika
+
+    fun getAllSlucajeviBolesnika(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(SlucajeviBolesnikaBySpecijalizacijaIdApi::class.java)
+        val call : Call<ArrayList<SlucajBolesnika>> = serviceAPI.getSlucajeviBolesnika(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<SlucajBolesnika>>{
+                override fun onResponse(
+                    call: Call<ArrayList<SlucajBolesnika>>,
+                    response: Response<ArrayList<SlucajBolesnika>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _slucajBolesnika.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<SlucajBolesnika>>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
                 }
             }
