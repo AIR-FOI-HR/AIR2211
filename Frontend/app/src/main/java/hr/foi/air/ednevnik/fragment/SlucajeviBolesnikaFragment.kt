@@ -1,10 +1,12 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
@@ -39,13 +41,19 @@ class SlucajeviBolesnikaFragment : Fragment(){
     }
 
     private fun observeLiveData() {
-        webServis.slucajBolesnika.observe(viewLifecycleOwner) {
+        webServis.slucajeviBolesnika.observe(viewLifecycleOwner) {
             slucajBolesnikaListAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
         slucajBolesnikaListAdapter = SlucajeviBolesnikaAdapter()
+
+        slucajBolesnikaListAdapter.onItemClick = {slucajBolesnika ->
+            Log.d("SpecTAG", "${slucajBolesnika.idSlucaj}")
+            val action = SlucajeviBolesnikaFragmentDirections.actionSlucajeviBolesnikaFragmentToPrikazUnosaDnevnikFragment(slucajBolesnika.datumSlucaj, slucajBolesnika.opisSlucaj, slucajBolesnika.dijagnozaSlucaj)
+            this.findNavController().navigate(action)
+        }
 
         binding.dnevnikRecycler.adapter = slucajBolesnikaListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)

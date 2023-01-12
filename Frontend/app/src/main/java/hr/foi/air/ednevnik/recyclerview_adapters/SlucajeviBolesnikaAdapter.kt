@@ -19,6 +19,12 @@ class SlucajeviBolesnikaAdapter (
             binding.dnevnikNaslov.text = "${slucajBolesnika.datumSlucaj}"
             binding.tipUnosaDnevnik.text = slucajBolesnika.opisSlucaj
         }
+
+        init {
+            itemView.setOnClickListener{
+                onItemClick?.invoke(slucajeviBolesnikaArrayList[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlucajeviBolesnikaViewHolder {

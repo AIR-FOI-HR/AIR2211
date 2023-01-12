@@ -68,24 +68,27 @@
 
         <Button
             android:id="@+id/strucniRad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/kompetencija"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/knjizicaGumb"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_corner"
-            android:text="@string/strucniRad"
-            android:textSize="12sp"
+            android:drawableTop="@drawable/ic_baseline_library_books_24"
             android:elevation="10dp"
-            android:drawableTop="@drawable/person_48px"
-            />
+            android:text="@string/strucniRadGumb"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/dnevnaAktivnost"
             android:layout_width="120dp"
-            android:layout_height="56dp"
-            android:layout_above="@id/knjizicaGumb"
+            android:layout_height="120dp"
+            android:layout_above="@id/dioSpecijalizacije"
             android:layout_alignParentEnd="true"
             android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_pending_actions_24"
             android:text="@string/dnevnaAktivnost"
             android:textSize="12sp"
             android:elevation="10dp"
@@ -93,11 +96,10 @@
 
         <Button
             android:id="@+id/slucajBolesnika"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/knjizicaGumb"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/zahvat"
             android:layout_alignParentStart="true"
-            android:layout_marginEnd="12dp"
             android:layout_toStartOf="@+id/strucniRad"
             android:background="@drawable/rounded_corner"
             android:drawableTop="@drawable/ic_outline_personal_injury_24"
@@ -105,19 +107,49 @@
             android:text="@string/slucajBolesnika"
             android:textSize="12sp" />
 
-
         <Button
-            android:id="@+id/knjizicaGumb"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/zahvat"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_library_books_24"
             android:elevation="10dp"
-            android:text="@string/knjizica"
-            android:textSize="16sp" />
+            android:text="@string/zahvat"
+            android:textSize="12sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            android:id="@+id/kompetencija"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_pending_actions_24"
+            android:elevation="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/kompetencija"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/dioSpecijalizacije"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="20dp"
+            android:layout_toStartOf="@+id/strucniRad"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_outline_personal_injury_24"
+            android:elevation="10dp"
+            android:text="@string/dioSpecijalizacije"
+            android:textSize="12sp"
+            android:layout_alignParentBottom="true"
+            />
 
     </RelativeLayout>
 

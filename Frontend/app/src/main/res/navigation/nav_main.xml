@@ -45,6 +45,23 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_slucajeviBolesnikaFragment_to_prikazUnosaDnevnikFragment"
+            app:destination="@id/prikazUnosaDnevnikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaDnevnikFragment"
+        android:label="PrikazUnosaDnevnikFragment" >
+        <argument
+            android:name="argDatumSlucaja"
+            app:argType="string" />
+        <argument
+            android:name="argOpisSlucaja"
+            app:argType="string" />
+        <argument
+            android:name="argDijagnozaSlucaja"
+            app:argType="string" />
     </fragment>
 
 </navigation>
