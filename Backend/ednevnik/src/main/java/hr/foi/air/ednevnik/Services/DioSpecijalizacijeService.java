@@ -16,4 +16,8 @@ public class DioSpecijalizacijeService {
     public List<DioSpecijalizacije> DijeloviSpecijalizacijeByProgramSpecijalizacije(int programSpecijalizacijeId) {
         return dioSpecijalizacijeRepository.findAllByProgramSpecijalizacije(programSpecijalizacijeId);
     }
+
+    public Integer BrojDijelovaSpecijalizacijeByProgramSpecijalizacije(int programSpecijalizacijeId) {
+        return dioSpecijalizacijeRepository.countAllByProgramSpecijalizacije(programSpecijalizacijeId);
+    }
 }

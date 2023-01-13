@@ -66,7 +66,6 @@ public class PitanjeController {
         }catch (Exception e){
             return new ResponseEntity<>(0L, HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @RequestMapping("/update")

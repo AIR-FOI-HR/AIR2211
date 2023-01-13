@@ -16,4 +16,8 @@ public class ZahvatService {
     public List<Zahvat> ZahvatiByProgramSpecijalizacije(int programSpecijalizacijeId) {
         return zahvatRepository.findAllByProgramSpecijalizacije(programSpecijalizacijeId);
     }
+
+    public Integer BrojZahvataByProgramSpecijalizacije(int programSpecijalizacijeId) {
+        return zahvatRepository.countAllByProgramSpecijalizacije(programSpecijalizacijeId);
+    }
 }

@@ -31,4 +31,18 @@ public class KompetencijaController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/getCountByProgramSpecijalizacijeId/{program_specijalizacije_id}")
+    public ResponseEntity<Integer> GetBrojKompetencijaByProgramSpecijalizacije(@PathVariable int program_specijalizacije_id){
+        var brojKompetencija = kompetencijaService.BrojKompetencijaByProgramSpecijalizacije(program_specijalizacije_id);
+        try{
+            if(brojKompetencija==null){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(brojKompetencija, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

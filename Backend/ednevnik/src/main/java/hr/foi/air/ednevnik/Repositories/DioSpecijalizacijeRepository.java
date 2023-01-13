@@ -8,4 +8,6 @@ import java.util.List;
 public interface DioSpecijalizacijeRepository extends JpaRepository<DioSpecijalizacije, Integer> {
 
     List<DioSpecijalizacije> findAllByProgramSpecijalizacije(int id);
+
+    Integer countAllByProgramSpecijalizacije(int id);
 }

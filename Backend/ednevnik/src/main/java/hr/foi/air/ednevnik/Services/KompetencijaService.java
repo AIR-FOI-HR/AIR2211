@@ -17,4 +17,8 @@ public class KompetencijaService {
     public List<Kompetencija> KompetencijeByProgramSpecijalizacije(int programSpecijalizacijeId) {
         return kompetencijaRepository.findAllByProgramSpecijalizacije(programSpecijalizacijeId);
     }
+
+    public Integer BrojKompetencijaByProgramSpecijalizacije(int programSpecijalizacijeId) {
+        return kompetencijaRepository.countAllByProgramSpecijalizacije(programSpecijalizacijeId);
+    }
 }

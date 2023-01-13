@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ZahvatRepository extends JpaRepository<Zahvat, Integer> {
     List<Zahvat> findAllByProgramSpecijalizacije(int id);
+
+    Integer countAllByProgramSpecijalizacije(int id);
 }

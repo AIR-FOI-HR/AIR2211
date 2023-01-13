@@ -8,4 +8,6 @@ import java.util.List;
 public interface KompetencijaRepository extends JpaRepository<Kompetencija, Integer> {
 
     List<Kompetencija> findAllByProgramSpecijalizacije(int id);
+
+    Integer countAllByProgramSpecijalizacije(int id);
 }

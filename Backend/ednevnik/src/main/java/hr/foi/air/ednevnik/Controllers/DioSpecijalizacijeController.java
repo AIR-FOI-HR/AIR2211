@@ -30,4 +30,18 @@ public class DioSpecijalizacijeController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/getCountByProgramSpecijalizacijeId/{program_specijalizacije_id}")
+    public ResponseEntity<Integer> GetBrojDijelovaKompetencijeByProgramSpecijalizacije(@PathVariable int program_specijalizacije_id){
+        var brojDijelovaSpecijalizacije = dioSpecijalizacijeService.BrojDijelovaSpecijalizacijeByProgramSpecijalizacije(program_specijalizacije_id);
+        try{
+            if(brojDijelovaSpecijalizacije==null){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(brojDijelovaSpecijalizacije, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
