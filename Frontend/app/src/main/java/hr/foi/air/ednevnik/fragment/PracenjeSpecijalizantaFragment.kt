@@ -29,11 +29,19 @@ class PracenjeSpecijalizantaFragment : Fragment() {
 
         _binding!!.spcijalizantIme.text = "${arguments?.getString("argSpecijalizantIme")} ${arguments?.getString("argSpecijalizantPrezime")}"
 
-        var gumb = _binding!!.slucajBolesnika
+        var gumbSlucajBolesnika = _binding!!.slucajBolesnika
 
-        gumb.setOnClickListener() {
+        gumbSlucajBolesnika.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
             val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToSlucajeviBolesnikaFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
+        var gumbStrucniRad = _binding!!.strucniRad
+
+        gumbStrucniRad.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToStrucniRadoviFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 

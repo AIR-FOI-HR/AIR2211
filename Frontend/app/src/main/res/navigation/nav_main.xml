@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
     app:startDestination="@id/specijalizantiFragment">
 
@@ -33,6 +34,9 @@
         <argument
             android:name="argSpecijalizantId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_strucniRadoviFragment"
+            app:destination="@id/strucniRadoviFragment" />
     </fragment>
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
@@ -51,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/prikazUnosaDnevnikFragment"
-        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaSlucajBolesnikaDnevnikFragment"
         android:label="PrikazUnosaDnevnikFragment" >
         <argument
             android:name="argDatumSlucaja"
@@ -62,6 +66,29 @@
         <argument
             android:name="argDijagnozaSlucaja"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaDnevnikFragment2"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaStrucniRadDnevnikFragment"
+        android:label="PrikazUnosaDnevnikFragment">
+        <argument
+            android:name="argNaslovRada"
+            app:argType="string" />
+        <argument
+            android:name="argObjavljenU"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/strucniRadoviFragment"
+        android:name="hr.foi.air.ednevnik.fragment.StrucniRadoviFragment"
+        android:label="StrucniRadoviFragment" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_strucniRadoviFragment_to_prikazUnosaDnevnikFragment2"
+            app:destination="@id/prikazUnosaDnevnikFragment2" />
     </fragment>
 
 </navigation>
