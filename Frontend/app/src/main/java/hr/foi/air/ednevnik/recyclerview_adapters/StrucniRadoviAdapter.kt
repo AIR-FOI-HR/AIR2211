@@ -17,6 +17,7 @@ class StrucniRadoviAdapter (
     {
         fun bind(strucniRad: StrucniRad) {
             binding.dnevnikNaslov.text = strucniRad.naslovRad
+            binding.tipUnosaDnevnik.text = ""
         }
 
         init {
