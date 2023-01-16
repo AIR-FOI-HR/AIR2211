@@ -3,10 +3,7 @@ package com.example.ws
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.core.entities.SlucajBolesnika
-import com.example.core.entities.Specijalizacija
-import com.example.core.entities.Specijalizant
-import com.example.core.entities.StrucniRad
+import com.example.core.entities.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
@@ -200,6 +197,36 @@ class WebServis {
                 }
 
                 override fun onFailure(call: Call<ArrayList<StrucniRad>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Dnevna aktivnost
+    private val _dnevneAktivnosti = MutableLiveData<List<DnevnaAktivnost>>()
+    val dnevneAktivnosti: LiveData<List<DnevnaAktivnost>>
+        get() = _dnevneAktivnosti
+
+    fun getAllDnevneAktivnosti(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(DnevneAktivnostiBySpecijalizacijaIdApi::class.java)
+        val call : Call<ArrayList<DnevnaAktivnost>> = serviceAPI.getDnevneAktivnosti(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<DnevnaAktivnost>>{
+                override fun onResponse(
+                    call: Call<ArrayList<DnevnaAktivnost>>,
+                    response: Response<ArrayList<DnevnaAktivnost>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _dnevneAktivnosti.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<DnevnaAktivnost>>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
                 }
             }

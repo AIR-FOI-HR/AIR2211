@@ -45,6 +45,14 @@ class PracenjeSpecijalizantaFragment : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        var gumbDnevnaAktivnost = _binding!!.dnevnaAktivnost
+
+        gumbDnevnaAktivnost.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToDnevneAktivnostiFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
