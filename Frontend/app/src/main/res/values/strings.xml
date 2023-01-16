@@ -22,6 +22,10 @@
     <string name="odjava">Odjavi se</string>
     <string name="promjeniLozinku">Promijeni lozinku</string>
     <string name="strucniRad">Stručni rad</string>
-    <string name="dnevnaAktivnost">Dnevna aktivnost</string>
-    <string name="slucajBolesnika">Slučaj bolesnika</string>
+    <string name="dnevnaAktivnost">Dnevna \naktivnost</string>
+    <string name="slucajBolesnika">Slučaj \nbolesnika</string>
+    <string name="strucniRadGumb">Stručni \nrad</string>
+    <string name="zahvat">Zahvati</string>
+    <string name="kompetencija">Kompetencije</string>
+    <string name="dioSpecijalizacije">Dio \nspecijalizacije</string>
 </resources>

@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
-import hr.foi.air.ednevnik.recyclerview_adapters.SlucajeviBolesnikaAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.StrucniRadoviAdapter
 
-class SlucajeviBolesnikaFragment : Fragment(){
+class StrucniRadoviFragment : Fragment(){
     private var _binding: MentorListaDnevnikBinding? = null
     private val binding: MentorListaDnevnikBinding
         get() = _binding!!
 
-    private lateinit var slucajBolesnikaListAdapter: SlucajeviBolesnikaAdapter
+    private lateinit var strucniRadListAdapter: StrucniRadoviAdapter
 
     private lateinit var webServis: WebServis
 
@@ -34,28 +34,28 @@ class SlucajeviBolesnikaFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         webServis = WebServis()
 
-        webServis.getAllSlucajeviBolesnika(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getAllStrucniRadovi(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         initRecyclerView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.slucajeviBolesnika.observe(viewLifecycleOwner) {
-            slucajBolesnikaListAdapter.setData(it)
+        webServis.strucniRadovi.observe(viewLifecycleOwner) {
+            strucniRadListAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
-        slucajBolesnikaListAdapter = SlucajeviBolesnikaAdapter()
+        strucniRadListAdapter = StrucniRadoviAdapter()
 
-        slucajBolesnikaListAdapter.onItemClick = {slucajBolesnika ->
-            Log.d("SpecTAG", "${slucajBolesnika.idSlucaj}")
-            val action = SlucajeviBolesnikaFragmentDirections.actionSlucajeviBolesnikaFragmentToPrikazUnosaDnevnikFragment(slucajBolesnika.datumSlucaj, slucajBolesnika.opisSlucaj, slucajBolesnika.dijagnozaSlucaj)
+        strucniRadListAdapter.onItemClick = {strucniRad ->
+            Log.d("SpecTAG", "${strucniRad.idRad}")
+            val action = StrucniRadoviFragmentDirections.actionStrucniRadoviFragmentToPrikazUnosaDnevnikFragment2(strucniRad.naslovRad, strucniRad.objavljenU)
             this.findNavController().navigate(action)
         }
 
-        binding.dnevnikRecycler.adapter = slucajBolesnikaListAdapter
+        binding.dnevnikRecycler.adapter = strucniRadListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
     }
 }
