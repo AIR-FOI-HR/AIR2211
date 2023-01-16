@@ -232,4 +232,34 @@ class WebServis {
             }
         )
     }
+
+    //Provjera znanja
+    private val _provjereZnanja = MutableLiveData<List<ProvjeraZnanja>>()
+    val provjereZnanja: LiveData<List<ProvjeraZnanja>>
+        get() = _provjereZnanja
+
+    fun getAllProvjereZnanja(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(ProvjereZnanjaBySpecijalizacijaIdApi::class.java)
+        val call : Call<ArrayList<ProvjeraZnanja>> = serviceAPI.getProvjereZnanja(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<ProvjeraZnanja>>{
+                override fun onResponse(
+                    call: Call<ArrayList<ProvjeraZnanja>>,
+                    response: Response<ArrayList<ProvjeraZnanja>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _provjereZnanja.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<ProvjeraZnanja>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 }

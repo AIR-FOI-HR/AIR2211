@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_pracenjeSpecijalizantaFragment_to_dnevneAktivnostiFragment"
             app:destination="@id/dnevneAktivnostiFragment" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_provjereZnanjaFragment"
+            app:destination="@id/provjereZnanjaFragment" />
     </fragment>
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
@@ -61,26 +64,16 @@
         android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaSlucajBolesnikaDnevnikFragment"
         android:label="PrikazUnosaSlucajBolesnikaDnevnikFragment">
         <argument
-            android:name="argDatumSlucaja"
-            app:argType="string" />
-        <argument
-            android:name="argOpisSlucaja"
-            app:argType="string" />
-        <argument
-            android:name="argDijagnozaSlucaja"
-            app:argType="string" />
+            android:name="argSlucajBolesnika"
+            app:argType="com.example.core.entities.SlucajBolesnika" />
     </fragment>
     <fragment
         android:id="@+id/PrikazUnosaStrucniRadDnevnikFragment"
         android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaStrucniRadDnevnikFragment"
         android:label="PrikazUnosaStrucniRadDnevnikFragment">
         <argument
-            android:name="argNaslovRada"
-            app:argType="string" />
-        <argument
-            android:name="argObjavljenU"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="argStrucniRad"
+            app:argType="com.example.core.entities.StrucniRad" />
     </fragment>
     <fragment
         android:id="@+id/strucniRadoviFragment"
@@ -109,27 +102,27 @@
         android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaDnevnaAktivnostDnevnikFragment"
         android:label="PrikazUnosaDnevnaAktivnostDnevnikFragment" >
         <argument
-            android:name="argDatumAktivnosti"
-            app:argType="java.util.Date" />
+            android:name="argDnevnaAktivnost"
+            app:argType="com.example.core.entities.DnevnaAktivnost" />
+    </fragment>
+    <fragment
+        android:id="@+id/provjereZnanjaFragment"
+        android:name="hr.foi.air.ednevnik.fragment.ProvjereZnanjaFragment"
+        android:label="ProvjereZnanjaFragment" >
+        <action
+            android:id="@+id/action_provjereZnanjaFragment_to_prikazUnosaProvjeraZnanjaDnevnikFragment"
+            app:destination="@id/prikazUnosaProvjeraZnanjaDnevnikFragment" />
         <argument
-            android:name="argNazivAktivnosti"
+            android:name="argSpecijalizacijaId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaProvjeraZnanjaDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaProvjeraZnanjaDnevnikFragment"
+        android:label="PrikazUnosaProvjeraZnanjaDnevnikFragment" >
         <argument
-            android:name="argOpisAktivnosti"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="argBrZahvataNadzor"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="argBrZahvataSamostalno"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="argPotpisMentora"
-            app:argType="java.lang.Byte"
-            app:nullable="true" />
+            android:name="argProvjeraZnanja"
+            app:argType="com.example.core.entities.ProvjeraZnanja" />
     </fragment>
 
 </navigation>

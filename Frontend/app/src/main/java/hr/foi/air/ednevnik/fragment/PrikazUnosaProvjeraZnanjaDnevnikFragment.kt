@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
+import java.text.SimpleDateFormat
 
-class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
-    private val args : PrikazUnosaStrucniRadDnevnikFragmentArgs by navArgs<PrikazUnosaStrucniRadDnevnikFragmentArgs>()
+class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
+    private val args : PrikazUnosaProvjeraZnanjaDnevnikFragmentArgs by navArgs<PrikazUnosaProvjeraZnanjaDnevnikFragmentArgs>()
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
@@ -20,17 +21,24 @@ class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        var strucniRad = args.argStrucniRad
+        var provjeraZnanja = args.argProvjeraZnanja
         var opis = "";
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
-        _binding!!.naslovUnosaDnevnika.text = strucniRad.naslovRad
+        _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
 
-        opis += "Naslov rada: ${strucniRad.naslovRad}"
-
-        if(strucniRad.objavljenU!=null) { opis += "\nObjavljen u: ${strucniRad.objavljenU}" }
-        else{ opis += "\nStrucni rad nije objavljen." }
+        if(provjeraZnanja.ocjenaProvjera!=null)
+        {
+            opis += "Ocjena: ${provjeraZnanja.ocjenaProvjera}"
+        }
+        else{
+            opis += "Ocjena: Nije ocijenjeno"
+        }
+        if(provjeraZnanja.potpisMentora==null || provjeraZnanja.potpisMentora.toString()=="0")
+        { opis += "\nPotpis mentora: Ne" }
+        else if(provjeraZnanja.potpisMentora.toString()=="1")
+        { opis += "\nPotpis mentora: Da" }
 
         _binding!!.opisDnevnika.text = opis;
 

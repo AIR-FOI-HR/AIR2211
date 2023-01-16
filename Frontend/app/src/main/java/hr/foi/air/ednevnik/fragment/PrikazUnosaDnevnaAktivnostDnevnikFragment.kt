@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 import java.text.SimpleDateFormat
 
 class PrikazUnosaDnevnaAktivnostDnevnikFragment : Fragment(){
+    private val args : PrikazUnosaDnevnaAktivnostDnevnikFragmentArgs by navArgs<PrikazUnosaDnevnaAktivnostDnevnikFragmentArgs>()
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
@@ -19,30 +21,30 @@ class PrikazUnosaDnevnaAktivnostDnevnikFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
 
+        var dnevnaAktivnost = args.argDnevnaAktivnost
         var opis = "";
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
-        _binding!!.naslovUnosaDnevnika.text = "${arguments?.getString("argNazivAktivnosti")}"
+        _binding!!.naslovUnosaDnevnika.text = dnevnaAktivnost.nazivAktivnost
 
-        opis += "Naziv aktivnosti: ${arguments?.getString("argNazivAktivnosti")}"
-        opis += "\nDatum aktivnosti: ${SimpleDateFormat("yyyy-MM-dd").format(arguments?.get("argDatumAktivnosti"))}"
+        opis += "\nDatum aktivnosti: ${SimpleDateFormat("yyyy-MM-dd").format(dnevnaAktivnost.datumAktivnost)}"
 
-        if(arguments?.getString("argOpisAktivnosti")!=null)
+        if(dnevnaAktivnost.opisAktivnost!=null)
         {
-            opis += "\nOpis aktivnosti: ${arguments?.getString("argOpisAktivnosti")}"
+            opis += "\nOpis aktivnosti: ${dnevnaAktivnost.opisAktivnost}"
         }
-        if(arguments?.getString("argBrZahvataNadzor")!=null)
+        if(dnevnaAktivnost.brZahvataNadzor!=null)
         {
-            opis += "\nBroj zahvata pod nadzorom: ${arguments?.getString("argBrZahvataNadzor")}"
+            opis += "\nBroj zahvata pod nadzorom: ${dnevnaAktivnost.brZahvataNadzor}"
         }
-        if(arguments?.getString("argBrZahvataSamostalno")!=null)
+        if(dnevnaAktivnost.brZahvataSamostalno!=null)
         {
-            opis += "\nBroj samostalnih zahvata: ${arguments?.getString("argBrZahvataSamostalno")}"
+            opis += "\nBroj samostalnih zahvata: ${dnevnaAktivnost.brZahvataSamostalno}"
         }
-        if(arguments?.get("argPotpisMentora")==null || arguments?.get("argPotpisMentora").toString()=="0")
+        if(dnevnaAktivnost.potpisMentora==null || dnevnaAktivnost.potpisMentora.toString()=="0")
         { opis += "\nPotpis mentora: Ne" }
-        else if(arguments?.get("argPotpisMentora").toString()=="1")
+        else if(dnevnaAktivnost.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
 
         _binding!!.opisDnevnika.text = opis;

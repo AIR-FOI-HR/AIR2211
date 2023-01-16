@@ -51,7 +51,7 @@ class DnevneAktivnostiFragment : Fragment(){
 
         dnevnaAktivnostListAdapter.onItemClick = {dnevnaAktivnost ->
             Log.d("SpecTAG", "${dnevnaAktivnost.idAktivnost}")
-            val action = DnevneAktivnostiFragmentDirections.actionDnevneAktivnostiFragmentToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost.datumAktivnost, dnevnaAktivnost.nazivAktivnost, dnevnaAktivnost.opisAktivnost, dnevnaAktivnost.brZahvataNadzor.toString(), dnevnaAktivnost.brZahvataSamostalno.toString(), dnevnaAktivnost.potpisMentora)
+            val action = DnevneAktivnostiFragmentDirections.actionDnevneAktivnostiFragmentToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost)
             this.findNavController().navigate(action)
         }
 
