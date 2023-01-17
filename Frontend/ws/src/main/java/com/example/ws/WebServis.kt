@@ -262,4 +262,64 @@ class WebServis {
             }
         )
     }
+
+    //Pitanje
+    private val _pitanja = MutableLiveData<List<Pitanje>>()
+    val pitanja: LiveData<List<Pitanje>>
+        get() = _pitanja
+
+    fun getAllPitanja(provjeraId : Int)
+    {
+        val serviceAPI = retrofit.create(PitanjaByProvjeraIdApi::class.java)
+        val call : Call<ArrayList<Pitanje>> = serviceAPI.getPitanja(provjeraId)
+
+        call.enqueue (
+            object : Callback<ArrayList<Pitanje>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Pitanje>>,
+                    response: Response<ArrayList<Pitanje>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _pitanja.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<Pitanje>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Odradena kompetencija
+    private val _odradeneKompetencije = MutableLiveData<List<OdradenaKompetencija>>()
+    val odradeneKompetencije: LiveData<List<OdradenaKompetencija>>
+        get() = _odradeneKompetencije
+
+    fun getAllOdradeneKompetencije(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(OdradeneKompetencijeBySpecijalizacijaId::class.java)
+        val call : Call<ArrayList<OdradenaKompetencija>> = serviceAPI.getOdradeneKompetencijie(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<OdradenaKompetencija>>{
+                override fun onResponse(
+                    call: Call<ArrayList<OdradenaKompetencija>>,
+                    response: Response<ArrayList<OdradenaKompetencija>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _odradeneKompetencije.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<OdradenaKompetencija>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 }
