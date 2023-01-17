@@ -1,23 +1,31 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.entities.Pitanje
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
+import hr.foi.air.ednevnik.databinding.MentorKnjizicaPrikazUnosaBinding
+import hr.foi.air.ednevnik.recyclerview_adapters.PitanjaAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.ProvjereZnanjaAdapter
 import java.text.SimpleDateFormat
 
 class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
     private val args : PrikazUnosaProvjeraZnanjaDnevnikFragmentArgs by navArgs<PrikazUnosaProvjeraZnanjaDnevnikFragmentArgs>()
-    private var _binding: MentorDnevnikPrikazUnosaBinding? = null
-    private val binding: MentorDnevnikPrikazUnosaBinding
+    private var _binding: MentorKnjizicaPrikazUnosaBinding? = null
+    private val binding: MentorKnjizicaPrikazUnosaBinding
         get() = _binding!!
 
     lateinit var webServis: WebServis
+
+    private lateinit var pitanjaAdapter: PitanjaAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,16 +33,12 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
 
-        var provjeraZnanja = args.argProvjeraZnanja
+        val provjeraZnanja = args.argProvjeraZnanja
         var opis = "";
 
-        webServis = WebServis()
-        webServis.getAllPitanja(args.argProvjeraZnanja.idProvjera!!.toInt())
+        _binding = MentorKnjizicaPrikazUnosaBinding.inflate(inflater, container, false)
 
-
-        _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
-
-        _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
+        _binding!!.naslovUnosaKnjizice.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
 
         if(provjeraZnanja.ocjenaProvjera!=null)
         {
@@ -48,9 +52,7 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
         else if(provjeraZnanja.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
 
-        opis+="${webServis.pitanja.value}"
-
-        _binding!!.opisDnevnika.text = opis;
+        _binding!!.opisKnjzice.text = opis;
 
         return binding.root
     }
@@ -58,6 +60,23 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        webServis = WebServis()
+        webServis.getAllPitanja(args.argProvjeraZnanja.idProvjera!!.toInt())
 
+        initRecyclerView()
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+        webServis.pitanja.observe(viewLifecycleOwner) {
+            pitanjaAdapter.setData(it)
+        }
+    }
+
+    private fun initRecyclerView() {
+        pitanjaAdapter = PitanjaAdapter()
+
+        binding.knjizicaRecycler.adapter = pitanjaAdapter
+        binding.knjizicaRecycler.layoutManager = LinearLayoutManager(context)
     }
 }
