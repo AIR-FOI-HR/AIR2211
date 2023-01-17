@@ -17,6 +17,8 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
 
+    lateinit var webServis: WebServis
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +27,10 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
 
         var provjeraZnanja = args.argProvjeraZnanja
         var opis = "";
+
+        webServis = WebServis()
+        webServis.getAllPitanja(args.argProvjeraZnanja.idProvjera!!.toInt())
+
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
@@ -42,6 +48,8 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
         else if(provjeraZnanja.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
 
+        opis+="${webServis.pitanja.value}"
+
         _binding!!.opisDnevnika.text = opis;
 
         return binding.root
@@ -49,6 +57,7 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
     }
 }
