@@ -11,11 +11,11 @@ import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 import java.text.SimpleDateFormat
 
-class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
-    private val args : PrikazUnosaOdradenaKompetencijaDnevnikFragmentArgs by navArgs<PrikazUnosaOdradenaKompetencijaDnevnikFragmentArgs>()
+class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
+    private val args : PrikazUnosaOdradeniZahvatDnevnikFragmentArgs by navArgs<PrikazUnosaOdradeniZahvatDnevnikFragmentArgs>()
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
-    get() = _binding!!
+        get() = _binding!!
 
     lateinit var webServis: WebServis
 
@@ -26,7 +26,7 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
     ): View {
 
         webServis = WebServis()
-        webServis.getKompetencija(args.argOdradenaKompetencija.kompetencija!!.toInt())
+        webServis.getZahvat(args.argOdradeniZahvat.zahvat!!.toInt())
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
@@ -39,19 +39,19 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
 
     private fun prikaziPodatke() : String
     {
-        var odradenaKompetencija = args.argOdradenaKompetencija
+        var odradeniZahvat = args.argOdradeniZahvat
         var opis = "";
 
-        var kompetencija = webServis.kompetencija.value
+        var zahvat = webServis.zahvat.value
 
-        if(kompetencija?.nazivKompetencija!=null)
+        if(zahvat?.nazivZahvat!=null)
         {
-            opis += "\nNaziv kompetencije: ${kompetencija!!.nazivKompetencija}"
+            opis += "\nNaziv zahvata: ${zahvat!!.nazivZahvat}"
         }
-        opis += "\nStupanj kompetencije: ${odradenaKompetencija.stupanj}"
-        if(odradenaKompetencija.potpisMentora==null || odradenaKompetencija.potpisMentora.toString()=="0")
+        opis += "\nStupanj zahvata: ${odradeniZahvat.stupanj}"
+        if(odradeniZahvat.potpisMentora==null || odradeniZahvat.potpisMentora.toString()=="0")
         { opis += "\nPotpis mentora: Ne" }
-        else if(odradenaKompetencija.potpisMentora.toString()=="1")
+        else if(odradeniZahvat.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
 
         return opis;
@@ -59,13 +59,13 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TAG OnViewCreated", webServis.kompetencija.value.toString())
+        Log.d("TAG OnViewCreated", webServis.zahvat.value.toString())
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.kompetencija.observe(viewLifecycleOwner) {
-            _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(args.argOdradenaKompetencija.datum)
+        webServis.zahvat.observe(viewLifecycleOwner) {
+            _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(args.argOdradeniZahvat.datum)
             _binding!!.opisDnevnika.text = prikaziPodatke()
         }
     }

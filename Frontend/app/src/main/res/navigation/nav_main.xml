@@ -46,6 +46,12 @@
         <action
             android:id="@+id/action_pracenjeSpecijalizantaFragment_to_odradeneKompetencijeFragment"
             app:destination="@id/odradeneKompetencijeFragment" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_odradeniZahvatiFragment"
+            app:destination="@id/odradeniZahvatiFragment" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_odradeniDijeloviSpecijalizacijeFragment"
+            app:destination="@id/odradeniDijeloviSpecijalizacijeFragment" />
     </fragment>
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
@@ -153,6 +159,43 @@
         <argument
             android:name="argOdradenaKompetencija"
             app:argType="com.example.core.entities.OdradenaKompetencija" />
+    </fragment>
+    <fragment
+        android:id="@+id/odradeniZahvatiFragment"
+        android:name="hr.foi.air.ednevnik.fragment.OdradeniZahvatiFragment"
+        android:label="OdradeniZahvatiFragment" >
+        <action
+            android:id="@+id/action_odradeniZahvatiFragment_to_prikazUnosaOdradeniZahvatDnevnikFragment"
+            app:destination="@id/prikazUnosaOdradeniZahvatDnevnikFragment" />
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaOdradeniZahvatDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaOdradeniZahvatDnevnikFragment"
+        android:label="PrikazUnosaOdradeniZahvatDnevnikFragment" >
+        <argument
+            android:name="argOdradeniZahvat"
+            app:argType="com.example.core.entities.OdradeniZahvat" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment"
+        android:label="PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment" >
+        <argument android:name="argOdradeniDioSpecijalizacije"
+            app:argType="com.example.core.entities.OdradeniDioSpecijalizacije" />
+    </fragment>
+    <fragment
+        android:id="@+id/odradeniDijeloviSpecijalizacijeFragment"
+        android:name="hr.foi.air.ednevnik.fragment.OdradeniDijeloviSpecijalizacijeFragment"
+        android:label="OdradeniDijeloviSpecijalizacijeFragment" >
+        <action
+            android:id="@+id/action_odradeniDijeloviSpecijalizacijeFragment_to_prikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment"
+            app:destination="@id/prikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment" />
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -9,14 +9,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
-import hr.foi.air.ednevnik.recyclerview_adapters.OdradeneKompetencijeAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.OdradeniDijeloviSpecijalizacijeAdapter
 
-class OdradeneKompetencijeFragment : Fragment(){
+class OdradeniDijeloviSpecijalizacijeFragment : Fragment(){
     private var _binding: MentorListaDnevnikBinding? = null
     private val binding: MentorListaDnevnikBinding
         get() = _binding!!
 
-    private lateinit var odradenaKompetencijaListAdapter: OdradeneKompetencijeAdapter
+    private lateinit var odradeniDioSpecijalizacijeListAdapter: OdradeniDijeloviSpecijalizacijeAdapter
 
     private lateinit var webServis: WebServis
 
@@ -33,27 +33,27 @@ class OdradeneKompetencijeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         webServis = WebServis()
 
-        webServis.getAllOdradeneKompetencije(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getAllOdradeniDijeloviSpecijalizacije(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         initRecyclerView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.odradeneKompetencije.observe(viewLifecycleOwner) {
-            odradenaKompetencijaListAdapter.setData(it)
+        webServis.odradeniDijeloviSpecijalizacije.observe(viewLifecycleOwner) {
+            odradeniDioSpecijalizacijeListAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
-        odradenaKompetencijaListAdapter = OdradeneKompetencijeAdapter()
+        odradeniDioSpecijalizacijeListAdapter = OdradeniDijeloviSpecijalizacijeAdapter()
 
-        odradenaKompetencijaListAdapter.onItemClick = {odradenaKompetencija ->
-            val action = OdradeneKompetencijeFragmentDirections.actionOdradeneKompetencijeFragmentToPrikazUnosaOdradenaKompetencijaDnevnikFragment(odradenaKompetencija)
+        odradeniDioSpecijalizacijeListAdapter.onItemClick = {odradeniDioSpecijalizacije ->
+            val action = OdradeniDijeloviSpecijalizacijeFragmentDirections.actionOdradeniDijeloviSpecijalizacijeFragmentToPrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment(odradeniDioSpecijalizacije)
             this.findNavController().navigate(action)
         }
 
-        binding.dnevnikRecycler.adapter = odradenaKompetencijaListAdapter
+        binding.dnevnikRecycler.adapter = odradeniDioSpecijalizacijeListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
     }
 }
