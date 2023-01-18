@@ -61,6 +61,14 @@ class PracenjeSpecijalizantaFragment : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        var gumbOdradeneKompetencije = _binding!!.kompetencija
+
+        gumbOdradeneKompetencije.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToOdradeneKompetencijeFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

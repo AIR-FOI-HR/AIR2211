@@ -322,4 +322,34 @@ class WebServis {
             }
         )
     }
+
+    //Kompetencija
+    private val _kompetencija = MutableLiveData<Kompetencija>()
+    val kompetencija: LiveData<Kompetencija>
+        get() = _kompetencija
+
+    fun getKompetencija(kompetencijaId : Int)
+    {
+        val serviceAPI = retrofit.create(KompetencijaByIdApi::class.java)
+        val call : Call<Kompetencija> = serviceAPI.getKompetencija(kompetencijaId)
+
+        call.enqueue (
+            object : Callback<Kompetencija>{
+                override fun onResponse(
+                    call: Call<Kompetencija>,
+                    response: Response<Kompetencija>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _kompetencija.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Kompetencija>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 }

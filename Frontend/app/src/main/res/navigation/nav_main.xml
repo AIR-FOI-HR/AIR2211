@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_pracenjeSpecijalizantaFragment_to_provjereZnanjaFragment"
             app:destination="@id/provjereZnanjaFragment" />
+        <action
+            android:id="@+id/action_pracenjeSpecijalizantaFragment_to_odradeneKompetencijeFragment"
+            app:destination="@id/odradeneKompetencijeFragment" />
     </fragment>
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
@@ -131,6 +134,25 @@
         <action
             android:id="@+id/action_loginFragment_to_specijalizantiFragment"
             app:destination="@id/specijalizantiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/odradeneKompetencijeFragment"
+        android:name="hr.foi.air.ednevnik.fragment.OdradeneKompetencijeFragment"
+        android:label="OdradeneKompetencijeFragment" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_odradeneKompetencijeFragment_to_prikazUnosaOdradenaKompetencijaDnevnikFragment"
+            app:destination="@id/prikazUnosaOdradenaKompetencijaDnevnikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaOdradenaKompetencijaDnevnikFragment"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaOdradenaKompetencijaDnevnikFragment"
+        android:label="PrikazUnosaOdradenaKompetencijaDnevnikFragment" >
+        <argument
+            android:name="argOdradenaKompetencija"
+            app:argType="com.example.core.entities.OdradenaKompetencija" />
     </fragment>
 
 </navigation>
