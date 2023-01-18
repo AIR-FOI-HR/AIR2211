@@ -1,6 +1,7 @@
 package hr.foi.air.ednevnik.Controllers;
 
 
+import hr.foi.air.ednevnik.Entities.Ispit;
 import hr.foi.air.ednevnik.Entities.Kompetencija;
 import hr.foi.air.ednevnik.Services.KompetencijaService;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -41,6 +43,19 @@ public class KompetencijaController {
             }
             else
                 return new ResponseEntity<>(brojKompetencija, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Optional<Kompetencija>> GetAktivnostById(@PathVariable int id){
+        var kompetencija = kompetencijaService.KompetencijaById(id);
+        try{
+            if(kompetencija.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(kompetencija, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
