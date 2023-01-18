@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
-import hr.foi.air.ednevnik.recyclerview_adapters.StrucniRadoviAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.ProvjereZnanjaAdapter
 
-class StrucniRadoviFragment : Fragment(){
+class ProvjereZnanjaFragment : Fragment(){
     private var _binding: MentorListaDnevnikBinding? = null
     private val binding: MentorListaDnevnikBinding
         get() = _binding!!
 
-    private lateinit var strucniRadListAdapter: StrucniRadoviAdapter
+    private lateinit var provjeraZnanjaListAdapter: ProvjereZnanjaAdapter
 
     private lateinit var webServis: WebServis
 
@@ -34,28 +34,28 @@ class StrucniRadoviFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         webServis = WebServis()
 
-        webServis.getAllStrucniRadovi(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getAllProvjereZnanja(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         initRecyclerView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.strucniRadovi.observe(viewLifecycleOwner) {
-            strucniRadListAdapter.setData(it)
+        webServis.provjereZnanja.observe(viewLifecycleOwner) {
+            provjeraZnanjaListAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
-        strucniRadListAdapter = StrucniRadoviAdapter()
+        provjeraZnanjaListAdapter = ProvjereZnanjaAdapter()
 
-        strucniRadListAdapter.onItemClick = {strucniRad ->
-            Log.d("SpecTAG", "${strucniRad.idRad}")
-            val action = StrucniRadoviFragmentDirections.actionStrucniRadoviFragmentToPrikazUnosaDnevnikFragment2(strucniRad)
+        provjeraZnanjaListAdapter.onItemClick = {provjeraZnanja ->
+            Log.d("SpecTAG", "${provjeraZnanja.idProvjera}")
+            val action = ProvjereZnanjaFragmentDirections.actionProvjereZnanjaFragmentToPrikazUnosaProvjeraZnanjaDnevnikFragment(provjeraZnanja)
             this.findNavController().navigate(action)
         }
 
-        binding.dnevnikRecycler.adapter = strucniRadListAdapter
+        binding.dnevnikRecycler.adapter = provjeraZnanjaListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
     }
 }

@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
-import hr.foi.air.ednevnik.recyclerview_adapters.StrucniRadoviAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.DnevneAktivnostiAdapter
 
-class StrucniRadoviFragment : Fragment(){
+class DnevneAktivnostiFragment : Fragment(){
     private var _binding: MentorListaDnevnikBinding? = null
     private val binding: MentorListaDnevnikBinding
         get() = _binding!!
 
-    private lateinit var strucniRadListAdapter: StrucniRadoviAdapter
+    private lateinit var dnevnaAktivnostListAdapter: DnevneAktivnostiAdapter
 
     private lateinit var webServis: WebServis
 
@@ -34,28 +34,28 @@ class StrucniRadoviFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         webServis = WebServis()
 
-        webServis.getAllStrucniRadovi(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getAllDnevneAktivnosti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         initRecyclerView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.strucniRadovi.observe(viewLifecycleOwner) {
-            strucniRadListAdapter.setData(it)
+        webServis.dnevneAktivnosti.observe(viewLifecycleOwner) {
+            dnevnaAktivnostListAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
-        strucniRadListAdapter = StrucniRadoviAdapter()
+        dnevnaAktivnostListAdapter = DnevneAktivnostiAdapter()
 
-        strucniRadListAdapter.onItemClick = {strucniRad ->
-            Log.d("SpecTAG", "${strucniRad.idRad}")
-            val action = StrucniRadoviFragmentDirections.actionStrucniRadoviFragmentToPrikazUnosaDnevnikFragment2(strucniRad)
+        dnevnaAktivnostListAdapter.onItemClick = {dnevnaAktivnost ->
+            Log.d("SpecTAG", "${dnevnaAktivnost.idAktivnost}")
+            val action = DnevneAktivnostiFragmentDirections.actionDnevneAktivnostiFragmentToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost)
             this.findNavController().navigate(action)
         }
 
-        binding.dnevnikRecycler.adapter = strucniRadListAdapter
+        binding.dnevnikRecycler.adapter = dnevnaAktivnostListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
     }
 }

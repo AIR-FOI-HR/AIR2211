@@ -28,4 +28,7 @@
     <string name="zahvat">Zahvati</string>
     <string name="kompetencija">Kompetencije</string>
     <string name="dioSpecijalizacije">Dio \nspecijalizacije</string>
+    <string name="provjera_znanja">Provjera znanja</string>
+    <string name="loginSpecijlizant">Login Specijalizant</string>
+    <string name="loginMentor">Login Mentor</string>
 </resources>

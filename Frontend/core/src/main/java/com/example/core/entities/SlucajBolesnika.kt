@@ -1,19 +1,10 @@
 package com.example.core.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.sql.Date
+import kotlinx.parcelize.Parcelize
 
-/*
-API:
-{
-    idSlucaj: 1,
-    specijalizacija: 3,
-    datumSlucaj: "2022-01-02",
-    dijagnozaSlucaj: "test",
-    opisSlucaj: "test",
-    potpisMentora: 1
-}
-*/
+@Parcelize
 data class SlucajBolesnika(
     @SerializedName("idSlucaj")
     var idSlucaj : Int? = null,
@@ -22,14 +13,14 @@ data class SlucajBolesnika(
     var specijalizacijaId : Int? = null,
 
     @SerializedName("datumSlucaj")
-    var datumSlucaj : String = "",
+    var datumSlucaj : java.util.Date,
 
     @SerializedName("dijagnozaSlucaj")
-    var dijagnozaSlucaj : String = "",
+    var dijagnozaSlucaj : String?,
 
     @SerializedName("opisSlucaj")
-    var opisSlucaj : String = "",
+    var opisSlucaj : String?,
 
     @SerializedName("potpisMentora")
-    var potpisMentora : String = "",
-)
+    var potpisMentora : java.lang.Byte?
+) : Parcelable

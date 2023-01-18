@@ -1,7 +1,10 @@
 package com.example.core.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class StrucniRad(
     @SerializedName("idRad")
     var idRad : Int? = null,
@@ -13,5 +16,5 @@ data class StrucniRad(
     var naslovRad : String = "",
 
     @SerializedName("objavljenU")
-    var objavljenU : String = ""
-)
+    var objavljenU : String?
+) : Parcelable

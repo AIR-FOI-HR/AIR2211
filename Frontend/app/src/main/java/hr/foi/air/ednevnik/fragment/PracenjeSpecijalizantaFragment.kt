@@ -45,6 +45,22 @@ class PracenjeSpecijalizantaFragment : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        var gumbDnevnaAktivnost = _binding!!.dnevnaAktivnost
+
+        gumbDnevnaAktivnost.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToDnevneAktivnostiFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
+        var gumbProvjeraZnanja = _binding!!.provjeraZnanja
+
+        gumbProvjeraZnanja.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToProvjereZnanjaFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

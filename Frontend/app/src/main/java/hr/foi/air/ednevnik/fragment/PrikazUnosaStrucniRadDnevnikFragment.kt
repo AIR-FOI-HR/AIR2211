@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 
 class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
+    private val args : PrikazUnosaStrucniRadDnevnikFragmentArgs by navArgs<PrikazUnosaStrucniRadDnevnikFragmentArgs>()
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
@@ -18,18 +20,17 @@ class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        var strucniRad = args.argStrucniRad
         var opis = "";
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
-        _binding!!.naslovUnosaDnevnika.text = "${arguments?.getString("argNaslovRada")}"
+        _binding!!.naslovUnosaDnevnika.text = strucniRad.naslovRad
 
-        opis += "Naslov rada: ${arguments?.getString("argNaslovRada")}"
+        opis += "Naslov rada: ${strucniRad.naslovRad}"
 
-        if(arguments?.getString("argObjavljenU")!=null)
-        {
-            opis += "\nObjavljen u: ${arguments?.getString("argObjavljenU")}"
-        }
+        if(strucniRad.objavljenU!=null) { opis += "\nObjavljen u: ${strucniRad.objavljenU}" }
+        else{ opis += "\nStrucni rad nije objavljen." }
 
         _binding!!.opisDnevnika.text = opis;
 

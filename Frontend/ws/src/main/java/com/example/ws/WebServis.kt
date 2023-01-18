@@ -3,10 +3,7 @@ package com.example.ws
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.core.entities.SlucajBolesnika
-import com.example.core.entities.Specijalizacija
-import com.example.core.entities.Specijalizant
-import com.example.core.entities.StrucniRad
+import com.example.core.entities.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
@@ -200,6 +197,126 @@ class WebServis {
                 }
 
                 override fun onFailure(call: Call<ArrayList<StrucniRad>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Dnevna aktivnost
+    private val _dnevneAktivnosti = MutableLiveData<List<DnevnaAktivnost>>()
+    val dnevneAktivnosti: LiveData<List<DnevnaAktivnost>>
+        get() = _dnevneAktivnosti
+
+    fun getAllDnevneAktivnosti(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(DnevneAktivnostiBySpecijalizacijaIdApi::class.java)
+        val call : Call<ArrayList<DnevnaAktivnost>> = serviceAPI.getDnevneAktivnosti(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<DnevnaAktivnost>>{
+                override fun onResponse(
+                    call: Call<ArrayList<DnevnaAktivnost>>,
+                    response: Response<ArrayList<DnevnaAktivnost>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _dnevneAktivnosti.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<DnevnaAktivnost>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Provjera znanja
+    private val _provjereZnanja = MutableLiveData<List<ProvjeraZnanja>>()
+    val provjereZnanja: LiveData<List<ProvjeraZnanja>>
+        get() = _provjereZnanja
+
+    fun getAllProvjereZnanja(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(ProvjereZnanjaBySpecijalizacijaIdApi::class.java)
+        val call : Call<ArrayList<ProvjeraZnanja>> = serviceAPI.getProvjereZnanja(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<ProvjeraZnanja>>{
+                override fun onResponse(
+                    call: Call<ArrayList<ProvjeraZnanja>>,
+                    response: Response<ArrayList<ProvjeraZnanja>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _provjereZnanja.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<ProvjeraZnanja>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Pitanje
+    private val _pitanja = MutableLiveData<List<Pitanje>>()
+    val pitanja: LiveData<List<Pitanje>>
+        get() = _pitanja
+
+    fun getAllPitanja(provjeraId : Int)
+    {
+        val serviceAPI = retrofit.create(PitanjaByProvjeraIdApi::class.java)
+        val call : Call<ArrayList<Pitanje>> = serviceAPI.getPitanja(provjeraId)
+
+        call.enqueue (
+            object : Callback<ArrayList<Pitanje>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Pitanje>>,
+                    response: Response<ArrayList<Pitanje>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _pitanja.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<Pitanje>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    //Odradena kompetencija
+    private val _odradeneKompetencije = MutableLiveData<List<OdradenaKompetencija>>()
+    val odradeneKompetencije: LiveData<List<OdradenaKompetencija>>
+        get() = _odradeneKompetencije
+
+    fun getAllOdradeneKompetencije(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(OdradeneKompetencijeBySpecijalizacijaId::class.java)
+        val call : Call<ArrayList<OdradenaKompetencija>> = serviceAPI.getOdradeneKompetencijie(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<OdradenaKompetencija>>{
+                override fun onResponse(
+                    call: Call<ArrayList<OdradenaKompetencija>>,
+                    response: Response<ArrayList<OdradenaKompetencija>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _odradeneKompetencije.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<OdradenaKompetencija>>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
                 }
             }

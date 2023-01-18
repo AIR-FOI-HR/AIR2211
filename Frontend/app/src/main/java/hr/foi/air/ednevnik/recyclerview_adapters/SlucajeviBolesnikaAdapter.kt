@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.SlucajBolesnika
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import java.text.SimpleDateFormat
 
 class SlucajeviBolesnikaAdapter (
     private var slucajeviBolesnikaArrayList: ArrayList<SlucajBolesnika> = arrayListOf()
@@ -16,7 +17,8 @@ class SlucajeviBolesnikaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(slucajBolesnika: SlucajBolesnika) {
-            binding.dnevnikNaslov.text = "${slucajBolesnika.datumSlucaj}"
+            binding.dnevnikNaslov.text = "${
+                SimpleDateFormat("yyyy-MM-dd").format(slucajBolesnika.datumSlucaj)}"
             binding.tipUnosaDnevnik.text = slucajBolesnika.opisSlucaj
         }
 

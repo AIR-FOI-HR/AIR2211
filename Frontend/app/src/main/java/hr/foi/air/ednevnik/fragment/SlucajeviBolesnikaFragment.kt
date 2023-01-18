@@ -51,7 +51,7 @@ class SlucajeviBolesnikaFragment : Fragment(){
 
         slucajBolesnikaListAdapter.onItemClick = {slucajBolesnika ->
             Log.d("SpecTAG", "${slucajBolesnika.idSlucaj}")
-            val action = SlucajeviBolesnikaFragmentDirections.actionSlucajeviBolesnikaFragmentToPrikazUnosaDnevnikFragment(slucajBolesnika.datumSlucaj, slucajBolesnika.opisSlucaj, slucajBolesnika.dijagnozaSlucaj)
+            val action = SlucajeviBolesnikaFragmentDirections.actionSlucajeviBolesnikaFragmentToPrikazUnosaDnevnikFragment(slucajBolesnika)
             this.findNavController().navigate(action)
         }
 
