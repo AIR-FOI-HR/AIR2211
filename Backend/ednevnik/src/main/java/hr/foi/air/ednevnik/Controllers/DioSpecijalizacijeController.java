@@ -1,6 +1,7 @@
 package hr.foi.air.ednevnik.Controllers;
 
 import hr.foi.air.ednevnik.Entities.DioSpecijalizacije;
+import hr.foi.air.ednevnik.Entities.Kompetencija;
 import hr.foi.air.ednevnik.Services.DioSpecijalizacijeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -40,6 +42,20 @@ public class DioSpecijalizacijeController {
             }
             else
                 return new ResponseEntity<>(brojDijelovaSpecijalizacije, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Optional<DioSpecijalizacije>> GetDioSpecijalizacijeById(@PathVariable int id){
+        var dioSpecijalizacije = dioSpecijalizacijeService.DioSpecijalizacijeById(id);
+        try{
+            if(dioSpecijalizacije.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(dioSpecijalizacije, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
