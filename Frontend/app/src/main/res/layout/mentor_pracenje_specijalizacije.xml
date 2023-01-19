@@ -54,12 +54,70 @@
 
         <TextView
             android:id="@+id/spcecijalizantNapredakRadovi"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/napredakSpecijalizacije"
             android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
             android:text="@string/napredakRadovi"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakZahvati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakZahvatti"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakKompetencije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSpecijalizacije"
+            android:layout_toRightOf="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakKompetencije"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakSlucajeviBolesnika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakKompetencije"
+            android:layout_toRightOf="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakSlucajBolesnika"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakDioSpec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSlucajeviBolesnika"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakDioSpec"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakDnevneAktivnosti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSlucajeviBolesnika"
+            android:layout_toRightOf="@id/napredakDioSpec"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakDnevneAktivnosti"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
