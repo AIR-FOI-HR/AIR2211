@@ -31,4 +31,18 @@ public class UstrojstvenaJedinicaController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/getCurrentBySpecijalizantId/{specijalizant_id}")
+    public ResponseEntity<Optional<UstrojstvenaJedinica>> GetCurrentUstrojstvenaJedinicaBySpecijalizantId(@PathVariable int specijalizant_id){
+        var ustrojstvenaJedinica = ustrojstvenaJedinicaService.TrenutnaUstrojstvenaJedinicaSpecijalizantaBySpecijalizantId(specijalizant_id);
+        try{
+            if(ustrojstvenaJedinica.isEmpty()){
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>(ustrojstvenaJedinica, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -17,4 +17,9 @@ public class UstrojstvenaJedinicaService {
         Optional<UstrojstvenaJedinica> ustrojstvenaJedinica = ustrojstvenaJedinicaRepository.findByIdJedinica(id);
         return ustrojstvenaJedinica;
     }
+
+    public Optional<UstrojstvenaJedinica> TrenutnaUstrojstvenaJedinicaSpecijalizantaBySpecijalizantId(int id){
+        Optional<UstrojstvenaJedinica> ustrojstvenaJedinica = ustrojstvenaJedinicaRepository.findCurrentBySpecijalizantId(id);
+        return ustrojstvenaJedinica;
+    }
 }
