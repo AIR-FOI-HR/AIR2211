@@ -114,6 +114,26 @@ class WebServis {
         )
     }
 
+    fun dodajSpecijlizaciju(specijalizacija: Specijalizacija, onResult: (Specijalizacija?) -> Unit){
+        val serviceAPI = retrofit.create(NovaSpecijalizacijaApi::class.java)
+        serviceAPI.dodajSpecijlizaciju(specijalizacija).enqueue(
+            object : Callback<Specijalizacija> {
+                override fun onFailure(call: Call<Specijalizacija>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Specijalizacija>, response: Response<Specijalizacija>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanaSpecijlizacija = response.body()
+                        onResult(dodanaSpecijlizacija)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Slucaj bolesnika
     private val _slucajeviBolesnika = MutableLiveData<List<SlucajBolesnika>>()
     val slucajeviBolesnika: LiveData<List<SlucajBolesnika>>

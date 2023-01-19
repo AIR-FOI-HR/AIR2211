@@ -1,6 +1,8 @@
 package com.example.core.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /*
 API:
@@ -14,6 +16,7 @@ API:
 }
 */
 
+@Parcelize
 data class Specijalizant (
     @SerializedName("idSpecijalizant")
     var id_specijalizant : Int? = null,
@@ -32,4 +35,4 @@ data class Specijalizant (
 
     @SerializedName("slika")
     var slika : String = "",
-)
+) : Parcelable

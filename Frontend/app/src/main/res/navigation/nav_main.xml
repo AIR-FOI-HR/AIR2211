@@ -56,7 +56,11 @@
     <fragment
         android:id="@+id/sviSpecijalizantiFragment"
         android:name="hr.foi.air.ednevnik.fragment.SviSpecijalizantiFragment"
-        android:label="SviSpecijalizantiFragment" />
+        android:label="SviSpecijalizantiFragment" >
+        <action
+            android:id="@+id/action_sviSpecijalizantiFragment_to_unosSpecijalizacijeFragment"
+            app:destination="@id/unosSpecijalizacijeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/slucajeviBolesnikaFragment"
         android:name="hr.foi.air.ednevnik.fragment.SlucajeviBolesnikaFragment"
@@ -196,6 +200,17 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosSpecijalizacijeFragment"
+        android:name="hr.foi.air.ednevnik.fragment.UnosSpecijalizacijeFragment"
+        android:label="UnosSpecijalizacijeFragment" >
+        <argument
+            android:name="argSpecijlizant"
+            app:argType="com.example.core.entities.Specijalizant" />
+        <action
+            android:id="@+id/action_unosSpecijalizacijeFragment_to_specijalizantiFragment"
+            app:destination="@id/specijalizantiFragment" />
     </fragment>
 
 </navigation>

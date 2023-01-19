@@ -1,10 +1,12 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorListaSvihSpecijalizanataBinding
@@ -46,6 +48,12 @@ class SviSpecijalizantiFragment : Fragment(){
 
     private fun initRecyclerView() {
         specijalizantListAdapter = SpecijalizantAdapter()
+
+        specijalizantListAdapter.onItemClick = {specijalizant ->
+            val action = SviSpecijalizantiFragmentDirections.actionSviSpecijalizantiFragmentToUnosSpecijalizacijeFragment(specijalizant)
+            this.findNavController().navigate(action)
+        }
+
         binding.specijalizantiRecycler.adapter = specijalizantListAdapter
         binding.specijalizantiRecycler.layoutManager = LinearLayoutManager(context)
     }
