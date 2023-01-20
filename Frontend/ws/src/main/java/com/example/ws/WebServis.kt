@@ -433,6 +433,31 @@ class WebServis {
         )
     }
 
+    fun getUstrojstvenaJedinicaBySpecijalizant(specijlizantId : Int)
+    {
+        val serviceAPI = retrofit.create(UstrojstvenJedinicaApi::class.java)
+        val call : Call<UstrojstvenaJedinica> = serviceAPI.getLokacija(specijlizantId)
+
+        call.enqueue (
+            object : Callback<UstrojstvenaJedinica>{
+                override fun onResponse(
+                    call: Call<UstrojstvenaJedinica>,
+                    response: Response<UstrojstvenaJedinica>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _ustrojstvenaJedinica.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<UstrojstvenaJedinica>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
     //Odradena kompetencija
     private val _odradeneKompetencije = MutableLiveData<List<OdradenaKompetencija>>()
     val odradeneKompetencije: LiveData<List<OdradenaKompetencija>>
@@ -552,6 +577,5 @@ class WebServis {
             }
         )
     }
-
 
 }

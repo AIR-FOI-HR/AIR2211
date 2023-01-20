@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.core.entities.Specijalizacija
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorPracenjeSpecijalizacijeBinding
+import java.text.SimpleDateFormat
 
 class PracenjeSpecijalizantaFragment : Fragment() {
     private var _binding: MentorPracenjeSpecijalizacijeBinding? = null
@@ -94,5 +95,20 @@ class PracenjeSpecijalizantaFragment : Fragment() {
         webServis = WebServis()
 
         webServis.getSpecijalizacija(arguments?.getString("argSpecijalizantId")!!.toInt())
+
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+
+        webServis.getUstrojstvenaJedinicaBySpecijalizant(arguments?.getString("argSpecijalizantId")!!.toInt())
+
+        webServis.ustrojstvenaJedinica.observe(viewLifecycleOwner) {
+            if(it==null) {
+                _binding!!.spcijalizantTrenutniOdjel.text = "Trenutno nije na odjelu!"
+            } else{
+                _binding!!.spcijalizantTrenutniOdjel.text = "${webServis.ustrojstvenaJedinica.value!!.nazivUstanova}\n${webServis.ustrojstvenaJedinica.value!!.nazivJedinica}"
+            }
+        }
     }
 }
