@@ -218,6 +218,33 @@
     <fragment
         android:id="@+id/specijalizantPracenjeSpecijlizacije"
         android:name="hr.foi.air.ednevnik.fragment.SpecijalizantPracenjeSpecijlizacije"
-        android:label="SpecijalizantPracenjeSpecijlizacije" />
+        android:label="SpecijalizantPracenjeSpecijlizacije" >
+        <action
+            android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijalizantSlucajeviBolesnika"
+            app:destination="@id/specijalizantSlucajeviBolesnika" />
+    </fragment>
+    <fragment
+        android:id="@+id/specijalizantSlucajeviBolesnika"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantSlucajeviBolesnika"
+        android:label="SpecijalizantSlucajeviBolesnika" >
+        <argument android:name="argSpecijalizacijaId" />
+        <action
+            android:id="@+id/action_specijalizantSlucajeviBolesnika_to_unosSlucajaBolesnika"
+            app:destination="@id/unosSlucajaBolesnika" />
+        <action
+            android:id="@+id/action_specijalizantSlucajeviBolesnika_to_PrikazUnosaSlucajBolesnikaDnevnikFragment"
+            app:destination="@id/PrikazUnosaSlucajBolesnikaDnevnikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosSlucajaBolesnika"
+        android:name="hr.foi.air.ednevnik.fragment.UnosSlucajaBolesnika"
+        android:label="UnosSlucajaBolesnika" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_unosSlucajaBolesnika_to_specijalizantPracenjeSpecijlizacije"
+            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+    </fragment>
 
 </navigation>

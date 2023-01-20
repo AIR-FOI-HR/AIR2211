@@ -36,4 +36,6 @@
     <string name="napredakSlucajBolesnika">Slučajevi bolensika: 3</string>
     <string name="napredakDioSpec">Dijelovi specijlizacije: 2</string>
     <string name="napredakDnevneAktivnosti">Dnevne aktivnosti: 5</string>
+    <string name="labelOpisSlucaja">Opis slučaja:</string>
+    <string name="dijagnoza">Dijagnoza:</string>
 </resources>

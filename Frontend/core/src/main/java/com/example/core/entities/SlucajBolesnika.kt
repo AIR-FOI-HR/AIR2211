@@ -13,7 +13,7 @@ data class SlucajBolesnika(
     var specijalizacijaId : Int? = null,
 
     @SerializedName("datumSlucaj")
-    var datumSlucaj : java.util.Date,
+    var datumSlucaj : String?,
 
     @SerializedName("dijagnozaSlucaj")
     var dijagnozaSlucaj : String?,

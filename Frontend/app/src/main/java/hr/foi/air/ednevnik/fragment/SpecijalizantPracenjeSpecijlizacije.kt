@@ -30,12 +30,11 @@ class SpecijalizantPracenjeSpecijlizacije : Fragment() {
 
         gumbSlucajBolesnika.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
-            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToSlucajeviBolesnikaFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            val action = SpecijalizantPracenjeSpecijlizacijeDirections.actionSpecijalizantPracenjeSpecijlizacijeToSpecijalizantSlucajeviBolesnika(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 
         var gumbStrucniRad = _binding!!.strucniRad
-
         gumbStrucniRad.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
             val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToStrucniRadoviFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())

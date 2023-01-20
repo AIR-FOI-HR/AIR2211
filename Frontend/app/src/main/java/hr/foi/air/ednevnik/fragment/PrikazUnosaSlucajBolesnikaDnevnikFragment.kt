@@ -25,8 +25,7 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
         var slucajBolesnika = args.argSlucajBolesnika
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
-        _binding!!.naslovUnosaDnevnika.text = "${
-            SimpleDateFormat("yyyy-MM-dd").format(slucajBolesnika.datumSlucaj)}"
+        _binding!!.naslovUnosaDnevnika.text = slucajBolesnika.datumSlucaj
 
         if(slucajBolesnika.opisSlucaj!=null) {opis += "\nOpis slučaja: ${slucajBolesnika.opisSlucaj}"}
         if(slucajBolesnika.dijagnozaSlucaj!=null) {opis += "\nDijagnoza slučaja: ${slucajBolesnika.dijagnozaSlucaj}"}
