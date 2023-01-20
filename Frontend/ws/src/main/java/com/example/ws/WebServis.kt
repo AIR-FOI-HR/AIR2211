@@ -243,6 +243,26 @@ class WebServis {
         )
     }
 
+    fun dodajStrucniRad(strucniRad: StrucniRad, onResult: (StrucniRad?) -> Unit){
+        val serviceAPI = retrofit.create(DodajStrucniRadApi::class.java)
+        serviceAPI.dodajStrucniRad(strucniRad).enqueue(
+            object : Callback<StrucniRad> {
+                override fun onFailure(call: Call<StrucniRad>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<StrucniRad>, response: Response<StrucniRad>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanStrucniRad = response.body()
+                        onResult(dodanStrucniRad)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Dnevna aktivnost
     private val _dnevneAktivnosti = MutableLiveData<List<DnevnaAktivnost>>()
     val dnevneAktivnosti: LiveData<List<DnevnaAktivnost>>

@@ -38,4 +38,6 @@
     <string name="napredakDnevneAktivnosti">Dnevne aktivnosti: 5</string>
     <string name="labelOpisSlucaja">Opis slučaja:</string>
     <string name="dijagnoza">Dijagnoza:</string>
+    <string name="labelNaslovRada">Naslov rada:</string>
+    <string name="lableObjasvljenU">Objavljen u:</string>
 </resources>

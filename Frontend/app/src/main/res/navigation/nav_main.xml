@@ -222,6 +222,9 @@
         <action
             android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijalizantSlucajeviBolesnika"
             app:destination="@id/specijalizantSlucajeviBolesnika" />
+        <action
+            android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijlizantStrucniRadovi"
+            app:destination="@id/specijlizantStrucniRadovi" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantSlucajeviBolesnika"
@@ -244,6 +247,31 @@
             app:argType="string" />
         <action
             android:id="@+id/action_unosSlucajaBolesnika_to_specijalizantPracenjeSpecijlizacije"
+            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+    </fragment>
+    <fragment
+        android:id="@+id/specijlizantStrucniRadovi"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijlizantStrucniRadovi"
+        android:label="SpecijlizantStrucniRadovi" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_specijlizantStrucniRadovi_to_PrikazUnosaStrucniRadDnevnikFragment"
+            app:destination="@id/PrikazUnosaStrucniRadDnevnikFragment" />
+        <action
+            android:id="@+id/action_specijlizantStrucniRadovi_to_unosStrucnogRada"
+            app:destination="@id/unosStrucnogRada" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosStrucnogRada"
+        android:name="hr.foi.air.ednevnik.fragment.UnosStrucnogRada"
+        android:label="UnosStrucnogRada" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_unosStrucnogRada_to_specijalizantPracenjeSpecijlizacije"
             app:destination="@id/specijalizantPracenjeSpecijlizacije" />
     </fragment>
 
