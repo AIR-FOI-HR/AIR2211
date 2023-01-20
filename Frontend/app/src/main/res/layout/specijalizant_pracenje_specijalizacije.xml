@@ -37,48 +37,177 @@
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_below="@id/specijalizantSlika"
-            android:layout_marginTop="80dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
             android:max="100"
-            android:progress="40"
-            />
+            android:progress="40" />
 
         <TextView
             android:id="@+id/spcecijalizantNapredakRadovi"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSpecijalizacije"
             android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
-            android:layout_below="@id/napredakSpecijalizacije"
             android:text="@string/napredakRadovi"
             android:textColor="@color/black"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakZahvati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakZahvatti"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakKompetencije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSpecijalizacije"
+            android:layout_toRightOf="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakKompetencije"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakSlucajeviBolesnika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakKompetencije"
+            android:layout_toRightOf="@id/spcecijalizantNapredakRadovi"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakSlucajBolesnika"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakDioSpec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSlucajeviBolesnika"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakDioSpec"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/napredakDnevneAktivnosti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/napredakSlucajeviBolesnika"
+            android:layout_toRightOf="@id/napredakDioSpec"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/napredakDnevneAktivnosti"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
         <Button
-            android:id="@+id/eDnevnikGumb"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/spcecijalizantNapredakRadovi"
-            android:layout_marginTop="300dp"
+            android:id="@+id/provjeraZnanja"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/zahvat"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginBottom="150dp"
             android:background="@drawable/rounded_corner"
-            android:text="@string/dnevnik"
-            android:textSize="16sp"
+            android:drawableTop="@drawable/ic_outline_personal_injury_24"
             android:elevation="10dp"
-            />
+            android:text="@string/provjera_znanja"
+            android:textSize="12sp" />
 
         <Button
-            android:id="@+id/knjizicaGumb"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
+            android:id="@+id/strucniRad"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/kompetencija"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/eDnevnikGumb"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_library_books_24"
+            android:elevation="10dp"
+            android:text="@string/strucniRadGumb"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/dnevnaAktivnost"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/dioSpecijalizacije"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_pending_actions_24"
+            android:elevation="10dp"
+            android:text="@string/dnevnaAktivnost"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/slucajBolesnika"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@id/zahvat"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/strucniRad"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_outline_personal_injury_24"
+            android:elevation="10dp"
+            android:text="@string/slucajBolesnika"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/zahvat"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_baseline_library_books_24"
+            android:elevation="10dp"
+            android:text="@string/zahvat"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/kompetencija"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_corner"
-            android:text="@string/knjizica"
-            android:textSize="16sp"
+            android:drawableTop="@drawable/ic_baseline_pending_actions_24"
             android:elevation="10dp"
-            />
+            android:text="@string/kompetencija"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/dioSpecijalizacije"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toStartOf="@+id/strucniRad"
+            android:background="@drawable/rounded_corner"
+            android:drawableTop="@drawable/ic_outline_personal_injury_24"
+            android:elevation="10dp"
+            android:text="@string/dioSpecijalizacije"
+            android:textSize="12sp" />
+
 
     </RelativeLayout>
 

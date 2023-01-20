@@ -26,6 +26,11 @@ class LoginFragment : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        _binding!!.loginSpecijalizant.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToSpecijalizantPracenjeSpecijlizacije()
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

@@ -144,6 +144,9 @@
         <action
             android:id="@+id/action_loginFragment_to_specijalizantiFragment"
             app:destination="@id/specijalizantiFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_specijalizantPracenjeSpecijlizacije"
+            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
     </fragment>
     <fragment
         android:id="@+id/odradeneKompetencijeFragment"
@@ -212,5 +215,9 @@
             android:id="@+id/action_unosSpecijalizacijeFragment_to_specijalizantiFragment"
             app:destination="@id/specijalizantiFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/specijalizantPracenjeSpecijlizacije"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantPracenjeSpecijlizacije"
+        android:label="SpecijalizantPracenjeSpecijlizacije" />
 
 </navigation>

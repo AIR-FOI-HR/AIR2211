@@ -44,6 +44,8 @@ class UnosSpecijalizacijeFragment : Fragment() {
                     Log.d("Tag", "Error pri dodavanju nove specke")
                 }
             }
+            val action = UnosSpecijalizacijeFragmentDirections.actionUnosSpecijalizacijeFragmentToSpecijalizantiFragment()
+            this.findNavController().navigate(action)
         }
 
         return binding.root
