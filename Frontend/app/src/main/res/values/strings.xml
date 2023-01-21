@@ -40,4 +40,8 @@
     <string name="dijagnoza">Dijagnoza:</string>
     <string name="labelNaslovRada">Naslov rada:</string>
     <string name="lableObjasvljenU">Objavljen u:</string>
+    <string name="labelNazivAktivnosti">Naziv aktivnosti:</string>
+    <string name="labelOpisAktivnosti">Opis aktivnosti:</string>
+    <string name="labelBrojZahvataNadzor">Broj zahvata sa nadzorom:</string>
+    <string name="labelBrojZahvataSamostalno">Broj zahvata samostalno:</string>
 </resources>

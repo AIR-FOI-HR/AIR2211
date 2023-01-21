@@ -45,7 +45,7 @@ class SpecijalizantPracenjeSpecijlizacije : Fragment() {
 
         gumbDnevnaAktivnost.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
-            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToDnevneAktivnostiFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            val action = SpecijalizantPracenjeSpecijlizacijeDirections.actionSpecijalizantPracenjeSpecijlizacijeToSpecijalizantDnevneAktivnosti(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 

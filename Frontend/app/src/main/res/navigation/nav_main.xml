@@ -225,6 +225,9 @@
         <action
             android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijlizantStrucniRadovi"
             app:destination="@id/specijlizantStrucniRadovi" />
+        <action
+            android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijalizantDnevneAktivnosti"
+            app:destination="@id/specijalizantDnevneAktivnosti" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantSlucajeviBolesnika"
@@ -273,6 +276,31 @@
         <action
             android:id="@+id/action_unosStrucnogRada_to_specijalizantPracenjeSpecijlizacije"
             app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+    </fragment>
+    <fragment
+        android:id="@+id/specijalizantDnevneAktivnosti"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantDnevneAktivnosti"
+        android:label="SpecijalizantDnevneAktivnosti" >
+        <action
+            android:id="@+id/action_specijalizantDnevneAktivnosti_to_PrikazUnosaDnevnaAktivnostDnevnikFragment"
+            app:destination="@id/PrikazUnosaDnevnaAktivnostDnevnikFragment" />
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_specijalizantDnevneAktivnosti_to_unosDnevneAktivnosti"
+            app:destination="@id/unosDnevneAktivnosti" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosDnevneAktivnosti"
+        android:name="hr.foi.air.ednevnik.fragment.UnosDnevneAktivnosti"
+        android:label="UnosDnevneAktivnosti" >
+        <action
+            android:id="@+id/action_unosDnevneAktivnosti_to_specijalizantPracenjeSpecijlizacije"
+            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
     </fragment>
 
 </navigation>

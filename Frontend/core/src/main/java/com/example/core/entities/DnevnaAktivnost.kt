@@ -13,7 +13,7 @@ data class DnevnaAktivnost(
     var specijalizacijaId : Int? = null,
 
     @SerializedName("datumAktivnost")
-    var datumAktivnost : java.util.Date,
+    var datumAktivnost : String?,
 
     @SerializedName("nazivAktivnost")
     var nazivAktivnost : String = "",
