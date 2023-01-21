@@ -65,7 +65,7 @@ class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
 
     private fun observeLiveData() {
         webServis.zahvat.observe(viewLifecycleOwner) {
-            _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(args.argOdradeniZahvat.datum)
+            _binding!!.naslovUnosaDnevnika.text = args.argOdradeniZahvat.datum
             _binding!!.opisDnevnika.text = prikaziPodatke()
         }
     }

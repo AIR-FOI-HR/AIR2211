@@ -578,6 +578,26 @@ class WebServis {
         )
     }
 
+    fun dodajOdredeniZahvat(odradeniZahvat: OdradeniZahvat, onResult: (OdradeniZahvat?) -> Unit){
+        val serviceAPI = retrofit.create(DodajZahvatApi::class.java)
+        serviceAPI.dodajZahvat(odradeniZahvat).enqueue(
+            object : Callback<OdradeniZahvat> {
+                override fun onFailure(call: Call<OdradeniZahvat>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<OdradeniZahvat>, response: Response<OdradeniZahvat>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanZahvat = response.body()
+                        onResult(dodanZahvat)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Odradeni dio specijalizacije
     private val _odradeniDijeloviSpecijalizacije = MutableLiveData<List<OdradeniDioSpecijalizacije>>()
     val odradeniDijeloviSpecijalizacije: LiveData<List<OdradeniDioSpecijalizacije>>

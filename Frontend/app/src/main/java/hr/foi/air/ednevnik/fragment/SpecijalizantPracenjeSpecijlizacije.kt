@@ -69,7 +69,7 @@ class SpecijalizantPracenjeSpecijlizacije : Fragment() {
 
         gumbOdradeniZahvati.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
-            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToOdradeniZahvatiFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            val action = SpecijalizantPracenjeSpecijlizacijeDirections.actionSpecijalizantPracenjeSpecijlizacijeToSpecijalizantZahvati(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 

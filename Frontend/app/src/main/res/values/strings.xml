@@ -44,4 +44,7 @@
     <string name="labelOpisAktivnosti">Opis aktivnosti:</string>
     <string name="labelBrojZahvataNadzor">Broj zahvata sa nadzorom:</string>
     <string name="labelBrojZahvataSamostalno">Broj zahvata samostalno:</string>
+    <string name="labelNazivZahvata">Nazuv zahvata:</string>
+    <string name="labelBrojZahvata">Broj zahvata:</string>
+    <string name="labelStupanj">Stupanj:</string>
 </resources>

@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.SpecijalizantListaDnevnikBinding
 import hr.foi.air.ednevnik.recyclerview_adapters.DnevneAktivnostiAdapter
-import hr.foi.air.ednevnik.recyclerview_adapters.SlucajeviBolesnikaAdapter
+import hr.foi.air.ednevnik.recyclerview_adapters.OdradeniZahvatiAdapter
 
-class SpecijalizantDnevneAktivnosti : Fragment(){
+class SpecijalizantZahvati : Fragment(){
     private var _binding: SpecijalizantListaDnevnikBinding? = null
     private val binding: SpecijalizantListaDnevnikBinding
         get() = _binding!!
 
-    private lateinit var dnevneAktivnostiAdapter: DnevneAktivnostiAdapter
+    private lateinit var zahvatiAdapter: OdradeniZahvatiAdapter
 
     private lateinit var webServis: WebServis
 
@@ -30,8 +30,7 @@ class SpecijalizantDnevneAktivnosti : Fragment(){
         _binding = SpecijalizantListaDnevnikBinding.inflate(inflater, container, false)
 
         _binding!!.fabNovo.setOnClickListener{
-            Log.d("Tag", arguments?.getString("argSpecijalizacijaId").toString())
-            val action = SpecijalizantDnevneAktivnostiDirections.actionSpecijalizantDnevneAktivnostiToUnosDnevneAktivnosti(arguments?.getString("argSpecijalizacijaId").toString())
+            val action = SpecijalizantZahvatiDirections.actionSpecijalizantZahvatiToUnosOdrađenogZahvata(arguments?.getString("argSpecijalizacijaId").toString())
             this.findNavController().navigate(action)
         }
 
@@ -42,27 +41,27 @@ class SpecijalizantDnevneAktivnosti : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         webServis = WebServis()
 
-        webServis.getAllDnevneAktivnosti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getAllOdradeniZahvati(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         initRecyclerView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        webServis.dnevneAktivnosti.observe(viewLifecycleOwner) {
-            dnevneAktivnostiAdapter.setData(it)
+        webServis.odradeniZahvati.observe(viewLifecycleOwner) {
+            zahvatiAdapter.setData(it)
         }
     }
 
     private fun initRecyclerView() {
-        dnevneAktivnostiAdapter = DnevneAktivnostiAdapter()
+        zahvatiAdapter = OdradeniZahvatiAdapter()
 
-        dnevneAktivnostiAdapter.onItemClick = {dnevnaAktivnost ->
-            val action = SpecijalizantDnevneAktivnostiDirections.actionSpecijalizantDnevneAktivnostiToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost)
+        zahvatiAdapter.onItemClick = {zahvat ->
+            val action = SpecijalizantZahvatiDirections.actionSpecijalizantZahvatiToPrikazUnosaOdradeniZahvatDnevnikFragment(zahvat)
             this.findNavController().navigate(action)
         }
 
-        binding.dnevnikRecyclerSpecijalizant.adapter = dnevneAktivnostiAdapter
+        binding.dnevnikRecyclerSpecijalizant.adapter = zahvatiAdapter
         binding.dnevnikRecyclerSpecijalizant.layoutManager = LinearLayoutManager(context)
     }
 }

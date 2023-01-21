@@ -17,7 +17,7 @@ class OdradeniZahvatiAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradeniZahvat: OdradeniZahvat) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(odradeniZahvat.datum)
+            binding.dnevnikNaslov.text = odradeniZahvat.datum
             binding.tipUnosaDnevnik.text = ""
         }
 
