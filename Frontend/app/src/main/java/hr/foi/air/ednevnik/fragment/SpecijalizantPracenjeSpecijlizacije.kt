@@ -61,7 +61,7 @@ class SpecijalizantPracenjeSpecijlizacije : Fragment() {
 
         gumbOdradeneKompetencije.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
-            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToOdradeneKompetencijeFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            val action = SpecijalizantPracenjeSpecijlizacijeDirections.actionSpecijalizantPracenjeSpecijlizacijeToSpecijalizantKompetencije(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 
@@ -77,7 +77,7 @@ class SpecijalizantPracenjeSpecijlizacije : Fragment() {
 
         gumbOdradeniDijeloviSpecijalizacije.setOnClickListener() {
             Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
-            val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToOdradeniDijeloviSpecijalizacijeFragment(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            val action = SpecijalizantPracenjeSpecijlizacijeDirections.actionSpecijalizantPracenjeSpecijlizacijeToSpecijalizantDioSpecijalizacije(webServis.specijalizacija.value!!.id_specijalizacija.toString())
             this.findNavController().navigate(action)
         }
 

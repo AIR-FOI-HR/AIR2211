@@ -17,9 +17,9 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradeniDioSpecijalizacije: OdradeniDioSpecijalizacije) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(odradeniDioSpecijalizacije.trajeOd)
+            binding.dnevnikNaslov.text = odradeniDioSpecijalizacije.trajeOd
             if(odradeniDioSpecijalizacije.trajeDo==null) { binding.tipUnosaDnevnik.text = "U trajanju" }
-            else { binding.tipUnosaDnevnik.text = "do ${SimpleDateFormat("yyyy-MM-dd").format(odradeniDioSpecijalizacije.trajeDo)}"  }
+            else { binding.tipUnosaDnevnik.text = "do ${odradeniDioSpecijalizacije.trajeDo}"  }
         }
 
         init {
