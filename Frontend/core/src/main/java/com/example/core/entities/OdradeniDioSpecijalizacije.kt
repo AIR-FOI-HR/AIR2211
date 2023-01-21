@@ -22,9 +22,9 @@ data class OdradeniDioSpecijalizacije(
     var glavniMentorPotpis : java.lang.Byte?,
 
     @SerializedName("trajeOd")
-    var trajeOd : java.util.Date,
+    var trajeOd : String?,
 
     @SerializedName("trajeDo")
-    var trajeDo : java.util.Date?
+    var trajeDo : String?
 
 ) : Parcelable

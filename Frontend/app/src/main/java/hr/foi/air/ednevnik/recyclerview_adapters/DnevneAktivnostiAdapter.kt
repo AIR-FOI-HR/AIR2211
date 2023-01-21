@@ -18,7 +18,7 @@ class DnevneAktivnostiAdapter (
         {
             fun bind(dnevnaAktivnost: DnevnaAktivnost) {
                 binding.dnevnikNaslov.text = dnevnaAktivnost.nazivAktivnost
-                binding.tipUnosaDnevnik.text = SimpleDateFormat("yyyy-MM-dd").format(dnevnaAktivnost.datumAktivnost)
+                binding.tipUnosaDnevnik.text = dnevnaAktivnost.datumAktivnost
             }
 
             init {

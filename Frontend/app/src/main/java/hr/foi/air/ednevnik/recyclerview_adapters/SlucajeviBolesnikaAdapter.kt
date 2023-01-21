@@ -17,8 +17,7 @@ class SlucajeviBolesnikaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(slucajBolesnika: SlucajBolesnika) {
-            binding.dnevnikNaslov.text = "${
-                SimpleDateFormat("yyyy-MM-dd").format(slucajBolesnika.datumSlucaj)}"
+            binding.dnevnikNaslov.text = slucajBolesnika.datumSlucaj
             binding.tipUnosaDnevnik.text = slucajBolesnika.opisSlucaj
         }
 

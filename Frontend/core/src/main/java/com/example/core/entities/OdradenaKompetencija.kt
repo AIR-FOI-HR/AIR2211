@@ -16,7 +16,7 @@ data class OdradenaKompetencija(
     var stupanj : Int? = null,
 
     @SerializedName("datum")
-    var datum : java.util.Date,
+    var datum : String?,
 
     @SerializedName("potpisMentora")
     var potpisMentora : java.lang.Byte?

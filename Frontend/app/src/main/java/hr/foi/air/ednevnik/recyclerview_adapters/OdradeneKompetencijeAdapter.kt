@@ -17,7 +17,7 @@ class OdradeneKompetencijeAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradenaKompetencija: OdradenaKompetencija) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(odradenaKompetencija.datum)
+            binding.dnevnikNaslov.text = odradenaKompetencija.datum
             binding.tipUnosaDnevnik.text = ""
         }
 
