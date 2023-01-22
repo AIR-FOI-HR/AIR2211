@@ -56,6 +56,7 @@ class SpecijalizantSlucajeviBolesnika : Fragment(){
     private fun initRecyclerView() {
         slucajBolesnikaListAdapter = SlucajeviBolesnikaAdapter()
 
+        slucajBolesnikaListAdapter.mentor = false
         slucajBolesnikaListAdapter.onItemClick = {slucajBolesnika ->
             Log.d("SpecTAG", "${slucajBolesnika.idSlucaj}")
             val action = SpecijalizantSlucajeviBolesnikaDirections.actionSpecijalizantSlucajeviBolesnikaToPrikazUnosaSlucajBolesnikaDnevnikFragment(slucajBolesnika)

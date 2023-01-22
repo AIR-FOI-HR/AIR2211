@@ -213,6 +213,26 @@ class WebServis {
         )
     }
 
+    fun obrisiSlucajBolesnika(slucajBolesnikaId: Int, onResult: (Long?) -> Unit){
+        val serviceAPI = retrofit.create(ObrisiSlucajBolesnikaApi::class.java)
+        serviceAPI.obrisiSlucajBolesnika(slucajBolesnikaId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanSlucajBolesnika = response.body()
+                        onResult(obrisanSlucajBolesnika)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Strucni rad
     private val _strucniRadovi = MutableLiveData<List<StrucniRad>>()
     val strucniRadovi: LiveData<List<StrucniRad>>
@@ -423,7 +443,7 @@ class WebServis {
     }
 
     fun dodajPitanje(pitanje: Pitanje, onResult: (Pitanje?) -> Unit){
-        val serviceAPI = retrofit.create(DodajPitanje::class.java)
+        val serviceAPI = retrofit.create(DodajPitanjeApi::class.java)
         serviceAPI.dodajPitanje(pitanje).enqueue(
             object : Callback<Pitanje> {
                 override fun onFailure(call: Call<Pitanje>, t: Throwable) {
