@@ -343,6 +343,26 @@ class WebServis {
         )
     }
 
+    fun dodajProvjeruZnanja(provjeraZnanja: ProvjeraZnanja, onResult: (ProvjeraZnanja?) -> Unit){
+        val serviceAPI = retrofit.create(DodajProvjeruZnanjaApi::class.java)
+        serviceAPI.dodajProvjeruZnanja(provjeraZnanja).enqueue(
+            object : Callback<ProvjeraZnanja> {
+                override fun onFailure(call: Call<ProvjeraZnanja>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<ProvjeraZnanja>, response: Response<ProvjeraZnanja>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanaProvjeraZnanja = response.body()
+                        onResult(dodanaProvjeraZnanja)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Pitanje
     private val _pitanja = MutableLiveData<List<Pitanje>>()
     val pitanja: LiveData<List<Pitanje>>

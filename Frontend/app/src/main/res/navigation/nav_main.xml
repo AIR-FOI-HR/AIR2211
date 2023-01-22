@@ -146,7 +146,7 @@
             app:destination="@id/specijalizantiFragment" />
         <action
             android:id="@+id/action_loginFragment_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
     </fragment>
     <fragment
         android:id="@+id/odradeneKompetencijeFragment"
@@ -216,9 +216,9 @@
             app:destination="@id/specijalizantiFragment" />
     </fragment>
     <fragment
-        android:id="@+id/specijalizantPracenjeSpecijlizacije"
-        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantPracenjeSpecijlizacije"
-        android:label="SpecijalizantPracenjeSpecijlizacije" >
+        android:id="@+id/specijalizantPracenjeSpecijalizacije"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantPracenjeSpecijalizacije"
+        android:label="SpecijalizantPracenjeSpecijalizacije">
         <action
             android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijalizantSlucajeviBolesnika"
             app:destination="@id/specijalizantSlucajeviBolesnika" />
@@ -237,12 +237,16 @@
         <action
             android:id="@+id/action_specijalizantPracenjeSpecijlizacije_to_specijalizantDioSpecijalizacije"
             app:destination="@id/specijalizantDioSpecijalizacije" />
+        <action
+            android:id="@+id/action_specijalizantPracenjeSpecijalizacije_to_specijalizantProvjereZnanja"
+            app:destination="@id/specijalizantProvjereZnanja" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantSlucajeviBolesnika"
         android:name="hr.foi.air.ednevnik.fragment.SpecijalizantSlucajeviBolesnika"
         android:label="SpecijalizantSlucajeviBolesnika" >
-        <argument android:name="argSpecijalizacijaId" />
+        <argument android:name="argSpecijalizacijaId"
+            app:argType="string" />
         <action
             android:id="@+id/action_specijalizantSlucajeviBolesnika_to_unosSlucajaBolesnika"
             app:destination="@id/unosSlucajaBolesnika" />
@@ -259,7 +263,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_unosSlucajaBolesnika_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
     </fragment>
     <fragment
         android:id="@+id/specijlizantStrucniRadovi"
@@ -284,7 +288,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_unosStrucnogRada_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantDnevneAktivnosti"
@@ -306,7 +310,7 @@
         android:label="UnosDnevneAktivnosti" >
         <action
             android:id="@+id/action_unosDnevneAktivnosti_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
@@ -331,7 +335,7 @@
         android:label="UnosOdrađenogZahvata" >
         <action
             android:id="@+id/action_unosOdrađenogZahvata_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
@@ -356,7 +360,7 @@
         android:label="UnosOdradeneKompetencije" >
         <action
             android:id="@+id/action_unosOdradeneKompetencije_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
@@ -381,10 +385,35 @@
         android:label="UnosOdradenogDijelaSpecijalizacije" >
         <action
             android:id="@+id/action_unosOdradenogDijelaSpecijalizacije_to_specijalizantPracenjeSpecijlizacije"
-            app:destination="@id/specijalizantPracenjeSpecijlizacije" />
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/specijalizantProvjereZnanja"
+        android:name="hr.foi.air.ednevnik.fragment.SpecijalizantProvjereZnanja"
+        android:label="SpecijalizantProvjereZnanja" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_specijalizantProvjereZnanja_to_unosProvjereZnanja"
+            app:destination="@id/unosProvjereZnanja" />
+        <action
+            android:id="@+id/action_specijalizantProvjereZnanja_to_prikazUnosaProvjeraZnanjaDnevnikFragment"
+            app:destination="@id/prikazUnosaProvjeraZnanjaDnevnikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosProvjereZnanja"
+        android:name="hr.foi.air.ednevnik.fragment.UnosProvjereZnanja"
+        android:label="UnosProvjereZnanja" >
+        <argument
+            android:name="argSpecijalizacijaId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_unosProvjereZnanja_to_specijalizantPracenjeSpecijalizacije"
+            app:destination="@id/specijalizantPracenjeSpecijalizacije" />
     </fragment>
 
 </navigation>

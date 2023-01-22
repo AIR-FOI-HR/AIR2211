@@ -33,7 +33,7 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
 
         _binding = MentorKnjizicaPrikazUnosaBinding.inflate(inflater, container, false)
 
-        _binding!!.naslovUnosaKnjizice.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
+        _binding!!.naslovUnosaKnjizice.text = provjeraZnanja.datumProvjera
 
         if(provjeraZnanja.ocjenaProvjera!=null)
         {

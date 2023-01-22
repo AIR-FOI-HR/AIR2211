@@ -17,7 +17,7 @@ class ProvjereZnanjaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(provjeraZnanja: ProvjeraZnanja) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
+            binding.dnevnikNaslov.text = provjeraZnanja.datumProvjera
             binding.tipUnosaDnevnik.text = ""
         }
 

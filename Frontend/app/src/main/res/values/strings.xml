@@ -49,4 +49,5 @@
     <string name="labelStupanj">Stupanj:</string>
     <string name="labelBrojKompetencije">Broj kompetencije?</string>
     <string name="labelDioSpecijalizacije">Dio specijalizacije:</string>
+    <string name="labelOcjenaProvjere">Ocjena provjere:</string>
 </resources>
