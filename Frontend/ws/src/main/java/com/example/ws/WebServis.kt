@@ -363,6 +363,35 @@ class WebServis {
         )
     }
 
+
+    private val _provjeraZnanja = MutableLiveData<ProvjeraZnanja>()
+    val provjeraZnanja: LiveData<ProvjeraZnanja>
+        get() = _provjeraZnanja
+    fun getProvjeraZnanja(provjeraZnanjaId : Int)
+    {
+        val serviceAPI = retrofit.create(ProvjeraZnanjaById::class.java)
+        val call : Call<ProvjeraZnanja> = serviceAPI.getProvjeraZnanja(provjeraZnanjaId)
+
+        call.enqueue (
+            object : Callback<ProvjeraZnanja>{
+                override fun onResponse(
+                    call: Call<ProvjeraZnanja>,
+                    response: Response<ProvjeraZnanja>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _provjeraZnanja.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ProvjeraZnanja>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
     //Pitanje
     private val _pitanja = MutableLiveData<List<Pitanje>>()
     val pitanja: LiveData<List<Pitanje>>
@@ -388,6 +417,26 @@ class WebServis {
 
                 override fun onFailure(call: Call<ArrayList<Pitanje>>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    fun dodajPitanje(pitanje: Pitanje, onResult: (Pitanje?) -> Unit){
+        val serviceAPI = retrofit.create(DodajPitanje::class.java)
+        serviceAPI.dodajPitanje(pitanje).enqueue(
+            object : Callback<Pitanje> {
+                override fun onFailure(call: Call<Pitanje>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Pitanje>, response: Response<Pitanje>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanoPitanje = response.body()
+                        onResult(dodanoPitanje)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
                 }
             }
         )

@@ -401,8 +401,8 @@
             android:id="@+id/action_specijalizantProvjereZnanja_to_unosProvjereZnanja"
             app:destination="@id/unosProvjereZnanja" />
         <action
-            android:id="@+id/action_specijalizantProvjereZnanja_to_prikazUnosaProvjeraZnanjaDnevnikFragment"
-            app:destination="@id/prikazUnosaProvjeraZnanjaDnevnikFragment" />
+            android:id="@+id/action_specijalizantProvjereZnanja_to_prikazUnosaProvjeraZnanjaSpecijalizant"
+            app:destination="@id/prikazUnosaProvjeraZnanjaSpecijalizant" />
     </fragment>
     <fragment
         android:id="@+id/unosProvjereZnanja"
@@ -414,6 +414,25 @@
         <action
             android:id="@+id/action_unosProvjereZnanja_to_specijalizantPracenjeSpecijalizacije"
             app:destination="@id/specijalizantPracenjeSpecijalizacije" />
+    </fragment>
+    <fragment
+        android:id="@+id/prikazUnosaProvjeraZnanjaSpecijalizant"
+        android:name="hr.foi.air.ednevnik.fragment.PrikazUnosaProvjeraZnanjaSpecijalizant"
+        android:label="PrikazUnosaProvjeraZnanjaSpecijalizant" >
+        <argument
+            android:name="argProvjeraZnanja"
+            app:argType="com.example.core.entities.ProvjeraZnanja" />
+        <action
+            android:id="@+id/action_prikazUnosaProvjeraZnanjaSpecijalizant_to_unosPitanja"
+            app:destination="@id/unosPitanja" />
+    </fragment>
+    <fragment
+        android:id="@+id/unosPitanja"
+        android:name="hr.foi.air.ednevnik.fragment.UnosPitanja"
+        android:label="UnosPitanja" >
+        <argument
+            android:name="argProvjeraId"
+            app:argType="string" />
     </fragment>
 
 </navigation>

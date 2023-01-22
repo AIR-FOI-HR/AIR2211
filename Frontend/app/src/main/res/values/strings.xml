@@ -50,4 +50,5 @@
     <string name="labelBrojKompetencije">Broj kompetencije?</string>
     <string name="labelDioSpecijalizacije">Dio specijalizacije:</string>
     <string name="labelOcjenaProvjere">Ocjena provjere:</string>
+    <string name="labelSadrzajPitanja">Sadržaj pitanja:</string>
 </resources>

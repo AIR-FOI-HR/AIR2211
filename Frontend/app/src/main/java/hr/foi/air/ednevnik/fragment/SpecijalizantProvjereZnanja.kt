@@ -10,12 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.SpecijalizantListaDnevnikBinding
-import hr.foi.air.ednevnik.databinding.SpecijalizantProvjeraZnanjaPrikazBinding
 import hr.foi.air.ednevnik.recyclerview_adapters.ProvjereZnanjaAdapter
 
 class SpecijalizantProvjereZnanja : Fragment() {
-    private var _binding: SpecijalizantProvjeraZnanjaPrikazBinding? = null
-    private val binding: SpecijalizantProvjeraZnanjaPrikazBinding
+    private var _binding: SpecijalizantListaDnevnikBinding? = null
+    private val binding: SpecijalizantListaDnevnikBinding
         get() = _binding!!
 
     private lateinit var provjeraZnanjaListAdapter: ProvjereZnanjaAdapter
@@ -27,7 +26,7 @@ class SpecijalizantProvjereZnanja : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = SpecijalizantProvjeraZnanjaPrikazBinding.inflate(inflater, container, false)
+        _binding = SpecijalizantListaDnevnikBinding.inflate(inflater, container, false)
 
         _binding!!.fabNovo.setOnClickListener {
             Log.d("Tag", arguments?.getString("argSpecijalizacijaId").toString())
@@ -63,13 +62,13 @@ class SpecijalizantProvjereZnanja : Fragment() {
         provjeraZnanjaListAdapter.onItemClick = { provjeraZnanja ->
             Log.d("SpecTAG", "${provjeraZnanja.idProvjera}")
             val action =
-                SpecijalizantProvjereZnanjaDirections.actionSpecijalizantProvjereZnanjaToPrikazUnosaProvjeraZnanjaDnevnikFragment(
+                SpecijalizantProvjereZnanjaDirections.actionSpecijalizantProvjereZnanjaToPrikazUnosaProvjeraZnanjaSpecijalizant(
                     provjeraZnanja
                 )
             this.findNavController().navigate(action)
         }
 
-        binding.knjizicaRecycler.adapter = provjeraZnanjaListAdapter
-        binding.knjizicaRecycler.layoutManager = LinearLayoutManager(context)
+        binding.dnevnikRecyclerSpecijalizant.adapter = provjeraZnanjaListAdapter
+        binding.dnevnikRecyclerSpecijalizant.layoutManager = LinearLayoutManager(context)
     }
 }
