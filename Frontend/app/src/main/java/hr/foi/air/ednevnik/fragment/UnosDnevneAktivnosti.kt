@@ -44,8 +44,12 @@ class UnosDnevneAktivnosti : Fragment() {
             val current = formatter.format(datum)
             val naziv = _binding!!.inputNazivAktivnosti.editText?.text.toString()
             val opis = _binding!!.inputNazivAktivnosti.editText?.text.toString()
-            val brojZahvataNadzor = _binding!!.inputBrojZahvataNadzor.editText?.text.toString().toInt()
-            val brojZahvataSamostalno = _binding!!.inputBrojZahvataSamostalno.editText?.text.toString().toInt()
+            var brojZahvataNadzor : Int? = null
+            if(_binding!!.inputBrojZahvataNadzor.editText?.text.toString()!="")
+            { brojZahvataNadzor = _binding!!.inputBrojZahvataNadzor.editText?.text.toString().toInt() }
+            var brojZahvataSamostalno : Int? = null
+            if(_binding!!.inputBrojZahvataSamostalno.editText?.text.toString()!="")
+            { brojZahvataSamostalno = _binding!!.inputBrojZahvataSamostalno.editText?.text.toString().toInt() }
             val idSpecijlizacije = args.argSpecijalizacijaId.toInt()
 
             val dnevnaAktivnost = DnevnaAktivnost(null, idSpecijlizacije, current, naziv, opis, brojZahvataNadzor, brojZahvataSamostalno, null)

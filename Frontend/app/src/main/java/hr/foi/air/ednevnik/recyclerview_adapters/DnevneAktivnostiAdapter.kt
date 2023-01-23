@@ -2,9 +2,12 @@ package hr.foi.air.ednevnik.recyclerview_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.DnevnaAktivnost
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
 import java.text.SimpleDateFormat
 
 class DnevneAktivnostiAdapter (
@@ -12,11 +15,16 @@ class DnevneAktivnostiAdapter (
     ) : RecyclerView.Adapter<DnevneAktivnostiAdapter.DnevneAktivnostiViewHolder>(){
 
         var onItemClick: ((DnevnaAktivnost) -> Unit)? = null
+        var mentor : Boolean = true
+        var aktivnostId : Int? = null
 
-        inner class DnevneAktivnostiViewHolder(private val binding : MentorDnevnikCardBinding)
+        lateinit var webServis: WebServis
+
+        inner class DnevneAktivnostiViewHolder(private val binding : SpecijalizantDnevnikCardBinding)
             : RecyclerView.ViewHolder(binding.root)
         {
             fun bind(dnevnaAktivnost: DnevnaAktivnost) {
+                aktivnostId = dnevnaAktivnost.idAktivnost
                 binding.dnevnikNaslov.text = dnevnaAktivnost.nazivAktivnost
                 binding.tipUnosaDnevnik.text = dnevnaAktivnost.datumAktivnost
             }
@@ -30,7 +38,17 @@ class DnevneAktivnostiAdapter (
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DnevneAktivnostiViewHolder {
             val binding =
-                MentorDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+            if(mentor) {binding.gumbObrisi.hide()}
+            webServis = WebServis()
+
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiDnevnuAktivnost(aktivnostId!!){
+                    parent.findNavController().popBackStack()
+                }
+            }
+
             return DnevneAktivnostiViewHolder(binding)
         }
 

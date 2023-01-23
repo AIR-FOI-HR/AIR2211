@@ -41,15 +41,15 @@ class SlucajeviBolesnikaAdapter (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlucajeviBolesnikaViewHolder {
-        webServis = WebServis()
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         if(mentor) {binding.gumbObrisi.hide()}
+        webServis = WebServis()
 
         binding.gumbObrisi.setOnClickListener{
             webServis.obrisiSlucajBolesnika(slucajId!!){
-                    parent.findNavController().popBackStack()
+                parent.findNavController().popBackStack()
             }
         }
 

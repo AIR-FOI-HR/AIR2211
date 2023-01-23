@@ -283,6 +283,26 @@ class WebServis {
         )
     }
 
+    fun obrisiStrucniRad(strucniRadId: Int, onResult: (Long?) -> Unit){
+        val serviceAPI = retrofit.create(ObrisiStrucniRad::class.java)
+        serviceAPI.obrisiStrucniRad(strucniRadId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanStrucniRad = response.body()
+                        onResult(obrisanStrucniRad)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Dnevna aktivnost
     private val _dnevneAktivnosti = MutableLiveData<List<DnevnaAktivnost>>()
     val dnevneAktivnosti: LiveData<List<DnevnaAktivnost>>
@@ -326,6 +346,27 @@ class WebServis {
                     if (response.isSuccessful) {
                         val dodanaDnevnaAktivnost = response.body()
                         onResult(dodanaDnevnaAktivnost)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
+    fun obrisiDnevnuAktivnost(dnevnaAktivnostId: Int, onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiDnevnuAktivnosti::class.java)
+        serviceAPI.obrisiDnevnuAktivnost(dnevnaAktivnostId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanaDnevnaAktivnost = response.body()
+                        onResult(obrisanaDnevnaAktivnost)
                         Log.d("TAG", "onResponse success: ${response.body()}")
                     }
                 }
@@ -412,6 +453,27 @@ class WebServis {
         )
     }
 
+    fun obrisiProvjeruZnanja(provjeraId: Int, onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiProvjeruZnanja::class.java)
+        serviceAPI.obrisiProvjeruZnanja(provjeraId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanaProvjeraZnanja = response.body()
+                        onResult(obrisanaProvjeraZnanja)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Pitanje
     private val _pitanja = MutableLiveData<List<Pitanje>>()
     val pitanja: LiveData<List<Pitanje>>
@@ -455,6 +517,27 @@ class WebServis {
                     if (response.isSuccessful) {
                         val dodanoPitanje = response.body()
                         onResult(dodanoPitanje)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
+    fun obrisiPitanje(pitanjeId: Int, onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiPitanje::class.java)
+        serviceAPI.obrisiPitanje(pitanjeId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanoPitanje = response.body()
+                        onResult(obrisanoPitanje)
                         Log.d("TAG", "onResponse success: ${response.body()}")
                     }
                 }

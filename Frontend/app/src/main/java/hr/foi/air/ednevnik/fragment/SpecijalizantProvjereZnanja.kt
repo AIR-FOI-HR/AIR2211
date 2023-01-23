@@ -58,7 +58,7 @@ class SpecijalizantProvjereZnanja : Fragment() {
 
     private fun initRecyclerView() {
         provjeraZnanjaListAdapter = ProvjereZnanjaAdapter()
-
+        provjeraZnanjaListAdapter.mentor = false
         provjeraZnanjaListAdapter.onItemClick = { provjeraZnanja ->
             Log.d("SpecTAG", "${provjeraZnanja.idProvjera}")
             val action =

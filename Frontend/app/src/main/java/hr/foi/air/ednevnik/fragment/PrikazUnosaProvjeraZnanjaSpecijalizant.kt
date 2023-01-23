@@ -79,6 +79,7 @@ class PrikazUnosaProvjeraZnanjaSpecijalizant : Fragment(){
 
     private fun observeLiveData() {
         webServis.pitanja.observe(viewLifecycleOwner) {
+            pitanjaAdapter.mentor=false
             pitanjaAdapter.setData(it)
         }
     }
