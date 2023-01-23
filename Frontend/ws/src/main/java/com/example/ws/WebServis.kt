@@ -284,7 +284,7 @@ class WebServis {
     }
 
     fun obrisiStrucniRad(strucniRadId: Int, onResult: (Long?) -> Unit){
-        val serviceAPI = retrofit.create(ObrisiStrucniRad::class.java)
+        val serviceAPI = retrofit.create(ObrisiStrucniRadApi::class.java)
         serviceAPI.obrisiStrucniRad(strucniRadId).enqueue(
             object : Callback<Long> {
                 override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -354,7 +354,7 @@ class WebServis {
     }
 
     fun obrisiDnevnuAktivnost(dnevnaAktivnostId: Int, onResult: (Long?) -> Unit) {
-        val serviceAPI = retrofit.create(ObrisiDnevnuAktivnosti::class.java)
+        val serviceAPI = retrofit.create(ObrisiDnevnuAktivnostiApi::class.java)
         serviceAPI.obrisiDnevnuAktivnost(dnevnaAktivnostId).enqueue(
             object : Callback<Long> {
                 override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -430,7 +430,7 @@ class WebServis {
         get() = _provjeraZnanja
     fun getProvjeraZnanja(provjeraZnanjaId : Int)
     {
-        val serviceAPI = retrofit.create(ProvjeraZnanjaById::class.java)
+        val serviceAPI = retrofit.create(ProvjeraZnanjaByIdApi::class.java)
         val call : Call<ProvjeraZnanja> = serviceAPI.getProvjeraZnanja(provjeraZnanjaId)
 
         call.enqueue (
@@ -454,7 +454,7 @@ class WebServis {
     }
 
     fun obrisiProvjeruZnanja(provjeraId: Int, onResult: (Long?) -> Unit) {
-        val serviceAPI = retrofit.create(ObrisiProvjeruZnanja::class.java)
+        val serviceAPI = retrofit.create(ObrisiProvjeruZnanjaApi::class.java)
         serviceAPI.obrisiProvjeruZnanja(provjeraId).enqueue(
             object : Callback<Long> {
                 override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -525,7 +525,7 @@ class WebServis {
     }
 
     fun obrisiPitanje(pitanjeId: Int, onResult: (Long?) -> Unit) {
-        val serviceAPI = retrofit.create(ObrisiPitanje::class.java)
+        val serviceAPI = retrofit.create(ObrisiPitanjeApi::class.java)
         serviceAPI.obrisiPitanje(pitanjeId).enqueue(
             object : Callback<Long> {
                 override fun onFailure(call: Call<Long>, t: Throwable) {
@@ -697,7 +697,7 @@ class WebServis {
 
     fun getAllOdradeneKompetencije(specijalizacijaId : Int)
     {
-        val serviceAPI = retrofit.create(OdradeneKompetencijeBySpecijalizacijaId::class.java)
+        val serviceAPI = retrofit.create(OdradeneKompetencijeBySpecijalizacijaIdApi::class.java)
         val call : Call<ArrayList<OdradenaKompetencija>> = serviceAPI.getOdradeneKompetencijie(specijalizacijaId)
 
         call.enqueue (
@@ -740,6 +740,27 @@ class WebServis {
         )
     }
 
+    fun obrisiOdradenuKompetenciju(specijalizacija: Int, kompetencija: Int, stupanj: Int,onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiOdradenuKompetencijuApi::class.java)
+        serviceAPI.obrisiOdradenuKompetenciju(specijalizacija, kompetencija, stupanj).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanaOdradenaKompetencija = response.body()
+                        onResult(obrisanaOdradenaKompetencija)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Odradeni zahvat
     private val _odradeniZahvati = MutableLiveData<List<OdradeniZahvat>>()
     val odradeniZahvati: LiveData<List<OdradeniZahvat>>
@@ -747,7 +768,7 @@ class WebServis {
 
     fun getAllOdradeniZahvati(specijalizacijaId : Int)
     {
-        val serviceAPI = retrofit.create(OdradeniZahvatiBySpecijalizacijaId::class.java)
+        val serviceAPI = retrofit.create(OdradeniZahvatiBySpecijalizacijaIdApi::class.java)
         val call : Call<ArrayList<OdradeniZahvat>> = serviceAPI.getOdradeniZahvati(specijalizacijaId)
 
         call.enqueue (
@@ -790,6 +811,27 @@ class WebServis {
         )
     }
 
+    fun obrisiOdradeniZahvat(specijalizacija: Int, zahvat: Int, stupanj: Int,onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiOdradeniZahvatApi::class.java)
+        serviceAPI.obrisiOdradeniZahvat(specijalizacija, zahvat, stupanj).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisaniOdradeniZahvat = response.body()
+                        onResult(obrisaniOdradeniZahvat)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Odradeni dio specijalizacije
     private val _odradeniDijeloviSpecijalizacije = MutableLiveData<List<OdradeniDioSpecijalizacije>>()
     val odradeniDijeloviSpecijalizacije: LiveData<List<OdradeniDioSpecijalizacije>>
@@ -797,7 +839,7 @@ class WebServis {
 
     fun getAllOdradeniDijeloviSpecijalizacije(specijalizacijaId : Int)
     {
-        val serviceAPI = retrofit.create(OdradeniDijeloviSpecijalizacijeBySpecijalizacijaId::class.java)
+        val serviceAPI = retrofit.create(OdradeniDijeloviSpecijalizacijeBySpecijalizacijaIdApi::class.java)
         val call : Call<ArrayList<OdradeniDioSpecijalizacije>> = serviceAPI.getOdradeniDijeloviSpecijalizacije(specijalizacijaId)
 
         call.enqueue (
@@ -821,7 +863,7 @@ class WebServis {
     }
 
     fun dodajOdradeniDioSpecijalizacije(odradeniDioSpecijalizacije: OdradeniDioSpecijalizacije, onResult: (OdradeniDioSpecijalizacije?) -> Unit){
-        val serviceAPI = retrofit.create(DodajOdradeniDioSpecijalizacije::class.java)
+        val serviceAPI = retrofit.create(DodajOdradeniDioSpecijalizacijeApi::class.java)
         serviceAPI.dodajOdradeniDioSpecijalizacije(odradeniDioSpecijalizacije).enqueue(
             object : Callback<OdradeniDioSpecijalizacije> {
                 override fun onFailure(call: Call<OdradeniDioSpecijalizacije>, t: Throwable) {
@@ -833,6 +875,27 @@ class WebServis {
                     if (response.isSuccessful) {
                         val dodanDioSpecijalizacije = response.body()
                         onResult(dodanDioSpecijalizacije)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
+    fun obrisiOdradeniDioSpecijalizacije(specijalizacija: Int, dioSpecijalizacije: Int, onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiOdradeniDioSpecijalizacijeApi::class.java)
+        serviceAPI.obrisiOdradeniDioSpecijalizacije(specijalizacija, dioSpecijalizacije).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisaniOdradeniDioSpecijalizacije = response.body()
+                        onResult(obrisaniOdradeniDioSpecijalizacije)
                         Log.d("TAG", "onResponse success: ${response.body()}")
                     }
                 }
@@ -877,7 +940,7 @@ class WebServis {
 
     fun getAllIspiti(specijalizacijaId : Int)
     {
-        val serviceAPI = retrofit.create(IspitiBySpecijalizacijaId::class.java)
+        val serviceAPI = retrofit.create(IspitiBySpecijalizacijaIdApi::class.java)
         val call : Call<ArrayList<Ispit>> = serviceAPI.getIspiti(specijalizacijaId)
 
         call.enqueue (
@@ -901,7 +964,7 @@ class WebServis {
     }
 
     fun dodajIspit(ispit: Ispit, onResult: (Ispit?) -> Unit){
-        val serviceAPI = retrofit.create(DodajIspit::class.java)
+        val serviceAPI = retrofit.create(DodajIspitApi::class.java)
         serviceAPI.dodajIspit(ispit).enqueue(
             object : Callback<Ispit> {
                 override fun onFailure(call: Call<Ispit>, t: Throwable) {

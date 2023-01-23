@@ -2,9 +2,12 @@ package hr.foi.air.ednevnik.recyclerview_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.OdradenaKompetencija
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
 import java.text.SimpleDateFormat
 
 class OdradeneKompetencijeAdapter (
@@ -12,11 +15,20 @@ class OdradeneKompetencijeAdapter (
 ) : RecyclerView.Adapter<OdradeneKompetencijeAdapter.OdradeneKompetencijeViewHolder>(){
 
     var onItemClick: ((OdradenaKompetencija) -> Unit)? = null
+    var mentor : Boolean = true
+    var specijalizacija : Int? = null
+    var kompetencija : Int? = null
+    var stupanj : Int? = null
 
-    inner class OdradeneKompetencijeViewHolder(private val binding : MentorDnevnikCardBinding)
+    lateinit var webServis: WebServis
+
+    inner class OdradeneKompetencijeViewHolder(private val binding : SpecijalizantDnevnikCardBinding)
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradenaKompetencija: OdradenaKompetencija) {
+            specijalizacija = odradenaKompetencija.specijalizacija
+            kompetencija = odradenaKompetencija.kompetencija
+            stupanj = odradenaKompetencija.stupanj
             binding.dnevnikNaslov.text = odradenaKompetencija.datum
             binding.tipUnosaDnevnik.text = ""
         }
@@ -30,7 +42,17 @@ class OdradeneKompetencijeAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OdradeneKompetencijeViewHolder {
         val binding =
-            MentorDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        if(mentor) {binding.gumbObrisi.hide()}
+        webServis = WebServis()
+
+        binding.gumbObrisi.setOnClickListener{
+            webServis.obrisiOdradenuKompetenciju(specijalizacija!!, kompetencija!!, stupanj!!){
+                parent.findNavController().popBackStack()
+            }
+        }
+
         return OdradeneKompetencijeViewHolder(binding)
     }
 

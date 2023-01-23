@@ -54,7 +54,7 @@ class SpecijalizantDioSpecijalizacije : Fragment(){
 
     private fun initRecyclerView() {
         dioSpecijalizacijeAdapter = OdradeniDijeloviSpecijalizacijeAdapter()
-
+        dioSpecijalizacijeAdapter.mentor=false
         dioSpecijalizacijeAdapter.onItemClick = {dioSpecijalizacije ->
             val action = SpecijalizantDioSpecijalizacijeDirections.actionSpecijalizantDioSpecijalizacijeToPrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment(dioSpecijalizacije)
             this.findNavController().navigate(action)

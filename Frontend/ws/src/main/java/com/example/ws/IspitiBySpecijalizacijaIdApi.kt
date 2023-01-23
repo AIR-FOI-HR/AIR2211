@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface IspitiBySpecijalizacijaId {
+interface IspitiBySpecijalizacijaIdApi {
     @GET("/ednevnik-0.0.1-SNAPSHOT/ispiti/getAllBySpecijalizacijaId/{id}")
     fun getIspiti(@Path("id") specijalizacijaId : Int) : Call<ArrayList<Ispit>>
 }
