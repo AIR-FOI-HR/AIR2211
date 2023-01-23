@@ -79,6 +79,14 @@ class SpecijalizantPracenjeSpecijalizacije : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        var gumbIspiti = _binding!!.ispiti
+
+        gumbIspiti.setOnClickListener() {
+            Log.d("PracnjeTAG", webServis.specijalizacija.value.toString())
+            val action = SpecijalizantPracenjeSpecijalizacijeDirections.actionSpecijalizantPracenjeSpecijalizacijeToSpecijalizantIspiti(webServis.specijalizacija.value!!.id_specijalizacija.toString())
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

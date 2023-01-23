@@ -51,4 +51,8 @@
     <string name="labelDioSpecijalizacije">Dio specijalizacije:</string>
     <string name="labelOcjenaProvjere">Ocjena provjere:</string>
     <string name="labelSadrzajPitanja">Sadržaj pitanja:</string>
+    <string name="ispiti">Ispiti</string>
+    <string name="labelNazivUstanove">Naziv ustanove:</string>
+    <string name="labelProsao">Prošao</string>
+    <string name="labelNijeProsao">Nije prošao</string>
 </resources>

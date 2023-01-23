@@ -787,4 +787,54 @@ class WebServis {
         )
     }
 
+    //Ispit
+    private val _ispiti = MutableLiveData<List<Ispit>>()
+    val ispiti: LiveData<List<Ispit>>
+        get() = _ispiti
+
+    fun getAllIspiti(specijalizacijaId : Int)
+    {
+        val serviceAPI = retrofit.create(IspitiBySpecijalizacijaId::class.java)
+        val call : Call<ArrayList<Ispit>> = serviceAPI.getIspiti(specijalizacijaId)
+
+        call.enqueue (
+            object : Callback<ArrayList<Ispit>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Ispit>>,
+                    response: Response<ArrayList<Ispit>>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        _ispiti.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<Ispit>>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    fun dodajIspit(ispit: Ispit, onResult: (Ispit?) -> Unit){
+        val serviceAPI = retrofit.create(DodajIspit::class.java)
+        serviceAPI.dodajIspit(ispit).enqueue(
+            object : Callback<Ispit> {
+                override fun onFailure(call: Call<Ispit>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Ispit>, response: Response<Ispit>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanIspit = response.body()
+                        onResult(dodanIspit)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
 }
