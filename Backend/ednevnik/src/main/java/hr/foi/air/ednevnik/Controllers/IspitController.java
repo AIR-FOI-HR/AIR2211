@@ -19,7 +19,7 @@ public class IspitController {
     IspitService ispitService;
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<Ispit>> GetAktivnostById(@PathVariable int id) {
+    public ResponseEntity<Optional<Ispit>> GetIspitById(@PathVariable int id) {
         var ispit = ispitService.IspitById(id);
         try {
             if (ispit.isEmpty()) {
@@ -33,6 +33,18 @@ public class IspitController {
     @GetMapping("/getAllBySpecijalizacijaId/{specijalizacija_id}")
     public ResponseEntity<List<Ispit>> GetIspitiBySpecijalizacija(@PathVariable int specijalizacija_id) {
         var ispiti = ispitService.IspitiBySpecijalizacija(specijalizacija_id);
+        try {
+            if (ispiti.isEmpty()) {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else return new ResponseEntity<>(ispiti, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getUpcomingBySpecijalizacijaId/{specijalizacija_id}")
+    public ResponseEntity<List<Ispit>> GetNadolazeciIspitiBySpecijalizacija(@PathVariable int specijalizacija_id) {
+        var ispiti = ispitService.NadolazeciIspitiBySpecijalizacija(specijalizacija_id);
         try {
             if (ispiti.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -5,7 +5,10 @@ import hr.foi.air.ednevnik.Repositories.IspitRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +26,15 @@ public class IspitService {
     public List<Ispit> IspitiBySpecijalizacija(int id) {
         List<Ispit> ispiti = new ArrayList<>();
         ispiti.addAll(ispitRepository.findAllBySpecijalizacija(id));
+        return ispiti;
+    }
+
+    public List<Ispit> NadolazeciIspitiBySpecijalizacija(int id) {
+        List<Ispit> ispiti = new ArrayList<>();
+        Date datum = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:SS");
+        Time vrijeme = new Time(System.currentTimeMillis());
+        ispiti.addAll(ispitRepository.findNadolazeciIspitiBySpecijalizacija(id, datum, vrijeme));
         return ispiti;
     }
 
