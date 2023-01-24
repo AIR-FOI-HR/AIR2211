@@ -15,7 +15,4 @@ public interface StrucniRadRepository extends JpaRepository<StrucniRad, Integer>
 
     @Transactional
     Long deleteByIdRad(int id);
-
-
-
 }

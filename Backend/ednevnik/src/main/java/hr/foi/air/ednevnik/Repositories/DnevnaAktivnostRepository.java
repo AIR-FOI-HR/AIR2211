@@ -15,5 +15,4 @@ public interface DnevnaAktivnostRepository extends JpaRepository<DnevnaAktivnost
 
     @Transactional
     Long deleteByIdAktivnost(int id);
-
 }

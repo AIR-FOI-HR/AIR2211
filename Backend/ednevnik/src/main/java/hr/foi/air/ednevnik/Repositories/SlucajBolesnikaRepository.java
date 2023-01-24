@@ -15,5 +15,4 @@ public interface SlucajBolesnikaRepository extends JpaRepository<SlucajBolesnika
 
     @Transactional
     Long deleteByIdSlucaj(int id);
-
 }

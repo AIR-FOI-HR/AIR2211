@@ -9,11 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class PrijavaRequest {
-
     @NotNull
     private String email;
-
     @NotNull
     private String lozinka;
-
 }

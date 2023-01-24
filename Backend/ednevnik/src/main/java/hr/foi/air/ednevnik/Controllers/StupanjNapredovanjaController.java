@@ -18,15 +18,13 @@ public class StupanjNapredovanjaController {
     private StupanjNapredovanjaService stupanjNapredovanjaService;
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<StupanjNapredovanja>> GetStupanjNapredovanjaById(@PathVariable int id){
+    public ResponseEntity<Optional<StupanjNapredovanja>> GetStupanjNapredovanjaById(@PathVariable int id) {
         var stupanjNapredovanja = stupanjNapredovanjaService.StupanjNapredovanjaById(id);
-        try{
-            if(stupanjNapredovanja.isEmpty()){
+        try {
+            if (stupanjNapredovanja.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            else
-                return new ResponseEntity<>(stupanjNapredovanja, HttpStatus.OK);
-        } catch (Exception e){
+            } else return new ResponseEntity<>(stupanjNapredovanja, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

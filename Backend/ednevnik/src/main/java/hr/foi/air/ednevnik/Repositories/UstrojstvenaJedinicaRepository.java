@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UstrojstvenaJedinicaRepository extends JpaRepository<UstrojstvenaJedinica, Integer>  {
+public interface UstrojstvenaJedinicaRepository extends JpaRepository<UstrojstvenaJedinica, Integer> {
 
     Optional<UstrojstvenaJedinica> findByIdJedinica(int id);
 }
