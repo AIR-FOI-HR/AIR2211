@@ -38,6 +38,7 @@ class SpecijalizantIspiti : Fragment(){
         webServis = WebServis()
 
         webServis.getAllIspiti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getNadolazeciIspiti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
 
         _binding!!.prikaziObavijesti.setOnClickListener{
             prikaziObavijesti()
@@ -56,7 +57,7 @@ class SpecijalizantIspiti : Fragment(){
         fragment = ObavijestiFragment1()
 
         //
-        webServis.ispiti.observe(viewLifecycleOwner) {
+        webServis.nadolazeciIspiti.observe(viewLifecycleOwner) {
             fragment.setData(it)
         }
 
