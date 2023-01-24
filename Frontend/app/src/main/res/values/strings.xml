@@ -55,4 +55,8 @@
     <string name="labelNazivUstanove">Naziv ustanove:</string>
     <string name="labelProsao">Prošao</string>
     <string name="labelNijeProsao">Nije prošao</string>
+    <string name="labelVrijemeIspita">Vrijeme ispita:</string>
+    <string name="nijeOdredeno">Nije definirano</string>
+    <string name="labelLokacijaIspita">Lokacija:</string>
+    <string name="labelOcjena">Ocjena:</string>
 </resources>
