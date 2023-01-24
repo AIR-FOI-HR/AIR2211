@@ -43,7 +43,7 @@ public class KompetencijaController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<Kompetencija>> GetKompetencijaById(@PathVariable int id) {
+    public ResponseEntity<Optional<Kompetencija>> GetKompetencijaById(@PathVariable int id){
         var kompetencija = kompetencijaService.KompetencijaById(id);
         try {
             if (kompetencija.isEmpty()) {
