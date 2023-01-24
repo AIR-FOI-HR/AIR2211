@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
@@ -56,8 +59,11 @@ class SpecijalizantIspiti : Fragment(){
         webServis.ispiti.observe(viewLifecycleOwner) {
             fragment.setData(it)
         }
-        val action = SpecijalizantIspitiDirections.to(fragment)
-        this.findNavController().navigate(action)
+
+        val ft = getFragmentManager()?.beginTransaction()
+        ft?.replace(this.id, fragment, "Obavijesti")
+        ft?.addToBackStack(null)
+        ft?.commit();
     }
 
     private fun observeLiveData() {

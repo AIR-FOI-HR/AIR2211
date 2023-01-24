@@ -20,6 +20,7 @@ class ObavijestiFragment1 : Fragment(), PrikazObavijesti{
         get() = _binding!!
 
     private lateinit var obavijestiListAdapter: ObavijestiAdapter
+    var ispitiLista : List<Ispit>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,23 +33,20 @@ class ObavijestiFragment1 : Fragment(), PrikazObavijesti{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initRecyclerView()
     }
 
     private fun initRecyclerView() {
         obavijestiListAdapter = ObavijestiAdapter()
+
+        obavijestiListAdapter.setData(ispitiLista!!)
 
         binding.dnevnikRecycler.adapter = obavijestiListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
     }
 
     override fun setData(ispiti: List<Ispit>?) {
-        if(ispiti!=null)
-        {
-            obavijestiListAdapter.setData(ispiti!!)
-        }
-        else{
-            //TODO
-        }
-        initRecyclerView()
+        ispitiLista = ispiti
     }
 }
