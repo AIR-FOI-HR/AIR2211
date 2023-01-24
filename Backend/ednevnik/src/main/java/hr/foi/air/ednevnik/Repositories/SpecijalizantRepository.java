@@ -14,10 +14,11 @@ public interface SpecijalizantRepository extends JpaRepository<Specijalizant, In
 
     Optional<Specijalizant> findAllByIdSpecijalizant(int id);
 
+    Specijalizant findAllByEmail(String email);
+
     @Query(value = "SELECT s FROM Specijalizant s INNER JOIN Specijalizacija sp ON s.idSpecijalizant=sp.specijalizant INNER JOIN Mentor m ON sp.glavniMentor=m.idMentor WHERE m.idMentor = :id AND sp.datumZavrsetka IS NULL")
     List<Specijalizant> findAllSpecijalizantiByMentorId(@Param("id") int id);
 
     @Transactional
     Long deleteByIdSpecijalizant(int id);
-
 }

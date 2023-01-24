@@ -19,64 +19,65 @@ public class OdradenaKompetencijaController {
     private OdradenaKompetencijaService odradenaKompetencijaService;
 
     @GetMapping("/getAllBySpecijalizacija/{specijalizacija_id}")
-    public ResponseEntity<List<OdradenaKompetencija>> GetOdradeneKompetencijeBySpecijalizacija(@PathVariable int specijalizacija_id){
+    public ResponseEntity<List<OdradenaKompetencija>> GetOdradeneKompetencijeBySpecijalizacija(@PathVariable int specijalizacija_id) {
         var odradeneKompetencije = odradenaKompetencijaService.OdradeneKompetencijeBySpecijalizacija(specijalizacija_id);
-        try{
-            if(odradeneKompetencije.isEmpty()){
+        try {
+            if (odradeneKompetencije.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            else
-                return new ResponseEntity<>(odradeneKompetencije, HttpStatus.OK);
-        } catch (Exception e){
+            } else return new ResponseEntity<>(odradeneKompetencije, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getByIds")
-    public ResponseEntity<Optional<OdradenaKompetencija>> GetOdradenaKompetencijaByIds(@RequestParam int specijalizacija, @RequestParam int kompetencija, @RequestParam int stupanj){
+    public ResponseEntity<Optional<OdradenaKompetencija>> GetOdradenaKompetencijaByIds(@RequestParam int specijalizacija, @RequestParam int kompetencija, @RequestParam int stupanj) {
         var odradenaKompetencija = odradenaKompetencijaService.OdradenaKompetencijaByIds(specijalizacija, kompetencija, stupanj);
-        try{
-            if(odradenaKompetencija.isEmpty()){
+        try {
+            if (odradenaKompetencija.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            else
-                return new ResponseEntity<>(odradenaKompetencija, HttpStatus.OK);
-        } catch (Exception e){
+            } else return new ResponseEntity<>(odradenaKompetencija, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping("/add")
     @ResponseBody
-    public ResponseEntity<OdradenaKompetencija> AddOdradenaKompetencija(@RequestBody OdradenaKompetencija odradenaKompetencija){
-        try{
+    public ResponseEntity<OdradenaKompetencija> AddOdradenaKompetencija(@RequestBody OdradenaKompetencija odradenaKompetencija) {
+        try {
             odradenaKompetencijaService.AddOdradenaKompetencija(odradenaKompetencija);
             return new ResponseEntity<>(odradenaKompetencija, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Long> DeleteOdradenaKompetencija(@RequestParam int specijalizacija, @RequestParam int kompetencija, @RequestParam int stupanj){
-        try{
+    public ResponseEntity<Long> DeleteOdradenaKompetencija(@RequestParam int specijalizacija, @RequestParam int kompetencija, @RequestParam int stupanj) {
+        try {
             Long odgovor = odradenaKompetencijaService.DeleteOdradenaKompetencija(specijalizacija, kompetencija, stupanj);
-            if(odgovor==0L) {return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);}
-            else {return new ResponseEntity<>(odgovor, HttpStatus.OK);}
-        }catch (Exception e){
+            if (odgovor == 0L) {
+                return new ResponseEntity<>(odgovor, HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>(odgovor, HttpStatus.OK);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(0L, HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseEntity<OdradenaKompetencija> UpdateOdradenaKompetencija(@RequestBody OdradenaKompetencija odradenaKompetencija){
-        try{
+    public ResponseEntity<OdradenaKompetencija> UpdateOdradenaKompetencija(@RequestBody OdradenaKompetencija odradenaKompetencija) {
+        try {
             OdradenaKompetencija odgovor = odradenaKompetencijaService.UpdateOdradenaKompetencija(odradenaKompetencija);
-            if(odgovor==null) {return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);}
-            else {return new ResponseEntity<>(odradenaKompetencija, HttpStatus.OK);}
-        } catch (Exception e){
+            if (odgovor == null) {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>(odradenaKompetencija, HttpStatus.OK);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

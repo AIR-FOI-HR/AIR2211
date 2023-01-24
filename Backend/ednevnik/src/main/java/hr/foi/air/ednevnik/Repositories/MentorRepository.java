@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface MentorRepository extends JpaRepository<Mentor, Integer> {
 
+    Mentor findAllByEmail(String email);
+
     Optional<Mentor> findByIdMentor(int id);
 
     List<Mentor> findAllByUstrojstvenaJedinica(int id);

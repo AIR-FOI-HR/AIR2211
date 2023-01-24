@@ -1,7 +1,6 @@
 package hr.foi.air.ednevnik.Repositories;
 
 import hr.foi.air.ednevnik.Entities.OdradenaKompetencija;
-import hr.foi.air.ednevnik.Entities.OdradeniZahvat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;

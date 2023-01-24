@@ -16,5 +16,4 @@ public interface SpecijalizacijaRepository extends JpaRepository<Specijalizacija
 
     @Transactional
     Long deleteByIdSpecijalizacija(int id);
-
 }
