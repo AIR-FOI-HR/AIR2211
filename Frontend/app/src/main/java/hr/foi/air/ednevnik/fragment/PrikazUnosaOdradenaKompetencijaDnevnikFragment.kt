@@ -65,7 +65,7 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
 
     private fun observeLiveData() {
         webServis.kompetencija.observe(viewLifecycleOwner) {
-            _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(args.argOdradenaKompetencija.datum)
+            _binding!!.naslovUnosaDnevnika.text = args.argOdradenaKompetencija.datum
             _binding!!.opisDnevnika.text = prikaziPodatke()
         }
     }

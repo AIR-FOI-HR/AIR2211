@@ -82,9 +82,9 @@ class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
         }
         webServis.ustrojstvenaJedinica.observe(viewLifecycleOwner) {
             if(args.argOdradeniDioSpecijalizacije.trajeDo==null) {
-                _binding!!.naslovUnosaDnevnika.text = SimpleDateFormat("yyyy-MM-dd").format(args.argOdradeniDioSpecijalizacije.trajeOd)
+                _binding!!.naslovUnosaDnevnika.text = args.argOdradeniDioSpecijalizacije.trajeOd
             } else{
-                _binding!!.naslovUnosaDnevnika.text = "${SimpleDateFormat("yyyy-MM-dd").format(args.argOdradeniDioSpecijalizacije.trajeOd)} do ${SimpleDateFormat("yyyy-MM-dd").format(args.argOdradeniDioSpecijalizacije.trajeDo)}"
+                _binding!!.naslovUnosaDnevnika.text = "${(args.argOdradeniDioSpecijalizacije.trajeOd)} do ${args.argOdradeniDioSpecijalizacije.trajeDo}"
             }
 
             _binding!!.opisDnevnika.text = prikaziPodatke()

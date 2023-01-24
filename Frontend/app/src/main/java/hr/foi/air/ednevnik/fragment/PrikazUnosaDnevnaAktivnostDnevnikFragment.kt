@@ -28,7 +28,7 @@ class PrikazUnosaDnevnaAktivnostDnevnikFragment : Fragment(){
 
         _binding!!.naslovUnosaDnevnika.text = dnevnaAktivnost.nazivAktivnost
 
-        opis += "\nDatum aktivnosti: ${SimpleDateFormat("yyyy-MM-dd").format(dnevnaAktivnost.datumAktivnost)}"
+        opis += "\nDatum aktivnosti: ${dnevnaAktivnost.datumAktivnost}"
 
         if(dnevnaAktivnost.opisAktivnost!=null)
         {

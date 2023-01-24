@@ -1,10 +1,16 @@
 package hr.foi.air.ednevnik.recyclerview_adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.SlucajBolesnika
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
+import hr.foi.air.ednevnik.fragment.SpecijalizantSlucajeviBolesnikaDirections
 import java.text.SimpleDateFormat
 
 class SlucajeviBolesnikaAdapter (
@@ -12,13 +18,18 @@ class SlucajeviBolesnikaAdapter (
 ) : RecyclerView.Adapter<SlucajeviBolesnikaAdapter.SlucajeviBolesnikaViewHolder>(){
 
     var onItemClick: ((SlucajBolesnika) -> Unit)? = null
+    var mentor : Boolean = true
+    var slucajId : Int? = null
 
-    inner class SlucajeviBolesnikaViewHolder(private val binding : MentorDnevnikCardBinding)
+    lateinit var webServis: WebServis
+
+    inner class SlucajeviBolesnikaViewHolder(private val binding : SpecijalizantDnevnikCardBinding)
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(slucajBolesnika: SlucajBolesnika) {
-            binding.dnevnikNaslov.text = "${
-                SimpleDateFormat("yyyy-MM-dd").format(slucajBolesnika.datumSlucaj)}"
+            slucajId = slucajBolesnika.idSlucaj
+            Log.d("ID Sluccaj Bolesnika", slucajId.toString())
+            binding.dnevnikNaslov.text = slucajBolesnika.datumSlucaj
             binding.tipUnosaDnevnik.text = slucajBolesnika.opisSlucaj
         }
 
@@ -31,7 +42,17 @@ class SlucajeviBolesnikaAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlucajeviBolesnikaViewHolder {
         val binding =
-            MentorDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        if(mentor) {binding.gumbObrisi.hide()}
+        webServis = WebServis()
+
+        binding.gumbObrisi.setOnClickListener{
+            webServis.obrisiSlucajBolesnika(slucajId!!){
+                parent.findNavController().popBackStack()
+            }
+        }
+
         return SlucajeviBolesnikaViewHolder(binding)
     }
 

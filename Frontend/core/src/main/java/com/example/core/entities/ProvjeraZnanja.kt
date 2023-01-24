@@ -14,7 +14,7 @@ data class ProvjeraZnanja(
     var specijalizacija : Int? = null,
 
     @SerializedName("datumProvjera")
-    var datumProvjera : Date,
+    var datumProvjera : String,
 
     @SerializedName("ocjenaProvjera")
     var ocjenaProvjera : Int?,

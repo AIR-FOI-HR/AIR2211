@@ -2,9 +2,12 @@ package hr.foi.air.ednevnik.recyclerview_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.OdradeniDioSpecijalizacije
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
 import java.text.SimpleDateFormat
 
 class OdradeniDijeloviSpecijalizacijeAdapter (
@@ -12,14 +15,21 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
 ) : RecyclerView.Adapter<OdradeniDijeloviSpecijalizacijeAdapter.OdradeniDijeloviSpecijalizacijeViewHolder>(){
 
     var onItemClick: ((OdradeniDioSpecijalizacije) -> Unit)? = null
+    var mentor : Boolean = true
+    var specijalizacija : Int? = null
+    var dioSpecijalizacije : Int? = null
 
-    inner class OdradeniDijeloviSpecijalizacijeViewHolder(private val binding : MentorDnevnikCardBinding)
+    lateinit var webServis: WebServis
+
+    inner class OdradeniDijeloviSpecijalizacijeViewHolder(private val binding : SpecijalizantDnevnikCardBinding)
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradeniDioSpecijalizacije: OdradeniDioSpecijalizacije) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(odradeniDioSpecijalizacije.trajeOd)
+            specijalizacija = odradeniDioSpecijalizacije.specijalizacija
+            dioSpecijalizacije = odradeniDioSpecijalizacije.dioSpecijalizacije
+            binding.dnevnikNaslov.text = odradeniDioSpecijalizacije.trajeOd
             if(odradeniDioSpecijalizacije.trajeDo==null) { binding.tipUnosaDnevnik.text = "U trajanju" }
-            else { binding.tipUnosaDnevnik.text = "do ${SimpleDateFormat("yyyy-MM-dd").format(odradeniDioSpecijalizacije.trajeDo)}"  }
+            else { binding.tipUnosaDnevnik.text = "do ${odradeniDioSpecijalizacije.trajeDo}"  }
         }
 
         init {
@@ -31,7 +41,17 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OdradeniDijeloviSpecijalizacijeViewHolder {
         val binding =
-            MentorDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        if(mentor) {binding.gumbObrisi.hide()}
+        webServis = WebServis()
+
+        binding.gumbObrisi.setOnClickListener{
+            webServis.obrisiOdradeniDioSpecijalizacije(specijalizacija!!, dioSpecijalizacije!!){
+                parent.findNavController().popBackStack()
+            }
+        }
+
         return OdradeniDijeloviSpecijalizacijeViewHolder(binding)
     }
 

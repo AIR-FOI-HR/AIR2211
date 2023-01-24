@@ -2,9 +2,12 @@ package hr.foi.air.ednevnik.recyclerview_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.ProvjeraZnanja
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
 import java.text.SimpleDateFormat
 
 class ProvjereZnanjaAdapter (
@@ -12,12 +15,17 @@ class ProvjereZnanjaAdapter (
 ) : RecyclerView.Adapter<ProvjereZnanjaAdapter.ProvjereZnanjaViewHolder>(){
 
     var onItemClick: ((ProvjeraZnanja) -> Unit)? = null
+    var mentor : Boolean = true
+    var provjeraId : Int? = null
 
-    inner class ProvjereZnanjaViewHolder(private val binding : MentorDnevnikCardBinding)
+    lateinit var webServis: WebServis
+
+    inner class ProvjereZnanjaViewHolder(private val binding : SpecijalizantDnevnikCardBinding)
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(provjeraZnanja: ProvjeraZnanja) {
-            binding.dnevnikNaslov.text = SimpleDateFormat("yyyy-MM-dd").format(provjeraZnanja.datumProvjera)
+            provjeraId = provjeraZnanja.idProvjera
+            binding.dnevnikNaslov.text = provjeraZnanja.datumProvjera
             binding.tipUnosaDnevnik.text = ""
         }
 
@@ -30,7 +38,17 @@ class ProvjereZnanjaAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProvjereZnanjaViewHolder {
         val binding =
-            MentorDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        if(mentor) {binding.gumbObrisi.hide()}
+        webServis = WebServis()
+
+        binding.gumbObrisi.setOnClickListener{
+            webServis.obrisiProvjeruZnanja(provjeraId!!){
+                parent.findNavController().popBackStack()
+            }
+        }
+
         return ProvjereZnanjaViewHolder(binding)
     }
 
