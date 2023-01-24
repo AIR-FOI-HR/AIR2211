@@ -12,17 +12,17 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class MentorService {
+
     MentorRepository mentorRepository;
 
-    public Optional<Mentor> MentorById(int id){
+    public Optional<Mentor> MentorById(int id) {
         Optional<Mentor> mentor = mentorRepository.findByIdMentor(id);
         return mentor;
     }
 
-    public List<Mentor> MentoriByUstrojstvenaJedinica(int ustrojstvenaJedinica){
+    public List<Mentor> MentoriByUstrojstvenaJedinica(int ustrojstvenaJedinica) {
         List<Mentor> mentori = new ArrayList<>();
         mentori.addAll(mentorRepository.findAllByUstrojstvenaJedinica(ustrojstvenaJedinica));
         return mentori;
     }
-
 }

@@ -1,6 +1,5 @@
 package hr.foi.air.ednevnik.Services;
 
-import hr.foi.air.ednevnik.Entities.Kompetencija;
 import hr.foi.air.ednevnik.Entities.Zahvat;
 import hr.foi.air.ednevnik.Repositories.ZahvatRepository;
 import lombok.AllArgsConstructor;
@@ -23,7 +22,7 @@ public class ZahvatService {
         return zahvatRepository.countAllByProgramSpecijalizacije(programSpecijalizacijeId);
     }
 
-    public Optional<Zahvat> ZahvatById(int id){
+    public Optional<Zahvat> ZahvatById(int id) {
         Optional<Zahvat> zahvat = zahvatRepository.findByIdZahvat(id);
         return zahvat;
     }

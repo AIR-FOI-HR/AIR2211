@@ -1,7 +1,6 @@
 package hr.foi.air.ednevnik.Services;
 
 
-import hr.foi.air.ednevnik.Entities.Ispit;
 import hr.foi.air.ednevnik.Entities.Kompetencija;
 import hr.foi.air.ednevnik.Repositories.KompetencijaRepository;
 import lombok.AllArgsConstructor;
@@ -24,7 +23,7 @@ public class KompetencijaService {
         return kompetencijaRepository.countAllByProgramSpecijalizacije(programSpecijalizacijeId);
     }
 
-    public Optional<Kompetencija> KompetencijaById(int id){
+    public Optional<Kompetencija> KompetencijaById(int id) {
         Optional<Kompetencija> kompetencija = kompetencijaRepository.findByIdKompetencija(id);
         return kompetencija;
     }

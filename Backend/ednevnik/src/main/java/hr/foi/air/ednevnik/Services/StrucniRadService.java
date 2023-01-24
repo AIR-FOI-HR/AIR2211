@@ -15,14 +15,14 @@ public class StrucniRadService {
 
     private final StrucniRadRepository strucniRadRepository;
 
-    public List<StrucniRad> StrucniRadoviBySpecijalizacija(int id){
+    public List<StrucniRad> StrucniRadoviBySpecijalizacija(int id) {
 
         List<StrucniRad> strucniRadovi = new ArrayList<>();
         strucniRadovi.addAll(strucniRadRepository.findAllBySpecijalizacija(id));
         return strucniRadovi;
     }
 
-    public Optional<StrucniRad> StrucniRadById(int id){
+    public Optional<StrucniRad> StrucniRadById(int id) {
         Optional<StrucniRad> strucniRad = strucniRadRepository.findByIdRad(id);
         return strucniRad;
     }
@@ -32,13 +32,19 @@ public class StrucniRadService {
     }
 
     public Long DeleteStrucniRad(int id) {
-        if(strucniRadRepository.existsById(id)) { return strucniRadRepository.deleteByIdRad(id); }
-        else { return 0L; }
+        if (strucniRadRepository.existsById(id)) {
+            return strucniRadRepository.deleteByIdRad(id);
+        } else {
+            return 0L;
+        }
     }
 
     public StrucniRad UpdateStrucniRad(StrucniRad updatedStrucniRad) {
         Optional<StrucniRad> strucniRadZaUpdate = StrucniRadById(updatedStrucniRad.getIdRad());
-        if(strucniRadZaUpdate.isEmpty()) { return null; }
-        else { return strucniRadRepository.save(updatedStrucniRad); }
+        if (strucniRadZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return strucniRadRepository.save(updatedStrucniRad);
+        }
     }
 }

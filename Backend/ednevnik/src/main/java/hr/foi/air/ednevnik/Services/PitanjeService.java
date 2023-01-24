@@ -15,14 +15,14 @@ public class PitanjeService {
 
     private final PitanjeRepository pitanjeRepository;
 
-    public List<Pitanje> PitanjaByProvjeraZnanja(int id){
+    public List<Pitanje> PitanjaByProvjeraZnanja(int id) {
 
         List<Pitanje> pitanja = new ArrayList<>();
         pitanja.addAll(pitanjeRepository.findAllByProvjera(id));
         return pitanja;
     }
 
-    public Optional<Pitanje> PitanjeById(int id){
+    public Optional<Pitanje> PitanjeById(int id) {
         Optional<Pitanje> pitanje = pitanjeRepository.findByIdPitanje(id);
         return pitanje;
     }
@@ -32,14 +32,19 @@ public class PitanjeService {
     }
 
     public Long DeletePitanje(int id) {
-        if(pitanjeRepository.existsById(id)) { return pitanjeRepository.deleteByIdPitanje(id); }
-        else { return 0L; }
+        if (pitanjeRepository.existsById(id)) {
+            return pitanjeRepository.deleteByIdPitanje(id);
+        } else {
+            return 0L;
+        }
     }
 
     public Pitanje UpdatePitanje(Pitanje updatedPitanje) {
         Optional<Pitanje> pitanjeZaUpdate = PitanjeById(updatedPitanje.getIdPitanje());
-        if(pitanjeZaUpdate.isEmpty()) { return null; }
-        else { return pitanjeRepository.save(updatedPitanje); }
+        if (pitanjeZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return pitanjeRepository.save(updatedPitanje);
+        }
     }
-
 }

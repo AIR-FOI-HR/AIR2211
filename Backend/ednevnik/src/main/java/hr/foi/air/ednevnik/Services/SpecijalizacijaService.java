@@ -15,18 +15,18 @@ public class SpecijalizacijaService {
 
     private final SpecijalizacijaRepository specijalizacijaRepository;
 
-    public List<Specijalizacija> SpecijalizacijeBySpecijalizantId(int id){
+    public List<Specijalizacija> SpecijalizacijeBySpecijalizantId(int id) {
         List<Specijalizacija> specijalizacije = new ArrayList<>();
         specijalizacije.addAll(specijalizacijaRepository.findAllBySpecijalizant(id));
         return specijalizacije;
     }
 
-    public Optional<Specijalizacija> AktivnaSpecijalizacijaBySpecijalizantId(int id){
+    public Optional<Specijalizacija> AktivnaSpecijalizacijaBySpecijalizantId(int id) {
         Optional<Specijalizacija> specijalizacija = specijalizacijaRepository.findBySpecijalizantAndDatumZavrsetkaIsNull(id);
         return specijalizacija;
     }
 
-    public Optional<Specijalizacija> SpecijalizacijaById(int id){
+    public Optional<Specijalizacija> SpecijalizacijaById(int id) {
         Optional<Specijalizacija> specijalizacija = specijalizacijaRepository.findByIdSpecijalizacija(id);
         return specijalizacija;
     }
@@ -36,14 +36,19 @@ public class SpecijalizacijaService {
     }
 
     public Long DeleteSpecijalizacija(int id) {
-        if(specijalizacijaRepository.existsById(id)) { return specijalizacijaRepository.deleteByIdSpecijalizacija(id); }
-        else { return 0L; }
+        if (specijalizacijaRepository.existsById(id)) {
+            return specijalizacijaRepository.deleteByIdSpecijalizacija(id);
+        } else {
+            return 0L;
+        }
     }
 
     public Specijalizacija UpdateSpecijalizacija(Specijalizacija updatedSpecijalizacija) {
         Optional<Specijalizacija> specijalizacijaZaUpdate = SpecijalizacijaById(updatedSpecijalizacija.getIdSpecijalizacija());
-        if(specijalizacijaZaUpdate.isEmpty()) { return null; }
-        else { return specijalizacijaRepository.save(updatedSpecijalizacija); }
+        if (specijalizacijaZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return specijalizacijaRepository.save(updatedSpecijalizacija);
+        }
     }
-
 }

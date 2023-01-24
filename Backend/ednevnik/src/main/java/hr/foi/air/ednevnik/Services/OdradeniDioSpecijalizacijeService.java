@@ -18,21 +18,29 @@ public class OdradeniDioSpecijalizacijeService {
         return odradeniDioSpecijalizacijeRepository.findAllBySpecijalizacija(specijalizacija);
     }
 
-    public Optional<OdradeniDioSpecijalizacije> OdradeniDioSpecijalizacijeByIds(int specijalizacija, int dioSpecijalizacije){
+    public Optional<OdradeniDioSpecijalizacije> OdradeniDioSpecijalizacijeByIds(int specijalizacija, int dioSpecijalizacije) {
         Optional<OdradeniDioSpecijalizacije> odradeniDioSpecijalizacije = odradeniDioSpecijalizacijeRepository.findBySpecijalizacijaAndAndDioSpecijalizacije(specijalizacija, dioSpecijalizacije);
         return odradeniDioSpecijalizacije;
     }
 
-    public OdradeniDioSpecijalizacije AddOdradeniDioSpecijalizacije(OdradeniDioSpecijalizacije odradeniDioSpecijalizacije) { return odradeniDioSpecijalizacijeRepository.save(odradeniDioSpecijalizacije); }
+    public OdradeniDioSpecijalizacije AddOdradeniDioSpecijalizacije(OdradeniDioSpecijalizacije odradeniDioSpecijalizacije) {
+        return odradeniDioSpecijalizacijeRepository.save(odradeniDioSpecijalizacije);
+    }
 
     public Long DeleteOdradeniDioSpecijalizacije(int specijalizacija, int dioSpecijalizacije) {
-        if(OdradeniDioSpecijalizacijeByIds(specijalizacija, dioSpecijalizacije)!=null) { return odradeniDioSpecijalizacijeRepository.deleteBySpecijalizacijaAndDioSpecijalizacije(specijalizacija, dioSpecijalizacije); }
-        else { return 0L; }
+        if (OdradeniDioSpecijalizacijeByIds(specijalizacija, dioSpecijalizacije) != null) {
+            return odradeniDioSpecijalizacijeRepository.deleteBySpecijalizacijaAndDioSpecijalizacije(specijalizacija, dioSpecijalizacije);
+        } else {
+            return 0L;
+        }
     }
 
     public OdradeniDioSpecijalizacije UpdateOdradeniDioSpecijalizacije(OdradeniDioSpecijalizacije updatedOdradeniDioSpecijalizacije) {
         Optional<OdradeniDioSpecijalizacije> odradeniDioSpecijalizacijeZaUpdate = OdradeniDioSpecijalizacijeByIds(updatedOdradeniDioSpecijalizacije.getSpecijalizacija(), updatedOdradeniDioSpecijalizacije.getDioSpecijalizacije());
-        if(odradeniDioSpecijalizacijeZaUpdate.isEmpty()) { return null; }
-        else { return odradeniDioSpecijalizacijeRepository.save(updatedOdradeniDioSpecijalizacije); }
+        if (odradeniDioSpecijalizacijeZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return odradeniDioSpecijalizacijeRepository.save(updatedOdradeniDioSpecijalizacije);
+        }
     }
 }

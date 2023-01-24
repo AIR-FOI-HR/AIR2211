@@ -13,12 +13,12 @@ public class UstrojstvenaJedinicaService {
 
     private UstrojstvenaJedinicaRepository ustrojstvenaJedinicaRepository;
 
-    public Optional<UstrojstvenaJedinica> UstrojstvenaJedinicaById(int id){
+    public Optional<UstrojstvenaJedinica> UstrojstvenaJedinicaById(int id) {
         Optional<UstrojstvenaJedinica> ustrojstvenaJedinica = ustrojstvenaJedinicaRepository.findByIdJedinica(id);
         return ustrojstvenaJedinica;
     }
 
-    public Optional<UstrojstvenaJedinica> TrenutnaUstrojstvenaJedinicaSpecijalizantaBySpecijalizantId(int id){
+    public Optional<UstrojstvenaJedinica> TrenutnaUstrojstvenaJedinicaSpecijalizantaBySpecijalizantId(int id) {
         Optional<UstrojstvenaJedinica> ustrojstvenaJedinica = ustrojstvenaJedinicaRepository.findCurrentBySpecijalizantId(id);
         return ustrojstvenaJedinica;
     }

@@ -15,29 +15,36 @@ public class SlucajBolesnikaService {
 
     private final SlucajBolesnikaRepository slucajBolesnikaRepository;
 
-    public List<SlucajBolesnika> SlucajeviBolesnikaBySpecijalizacija(int id){
+    public List<SlucajBolesnika> SlucajeviBolesnikaBySpecijalizacija(int id) {
 
         List<SlucajBolesnika> slucajeviBolesnika = new ArrayList<>();
         slucajeviBolesnika.addAll(slucajBolesnikaRepository.findAllBySpecijalizacija(id));
         return slucajeviBolesnika;
     }
 
-    public Optional<SlucajBolesnika> SlucajBolesnikaById(int id){
+    public Optional<SlucajBolesnika> SlucajBolesnikaById(int id) {
         Optional<SlucajBolesnika> slucajBolesnika = slucajBolesnikaRepository.findByIdSlucaj(id);
         return slucajBolesnika;
     }
 
-    public SlucajBolesnika AddSlucajBolesnika(SlucajBolesnika slucajBolesnika) { return slucajBolesnikaRepository.save(slucajBolesnika); }
+    public SlucajBolesnika AddSlucajBolesnika(SlucajBolesnika slucajBolesnika) {
+        return slucajBolesnikaRepository.save(slucajBolesnika);
+    }
 
     public Long DeleteSlucajBolesnika(int id) {
-        if(slucajBolesnikaRepository.existsById(id)) { return slucajBolesnikaRepository.deleteByIdSlucaj(id); }
-        else { return 0L; }
+        if (slucajBolesnikaRepository.existsById(id)) {
+            return slucajBolesnikaRepository.deleteByIdSlucaj(id);
+        } else {
+            return 0L;
+        }
     }
 
     public SlucajBolesnika UpdateSlucajBolesnika(SlucajBolesnika updatedSlucajBolesnika) {
         Optional<SlucajBolesnika> slucajBolesnikaZaUpdate = SlucajBolesnikaById(updatedSlucajBolesnika.getIdSlucaj());
-        if(slucajBolesnikaZaUpdate.isEmpty()) { return null; }
-        else { return slucajBolesnikaRepository.save(updatedSlucajBolesnika); }
+        if (slucajBolesnikaZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return slucajBolesnikaRepository.save(updatedSlucajBolesnika);
+        }
     }
-
 }

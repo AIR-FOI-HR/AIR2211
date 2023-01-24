@@ -19,29 +19,25 @@ public class UstrojstvenaJedinicaController {
     private UstrojstvenaJedinicaService ustrojstvenaJedinicaService;
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Optional<UstrojstvenaJedinica>> GetUstrojstvenaJedinicaById(@PathVariable int id){
+    public ResponseEntity<Optional<UstrojstvenaJedinica>> GetUstrojstvenaJedinicaById(@PathVariable int id) {
         var ustrojstvenaJedinica = ustrojstvenaJedinicaService.UstrojstvenaJedinicaById(id);
-        try{
-            if(ustrojstvenaJedinica.isEmpty()){
+        try {
+            if (ustrojstvenaJedinica.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            else
-                return new ResponseEntity<>(ustrojstvenaJedinica, HttpStatus.OK);
-        } catch (Exception e){
+            } else return new ResponseEntity<>(ustrojstvenaJedinica, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getCurrentBySpecijalizantId/{specijalizant_id}")
-    public ResponseEntity<Optional<UstrojstvenaJedinica>> GetCurrentUstrojstvenaJedinicaBySpecijalizantId(@PathVariable int specijalizant_id){
+    public ResponseEntity<Optional<UstrojstvenaJedinica>> GetCurrentUstrojstvenaJedinicaBySpecijalizantId(@PathVariable int specijalizant_id) {
         var ustrojstvenaJedinica = ustrojstvenaJedinicaService.TrenutnaUstrojstvenaJedinicaSpecijalizantaBySpecijalizantId(specijalizant_id);
-        try{
-            if(ustrojstvenaJedinica.isEmpty()){
+        try {
+            if (ustrojstvenaJedinica.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-            }
-            else
-                return new ResponseEntity<>(ustrojstvenaJedinica, HttpStatus.OK);
-        } catch (Exception e){
+            } else return new ResponseEntity<>(ustrojstvenaJedinica, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

@@ -18,23 +18,30 @@ public class OdradenaKompetencijaService {
         return odradenaKompetencijaRepository.findAllBySpecijalizacija(specijalizacija);
     }
 
-    public Optional<OdradenaKompetencija> OdradenaKompetencijaByIds(int specijalizacija, int kompetencija, int stupanj){
+    public Optional<OdradenaKompetencija> OdradenaKompetencijaByIds(int specijalizacija, int kompetencija, int stupanj) {
         Optional<OdradenaKompetencija> odradenaKompetencija = odradenaKompetencijaRepository.findBySpecijalizacijaAndKompetencijaAndStupanj(specijalizacija, kompetencija, stupanj);
         return odradenaKompetencija;
     }
 
-    public OdradenaKompetencija AddOdradenaKompetencija(OdradenaKompetencija odradenaKompetencija) { return odradenaKompetencijaRepository.save(odradenaKompetencija); }
+    public OdradenaKompetencija AddOdradenaKompetencija(OdradenaKompetencija odradenaKompetencija) {
+        return odradenaKompetencijaRepository.save(odradenaKompetencija);
+    }
 
     public Long DeleteOdradenaKompetencija(int specijalizacija, int kompetencija, int stupanj) {
-        if(OdradenaKompetencijaByIds(specijalizacija, kompetencija, stupanj)!=null) { return odradenaKompetencijaRepository.deleteBySpecijalizacijaAndKompetencijaAndStupanj(specijalizacija, kompetencija, stupanj); }
-        else { return 0L; }
+        if (OdradenaKompetencijaByIds(specijalizacija, kompetencija, stupanj) != null) {
+            return odradenaKompetencijaRepository.deleteBySpecijalizacijaAndKompetencijaAndStupanj(specijalizacija, kompetencija, stupanj);
+        } else {
+            return 0L;
+        }
     }
 
     public OdradenaKompetencija UpdateOdradenaKompetencija(OdradenaKompetencija updatedOdradenaKompetencija) {
         Optional<OdradenaKompetencija> odradenaKompetencijaZaUpdate = OdradenaKompetencijaByIds(updatedOdradenaKompetencija.getSpecijalizacija(), updatedOdradenaKompetencija.getKompetencija(), updatedOdradenaKompetencija.getStupanj());
-        if(odradenaKompetencijaZaUpdate.isEmpty()) { return null; }
-        else { return odradenaKompetencijaRepository.save(updatedOdradenaKompetencija); }
+        if (odradenaKompetencijaZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return odradenaKompetencijaRepository.save(updatedOdradenaKompetencija);
+        }
     }
-
 }
 

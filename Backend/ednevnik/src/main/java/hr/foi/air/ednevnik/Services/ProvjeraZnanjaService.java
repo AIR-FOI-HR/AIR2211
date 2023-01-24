@@ -15,29 +15,36 @@ public class ProvjeraZnanjaService {
 
     private final ProvjeraZnanjaRepository provjeraZnanjaRepository;
 
-    public List<ProvjeraZnanja> ProvjereZnanjaBySpecijalizacija(int id){
+    public List<ProvjeraZnanja> ProvjereZnanjaBySpecijalizacija(int id) {
 
         List<ProvjeraZnanja> provjereZnanja = new ArrayList<>();
         provjereZnanja.addAll(provjeraZnanjaRepository.findAllBySpecijalizacija(id));
         return provjereZnanja;
     }
 
-    public Optional<ProvjeraZnanja> ProvjeraZnanjaById(int id){
+    public Optional<ProvjeraZnanja> ProvjeraZnanjaById(int id) {
         Optional<ProvjeraZnanja> provjeraZnanja = provjeraZnanjaRepository.findByIdProvjera(id);
         return provjeraZnanja;
     }
 
-    public ProvjeraZnanja AddProvjeraZnanja(ProvjeraZnanja provjeraZnanja) { return provjeraZnanjaRepository.save(provjeraZnanja); }
+    public ProvjeraZnanja AddProvjeraZnanja(ProvjeraZnanja provjeraZnanja) {
+        return provjeraZnanjaRepository.save(provjeraZnanja);
+    }
 
     public Long DeleteProvjeraZnanja(int id) {
-        if(provjeraZnanjaRepository.existsById(id)) { return provjeraZnanjaRepository.deleteByIdProvjera(id); }
-        else { return 0L; }
+        if (provjeraZnanjaRepository.existsById(id)) {
+            return provjeraZnanjaRepository.deleteByIdProvjera(id);
+        } else {
+            return 0L;
+        }
     }
 
     public ProvjeraZnanja UpdateProvjeraZnanja(ProvjeraZnanja updatedProvjeraZnanja) {
         Optional<ProvjeraZnanja> provjeraZnanjaZaUpdate = ProvjeraZnanjaById(updatedProvjeraZnanja.getIdProvjera());
-        if(provjeraZnanjaZaUpdate.isEmpty()) { return null; }
-        else { return provjeraZnanjaRepository.save(updatedProvjeraZnanja); }
+        if (provjeraZnanjaZaUpdate.isEmpty()) {
+            return null;
+        } else {
+            return provjeraZnanjaRepository.save(updatedProvjeraZnanja);
+        }
     }
-
 }
