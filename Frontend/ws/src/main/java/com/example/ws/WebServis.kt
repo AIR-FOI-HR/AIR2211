@@ -374,6 +374,26 @@ class WebServis {
         )
     }
 
+    fun urediDnevnuAktivnost(dnevnaAktivnost: DnevnaAktivnost, onResult: (DnevnaAktivnost?) -> Unit){
+        val serviceAPI = retrofit.create(UrediDnevnuAktivnostApi::class.java)
+        serviceAPI.urediDnevnuAktivnost(dnevnaAktivnost).enqueue(
+            object : Callback<DnevnaAktivnost> {
+                override fun onFailure(call: Call<DnevnaAktivnost>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<DnevnaAktivnost>, response: Response<DnevnaAktivnost>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val uredenaDnevnaAktivnost = response.body()
+                        onResult(uredenaDnevnaAktivnost)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
     //Provjera znanja
     private val _provjereZnanja = MutableLiveData<List<ProvjeraZnanja>>()
     val provjereZnanja: LiveData<List<ProvjeraZnanja>>

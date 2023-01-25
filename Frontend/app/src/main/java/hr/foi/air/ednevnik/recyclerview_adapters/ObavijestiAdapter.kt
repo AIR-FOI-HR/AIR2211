@@ -2,20 +2,14 @@ package hr.foi.air.ednevnik.recyclerview_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.Ispit
-import com.example.core.entities.ProvjeraZnanja
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
-import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
 
 class ObavijestiAdapter (
     private var ispitiArrayList: ArrayList<Ispit> = arrayListOf()
 ) : RecyclerView.Adapter<ObavijestiAdapter.ObavijestiViewHolder>(){
-
-    var mentor : Boolean = true
-    var provjeraId : Int? = null
 
     lateinit var webServis: WebServis
 

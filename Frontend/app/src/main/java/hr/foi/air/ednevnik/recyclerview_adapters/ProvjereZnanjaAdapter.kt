@@ -40,7 +40,10 @@ class ProvjereZnanjaAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
+        if(mentor) {
+            binding.gumbObrisi.hide()
+            binding.gumbUredi.hide()
+        }
         webServis = WebServis()
 
         binding.gumbObrisi.setOnClickListener{

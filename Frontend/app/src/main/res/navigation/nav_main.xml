@@ -320,6 +320,11 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+        <argument
+            android:name="argDnevnaAktivnost"
+            app:argType="com.example.core.entities.DnevnaAktivnost"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantZahvati"
