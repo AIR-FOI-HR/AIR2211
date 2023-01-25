@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface NovaSpecijalizacijaApi {
+interface DodajSpecijalizacijuApi {
     @POST("/ednevnik-0.0.1-SNAPSHOT/specijalizacija/add")
-    fun dodajSpecijlizaciju (@Body specijalizacija: Specijalizacija) : Call<Specijalizacija>
+    fun dodajSpecijalizaciju (@Body specijalizacija: Specijalizacija) : Call<Specijalizacija>
 }

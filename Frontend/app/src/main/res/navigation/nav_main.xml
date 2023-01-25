@@ -270,6 +270,11 @@
         <action
             android:id="@+id/action_unosSlucajaBolesnika_to_specijalizantPracenjeSpecijlizacije"
             app:destination="@id/specijalizantPracenjeSpecijalizacije" />
+        <argument
+            android:name="argSlucajBolesnika"
+            app:argType="com.example.core.entities.SlucajBolesnika"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijlizantStrucniRadovi"
@@ -295,6 +300,11 @@
         <action
             android:id="@+id/action_unosStrucnogRada_to_specijalizantPracenjeSpecijlizacije"
             app:destination="@id/specijalizantPracenjeSpecijalizacije" />
+        <argument
+            android:name="argStrucniRad"
+            app:argType="com.example.core.entities.StrucniRad"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantDnevneAktivnosti"
@@ -350,6 +360,11 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+        <argument
+            android:name="argOdradeniZahvat"
+            app:argType="com.example.core.entities.OdradeniZahvat"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantKompetencije"
@@ -375,6 +390,11 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+        <argument
+            android:name="argOdradenaKompetencija"
+            app:argType="com.example.core.entities.OdradenaKompetencija"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantDioSpecijalizacije"
@@ -400,6 +420,11 @@
         <argument
             android:name="argSpecijalizacijaId"
             app:argType="string" />
+        <argument
+            android:name="argOdradeniDioSpecijalizacije"
+            app:argType="com.example.core.entities.OdradeniDioSpecijalizacije"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantProvjereZnanja"
@@ -425,6 +450,11 @@
         <action
             android:id="@+id/action_unosProvjereZnanja_to_specijalizantPracenjeSpecijalizacije"
             app:destination="@id/specijalizantPracenjeSpecijalizacije" />
+        <argument
+            android:name="argProvjeraZnanja"
+            app:argType="com.example.core.entities.ProvjeraZnanja"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/prikazUnosaProvjeraZnanjaSpecijalizant"
@@ -444,6 +474,11 @@
         <argument
             android:name="argProvjeraId"
             app:argType="string" />
+        <argument
+            android:name="argPitanje"
+            app:argType="com.example.core.entities.Pitanje"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/ispitiFragment"
@@ -488,6 +523,11 @@
         <action
             android:id="@+id/action_unosIspita_to_ispitiFragment"
             app:destination="@id/ispitiFragment" />
+        <argument
+            android:name="argIspit"
+            app:argType="com.example.core.entities.Ispit"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
 </navigation>

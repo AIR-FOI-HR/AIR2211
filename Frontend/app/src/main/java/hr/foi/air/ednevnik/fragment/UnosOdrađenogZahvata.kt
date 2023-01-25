@@ -1,7 +1,6 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core.entities.OdradeniZahvat
-import com.example.core.entities.SlucajBolesnika
 import com.example.ws.WebServis
-import hr.foi.air.ednevnik.databinding.SpecijalizantDodajSlucajBolesnikaBinding
 import hr.foi.air.ednevnik.databinding.SpecijalizantDodajZahvatBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,7 +45,7 @@ class UnosOdrađenogZahvata : Fragment() {
 
             val odradeniZahvat = OdradeniZahvat(idSpecijlizacije, brojZahvata, stupanj, current, null)
 
-            webServis.dodajOdredeniZahvat(odradeniZahvat) {
+            webServis.dodajOdradeniZahvat(odradeniZahvat) {
 
             }
 
