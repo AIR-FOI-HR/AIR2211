@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
-import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
+import hr.foi.air.ednevnik.databinding.SpecijalizantIspitObavijestiBinding
 import hr.foi.air.ednevnik.recyclerview_adapters.IspitiAdapter
 
 class SpecijalizantIspiti : Fragment(){
-    private var _binding: MentorListaDnevnikBinding? = null
-    private val binding: MentorListaDnevnikBinding
+    private var _binding: SpecijalizantIspitObavijestiBinding? = null
+    private val binding: SpecijalizantIspitObavijestiBinding
         get() = _binding!!
 
     private lateinit var ispitListAdapter: IspitiAdapter
@@ -26,7 +29,7 @@ class SpecijalizantIspiti : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = MentorListaDnevnikBinding.inflate(inflater, container, false)
+        _binding = SpecijalizantIspitObavijestiBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,9 +38,34 @@ class SpecijalizantIspiti : Fragment(){
         webServis = WebServis()
 
         webServis.getAllIspiti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+        webServis.getNadolazeciIspiti(arguments?.getString("argSpecijalizacijaId")!!.toInt())
+
+        _binding!!.prikaziObavijesti.setOnClickListener{
+            prikaziObavijesti()
+        }
 
         initRecyclerView()
         observeLiveData()
+    }
+
+    private fun prikaziObavijesti() {
+        var fragment : PrikazObavijesti
+
+
+        //Modularnost:
+
+        //fragment = ObavijestiFragment1()
+        fragment = ObavijestiFragment2()
+
+        //
+        webServis.nadolazeciIspiti.observe(viewLifecycleOwner) {
+            fragment.setData(it)
+        }
+
+        val ft = getFragmentManager()?.beginTransaction()
+        ft?.replace(this.id, fragment, "Obavijesti")
+        ft?.addToBackStack(null)
+        ft?.commit();
     }
 
     private fun observeLiveData() {

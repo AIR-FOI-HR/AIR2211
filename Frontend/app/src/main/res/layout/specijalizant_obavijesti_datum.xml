@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:firstDayOfWeek="2"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/labelVrijemeIspita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelVrijemeIspita"
+            android:layout_below="@id/calendar"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/vrijemeIspita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nijeOdredeno"
+            android:layout_below="@id/labelVrijemeIspita"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/labelLokacijaIspita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelLokacijaIspita"
+            android:layout_below="@id/vrijemeIspita"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/lokacijaIspita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nijeOdredeno"
+            android:layout_below="@id/labelLokacijaIspita"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/labelOcjena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelOcjena"
+            android:layout_below="@id/lokacijaIspita"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/ocjenaIspita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nijeOdredeno"
+            android:layout_below="@id/labelOcjena"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
