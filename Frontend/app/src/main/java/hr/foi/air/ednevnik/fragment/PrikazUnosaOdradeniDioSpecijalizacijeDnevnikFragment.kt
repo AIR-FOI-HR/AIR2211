@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
-import java.text.SimpleDateFormat
 
 class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
     private val args : PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragmentArgs by navArgs<PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragmentArgs>()
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
+
 
     lateinit var webServis: WebServis
 
@@ -42,10 +43,11 @@ class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
     {
         var odradeniDioSpecijalizacije = args.argOdradeniDioSpecijalizacije
         var opis = "";
+        var mentor = args.argMentor
 
         var dioSpecijalizacije = webServis.dioSpecijalizacije.value
         var ustrojstvenaJedinica = webServis.ustrojstvenaJedinica.value
-        var mentor = webServis.mentor.value
+        var mentorSpec = webServis.mentor.value
 
         if(ustrojstvenaJedinica!=null)
         {
@@ -53,9 +55,9 @@ class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
             opis += "\nOdjel: ${ustrojstvenaJedinica!!.nazivJedinica}"
         }
 
-        if(mentor!=null)
+        if(mentorSpec!=null)
         {
-            opis += "\nMentor dijela specijalizacije: ${mentor!!.ime} ${mentor!!.prezime}"
+            opis += "\nMentor dijela specijalizacije: ${mentorSpec!!.ime} ${mentorSpec!!.prezime}"
         }
         if(odradeniDioSpecijalizacije.mentorPotpis==null || odradeniDioSpecijalizacije.mentorPotpis.toString()=="0")
         { opis += "\nPotpis mentora spcijalizacije: Ne" }
@@ -66,6 +68,20 @@ class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
         { opis += "\nPotpis glavnog mentora: Ne" }
         else if(odradeniDioSpecijalizacije.glavniMentorPotpis.toString()=="1")
         { opis += "\nPotpis glavnog mentora: Da" }
+
+        if(!mentor || odradeniDioSpecijalizacije.mentorPotpis=="1"){
+            binding.gumbPotpisi.hide()
+        }
+        if(mentor){
+            binding.gumbUredi.hide()
+        }
+
+        binding.gumbPotpisi.setOnClickListener{
+            odradeniDioSpecijalizacije.mentorPotpis = "1"
+            webServis.urediOdradeniDioSpecijalizacije(odradeniDioSpecijalizacije){
+                this.findNavController().popBackStack()
+            }
+        }
 
         return opis;
     }

@@ -55,9 +55,8 @@ class SpecijalizantZahvati : Fragment(){
 
     private fun initRecyclerView() {
         zahvatiAdapter = OdradeniZahvatiAdapter()
-        zahvatiAdapter.mentor=false
         zahvatiAdapter.onItemClick = {zahvat ->
-            val action = SpecijalizantZahvatiDirections.actionSpecijalizantZahvatiToPrikazUnosaOdradeniZahvatDnevnikFragment(zahvat)
+            val action = SpecijalizantZahvatiDirections.actionSpecijalizantZahvatiToPrikazUnosaOdradeniZahvatDnevnikFragment(zahvat, false)
             this.findNavController().navigate(action)
         }
 

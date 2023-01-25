@@ -19,6 +19,6 @@ data class OdradenaKompetencija(
     var datum : String?,
 
     @SerializedName("potpisMentora")
-    var potpisMentora : java.lang.Byte?
+    var potpisMentora : String?
 
 ) : Parcelable

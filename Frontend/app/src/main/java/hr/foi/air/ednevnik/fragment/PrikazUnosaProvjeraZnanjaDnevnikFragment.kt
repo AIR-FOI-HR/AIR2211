@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
@@ -48,6 +49,14 @@ class PrikazUnosaProvjeraZnanjaDnevnikFragment : Fragment(){
         { opis += "\nPotpis mentora: Da" }
 
         _binding!!.opisKnjzice.text = opis;
+
+        if(provjeraZnanja.potpisMentora=="1") { binding.gumbPotpisi.hide() }
+        binding.gumbPotpisi.setOnClickListener{
+            provjeraZnanja.potpisMentora = "1"
+            webServis.urediProvjeruZnanja(provjeraZnanja){
+                this.findNavController().popBackStack()
+            }
+        }
 
         return binding.root
     }

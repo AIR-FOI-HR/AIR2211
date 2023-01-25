@@ -80,7 +80,7 @@ class SpecijalizantIspiti : Fragment(){
 
         ispitListAdapter.onItemClick = {ispit ->
             Log.d("SpecTAG", "${ispit.idIspit}")
-            val action = SpecijalizantIspitiDirections.actionSpecijalizantIspitiToPrikazUnosaIspitiDnevnikFragment(ispit)
+            val action = SpecijalizantIspitiDirections.actionSpecijalizantIspitiToPrikazUnosaIspitiDnevnikFragment(ispit, false)
             this.findNavController().navigate(action)
         }
 

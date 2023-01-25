@@ -41,7 +41,7 @@ data class Specijalizacija(
     var datumZavrsetka : java.util.Date?,
 
     @SerializedName("potpisMentora")
-    var potpisMentora : java.lang.Byte?,
+    var potpisMentora : String?,
 
     @SerializedName("zavrsnoMisljenje")
     var zavrsnoMisljenje : String?,

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 
 class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
@@ -13,6 +15,8 @@ class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
+
+    lateinit var webServis: WebServis
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +26,7 @@ class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
 
         var strucniRad = args.argStrucniRad
         var opis = "";
+        var mentor = args.argMentor
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
 
@@ -33,6 +38,11 @@ class PrikazUnosaStrucniRadDnevnikFragment : Fragment() {
         else{ opis += "\nStrucni rad nije objavljen." }
 
         _binding!!.opisDnevnika.text = opis;
+
+        binding.gumbPotpisi.hide()
+        if(mentor){
+            binding.gumbUredi.hide()
+        }
 
         return binding.root
     }

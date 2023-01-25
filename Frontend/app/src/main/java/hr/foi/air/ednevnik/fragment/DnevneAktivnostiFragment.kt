@@ -48,7 +48,6 @@ class DnevneAktivnostiFragment : Fragment(){
 
     private fun initRecyclerView() {
         dnevnaAktivnostListAdapter = DnevneAktivnostiAdapter()
-
         dnevnaAktivnostListAdapter.onItemClick = {dnevnaAktivnost ->
             Log.d("SpecTAG", "${dnevnaAktivnost.idAktivnost}")
             val action = DnevneAktivnostiFragmentDirections.actionDnevneAktivnostiFragmentToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost)

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
@@ -16,6 +17,7 @@ class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
+
 
     lateinit var webServis: WebServis
 
@@ -41,7 +43,7 @@ class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
     {
         var odradeniZahvat = args.argOdradeniZahvat
         var opis = "";
-
+        var mentor = args.argMentor
         var zahvat = webServis.zahvat.value
 
         if(zahvat?.nazivZahvat!=null)
@@ -53,6 +55,20 @@ class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
         { opis += "\nPotpis mentora: Ne" }
         else if(odradeniZahvat.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
+
+        if(!mentor || odradeniZahvat.potpisMentora=="1"){
+            binding.gumbPotpisi.hide()
+        }
+        if(mentor){
+            binding.gumbUredi.hide()
+        }
+
+        binding.gumbPotpisi.setOnClickListener{
+            odradeniZahvat.potpisMentora = "1"
+            webServis.urediOdradeniZahvat(odradeniZahvat){
+                this.findNavController().popBackStack()
+            }
+        }
 
         return opis;
     }

@@ -22,6 +22,7 @@ class PrikazUnosaIspitiDnevnikFragment : Fragment() {
 
         var opis = "";
         var ispit = args.argIspit
+        var mentor = args.argMentor
 
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
         _binding!!.naslovUnosaDnevnika.text = ispit.datum
@@ -34,6 +35,11 @@ class PrikazUnosaIspitiDnevnikFragment : Fragment() {
         { opis += "\nProšao: Da" }
 
         _binding!!.opisDnevnika.text = opis
+
+        binding.gumbPotpisi.hide()
+        if(!mentor){
+            binding.gumbUredi.hide()
+        }
 
         return binding.root
     }

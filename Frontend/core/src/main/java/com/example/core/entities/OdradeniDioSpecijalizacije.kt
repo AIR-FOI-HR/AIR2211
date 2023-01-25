@@ -16,10 +16,10 @@ data class OdradeniDioSpecijalizacije(
     var mentor : Int,
 
     @SerializedName("mentorPotpis")
-    var mentorPotpis : java.lang.Byte?,
+    var mentorPotpis : String?,
 
     @SerializedName("glavniMentorPotpis")
-    var glavniMentorPotpis : java.lang.Byte?,
+    var glavniMentorPotpis : String?,
 
     @SerializedName("trajeOd")
     var trajeOd : String?,

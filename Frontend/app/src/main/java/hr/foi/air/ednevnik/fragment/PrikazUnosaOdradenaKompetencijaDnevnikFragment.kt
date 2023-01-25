@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
@@ -16,6 +17,7 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
     private var _binding: MentorDnevnikPrikazUnosaBinding? = null
     private val binding: MentorDnevnikPrikazUnosaBinding
     get() = _binding!!
+
 
     lateinit var webServis: WebServis
 
@@ -41,7 +43,7 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
     {
         var odradenaKompetencija = args.argOdradenaKompetencija
         var opis = "";
-
+        var mentor = args.argMentor
         var kompetencija = webServis.kompetencija.value
 
         if(kompetencija?.nazivKompetencija!=null)
@@ -53,6 +55,20 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
         { opis += "\nPotpis mentora: Ne" }
         else if(odradenaKompetencija.potpisMentora.toString()=="1")
         { opis += "\nPotpis mentora: Da" }
+
+        if(!mentor || odradenaKompetencija.potpisMentora=="1"){
+            binding.gumbPotpisi.hide()
+        }
+        if(mentor){
+            binding.gumbUredi.hide()
+        }
+
+        binding.gumbPotpisi.setOnClickListener{
+            odradenaKompetencija.potpisMentora = "1"
+            webServis.urediOdradenuKompetenciju(odradenaKompetencija){
+                this.findNavController().popBackStack()
+            }
+        }
 
         return opis;
     }

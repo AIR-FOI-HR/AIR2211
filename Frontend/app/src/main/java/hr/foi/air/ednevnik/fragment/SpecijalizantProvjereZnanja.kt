@@ -62,9 +62,7 @@ class SpecijalizantProvjereZnanja : Fragment() {
         provjeraZnanjaListAdapter.onItemClick = { provjeraZnanja ->
             Log.d("SpecTAG", "${provjeraZnanja.idProvjera}")
             val action =
-                SpecijalizantProvjereZnanjaDirections.actionSpecijalizantProvjereZnanjaToPrikazUnosaProvjeraZnanjaSpecijalizant(
-                    provjeraZnanja
-                )
+                SpecijalizantProvjereZnanjaDirections.actionSpecijalizantProvjereZnanjaToPrikazUnosaProvjeraZnanjaSpecijalizant(provjeraZnanja)
             this.findNavController().navigate(action)
         }
 
