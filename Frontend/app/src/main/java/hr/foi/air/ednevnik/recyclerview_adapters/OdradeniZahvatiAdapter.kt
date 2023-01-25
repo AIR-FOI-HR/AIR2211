@@ -16,9 +16,6 @@ class OdradeniZahvatiAdapter (
 
     var onItemClick: ((OdradeniZahvat) -> Unit)? = null
     var mentor : Boolean = true
-    var specijalizacija : Int? = null
-    var zahvat : Int? = null
-    var stupanj : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -26,11 +23,14 @@ class OdradeniZahvatiAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradeniZahvat: OdradeniZahvat) {
-            specijalizacija = odradeniZahvat.specijalizacija
-            zahvat = odradeniZahvat.zahvat
-            stupanj = odradeniZahvat.stupanj
             binding.dnevnikNaslov.text = odradeniZahvat.datum
             binding.tipUnosaDnevnik.text = ""
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiOdradeniZahvat(odradeniZahvat.specijalizacija!!, odradeniZahvat.zahvat!!, odradeniZahvat.stupanj!!){
+                    odradeniZahvatiArrayList.remove(odradeniZahvat)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -44,14 +44,10 @@ class OdradeniZahvatiAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
-        webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiOdradeniZahvat(specijalizacija!!, zahvat!!, stupanj!!){
-                parent.findNavController().popBackStack()
-            }
+        if(mentor) {
+            binding.gumbObrisi.hide()
         }
+        webServis = WebServis()
 
         return OdradeniZahvatiViewHolder(binding)
     }

@@ -16,7 +16,6 @@ class ProvjereZnanjaAdapter (
 
     var onItemClick: ((ProvjeraZnanja) -> Unit)? = null
     var mentor : Boolean = true
-    var provjeraId : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -24,9 +23,14 @@ class ProvjereZnanjaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(provjeraZnanja: ProvjeraZnanja) {
-            provjeraId = provjeraZnanja.idProvjera
             binding.dnevnikNaslov.text = provjeraZnanja.datumProvjera
             binding.tipUnosaDnevnik.text = ""
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiProvjeruZnanja(provjeraZnanja.idProvjera!!){
+                    provjereZnanjaArrayList.remove(provjeraZnanja)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -40,14 +44,10 @@ class ProvjereZnanjaAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
-        webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiProvjeruZnanja(provjeraId!!){
-                parent.findNavController().popBackStack()
-            }
+        if(mentor) {
+            binding.gumbObrisi.hide()
         }
+        webServis = WebServis()
 
         return ProvjereZnanjaViewHolder(binding)
     }

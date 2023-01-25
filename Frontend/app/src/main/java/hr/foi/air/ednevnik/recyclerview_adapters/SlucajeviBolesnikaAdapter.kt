@@ -19,7 +19,6 @@ class SlucajeviBolesnikaAdapter (
 
     var onItemClick: ((SlucajBolesnika) -> Unit)? = null
     var mentor : Boolean = true
-    var slucajId : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -27,10 +26,14 @@ class SlucajeviBolesnikaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(slucajBolesnika: SlucajBolesnika) {
-            slucajId = slucajBolesnika.idSlucaj
-            Log.d("ID Sluccaj Bolesnika", slucajId.toString())
             binding.dnevnikNaslov.text = slucajBolesnika.datumSlucaj
             binding.tipUnosaDnevnik.text = slucajBolesnika.opisSlucaj
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiSlucajBolesnika(slucajBolesnika.idSlucaj!!){
+                    slucajeviBolesnikaArrayList.remove(slucajBolesnika)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -44,14 +47,10 @@ class SlucajeviBolesnikaAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
-        webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiSlucajBolesnika(slucajId!!){
-                parent.findNavController().popBackStack()
-            }
+        if(mentor) {
+            binding.gumbObrisi.hide()
         }
+        webServis = WebServis()
 
         return SlucajeviBolesnikaViewHolder(binding)
     }

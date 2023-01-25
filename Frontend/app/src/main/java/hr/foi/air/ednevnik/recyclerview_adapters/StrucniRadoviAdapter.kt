@@ -14,7 +14,6 @@ class StrucniRadoviAdapter (
 
     var onItemClick: ((StrucniRad) -> Unit)? = null
     var mentor : Boolean = true
-    var strucniRadId : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -22,9 +21,14 @@ class StrucniRadoviAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(strucniRad: StrucniRad) {
-            strucniRadId = strucniRad.idRad
             binding.dnevnikNaslov.text = strucniRad.naslovRad
             binding.tipUnosaDnevnik.text = ""
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiStrucniRad(strucniRad.idRad!!){
+                    strucniRadoviArrayList.remove(strucniRad)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -38,14 +42,11 @@ class StrucniRadoviAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
+        if(mentor) {
+            binding.gumbObrisi.hide()
+        }
 
         webServis = WebServis()
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiStrucniRad(strucniRadId!!){
-                parent.findNavController().popBackStack()
-            }
-        }
 
         return StrucniRadoviViewHolder(binding)
     }

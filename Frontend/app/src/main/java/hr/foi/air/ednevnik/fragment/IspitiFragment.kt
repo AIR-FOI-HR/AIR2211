@@ -55,7 +55,7 @@ class IspitiFragment : Fragment(){
 
     private fun initRecyclerView() {
         ispitiListAdapter = IspitiAdapter()
-
+        ispitiListAdapter.mentor = true
         ispitiListAdapter.onItemClick = {ispit ->
             val action = IspitiFragmentDirections.actionIspitiFragmentToPrikazUnosaIspitiDnevnikFragment(ispit)
             this.findNavController().navigate(action)

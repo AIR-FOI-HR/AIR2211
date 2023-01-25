@@ -16,8 +16,6 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
 
     var onItemClick: ((OdradeniDioSpecijalizacije) -> Unit)? = null
     var mentor : Boolean = true
-    var specijalizacija : Int? = null
-    var dioSpecijalizacije : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -25,11 +23,15 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradeniDioSpecijalizacije: OdradeniDioSpecijalizacije) {
-            specijalizacija = odradeniDioSpecijalizacije.specijalizacija
-            dioSpecijalizacije = odradeniDioSpecijalizacije.dioSpecijalizacije
             binding.dnevnikNaslov.text = odradeniDioSpecijalizacije.trajeOd
             if(odradeniDioSpecijalizacije.trajeDo==null) { binding.tipUnosaDnevnik.text = "U trajanju" }
             else { binding.tipUnosaDnevnik.text = "do ${odradeniDioSpecijalizacije.trajeDo}"  }
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiOdradeniDioSpecijalizacije(odradeniDioSpecijalizacije.specijalizacija!!, odradeniDioSpecijalizacije.dioSpecijalizacije!!){
+                    odradeniDijeloviSpecijalizacijeArrayList.remove(odradeniDioSpecijalizacije)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -43,14 +45,10 @@ class OdradeniDijeloviSpecijalizacijeAdapter (
         val binding =
             SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        if(mentor) {binding.gumbObrisi.hide()}
-        webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiOdradeniDioSpecijalizacije(specijalizacija!!, dioSpecijalizacije!!){
-                parent.findNavController().popBackStack()
-            }
+        if(mentor) {
+            binding.gumbObrisi.hide()
         }
+        webServis = WebServis()
 
         return OdradeniDijeloviSpecijalizacijeViewHolder(binding)
     }

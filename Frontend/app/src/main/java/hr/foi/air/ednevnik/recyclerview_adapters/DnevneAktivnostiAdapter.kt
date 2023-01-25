@@ -6,9 +6,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.entities.DnevnaAktivnost
 import com.example.ws.WebServis
-import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
 import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
-import java.text.SimpleDateFormat
+import hr.foi.air.ednevnik.fragment.SpecijalizantDnevneAktivnostiDirections
 
 class DnevneAktivnostiAdapter (
     private var dnevneAktivnostiArrayList: ArrayList<DnevnaAktivnost> = arrayListOf()
@@ -16,7 +15,6 @@ class DnevneAktivnostiAdapter (
 
         var onItemClick: ((DnevnaAktivnost) -> Unit)? = null
         var mentor : Boolean = true
-        var aktivnostId : Int? = null
 
         lateinit var webServis: WebServis
 
@@ -24,9 +22,15 @@ class DnevneAktivnostiAdapter (
             : RecyclerView.ViewHolder(binding.root)
         {
             fun bind(dnevnaAktivnost: DnevnaAktivnost) {
-                aktivnostId = dnevnaAktivnost.idAktivnost
                 binding.dnevnikNaslov.text = dnevnaAktivnost.nazivAktivnost
                 binding.tipUnosaDnevnik.text = dnevnaAktivnost.datumAktivnost
+                binding.gumbObrisi.setOnClickListener{
+                    webServis.obrisiDnevnuAktivnost(dnevnaAktivnost.idAktivnost!!){
+                        dnevneAktivnostiArrayList.remove(dnevnaAktivnost)
+                        notifyDataSetChanged()
+                    }
+                }
+
             }
 
             init {
@@ -37,17 +41,12 @@ class DnevneAktivnostiAdapter (
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DnevneAktivnostiViewHolder {
-            val binding =
-                SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding = SpecijalizantDnevnikCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-            if(mentor) {binding.gumbObrisi.hide()}
-            webServis = WebServis()
-
-            binding.gumbObrisi.setOnClickListener{
-                webServis.obrisiDnevnuAktivnost(aktivnostId!!){
-                    parent.findNavController().popBackStack()
-                }
+            if(mentor) {
+                binding.gumbObrisi.hide()
             }
+            webServis = WebServis()
 
             return DnevneAktivnostiViewHolder(binding)
         }
