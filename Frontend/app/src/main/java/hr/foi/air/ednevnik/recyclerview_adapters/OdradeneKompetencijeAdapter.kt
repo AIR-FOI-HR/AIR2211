@@ -1,5 +1,6 @@
 package hr.foi.air.ednevnik.recyclerview_adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -8,6 +9,8 @@ import com.example.core.entities.OdradenaKompetencija
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikCardBinding
 import hr.foi.air.ednevnik.databinding.SpecijalizantDnevnikCardBinding
+import hr.foi.air.ednevnik.fragment.SpecijalizantDnevneAktivnostiDirections
+import hr.foi.air.ednevnik.fragment.SpecijalizantKompetencijeDirections
 import java.text.SimpleDateFormat
 
 class OdradeneKompetencijeAdapter (
@@ -16,9 +19,6 @@ class OdradeneKompetencijeAdapter (
 
     var onItemClick: ((OdradenaKompetencija) -> Unit)? = null
     var mentor : Boolean = true
-    var specijalizacija : Int? = null
-    var kompetencija : Int? = null
-    var stupanj : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -26,11 +26,14 @@ class OdradeneKompetencijeAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(odradenaKompetencija: OdradenaKompetencija) {
-            specijalizacija = odradenaKompetencija.specijalizacija
-            kompetencija = odradenaKompetencija.kompetencija
-            stupanj = odradenaKompetencija.stupanj
             binding.dnevnikNaslov.text = odradenaKompetencija.datum
             binding.tipUnosaDnevnik.text = ""
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiOdradenuKompetenciju(odradenaKompetencija.specijalizacija!!, odradenaKompetencija.kompetencija!!, odradenaKompetencija.stupanj!!){
+                    odradeneKompetencijeArrayList.remove(odradenaKompetencija)
+                    notifyDataSetChanged()
+                }
+            }
         }
 
         init {
@@ -46,15 +49,8 @@ class OdradeneKompetencijeAdapter (
 
         if(mentor) {
             binding.gumbObrisi.hide()
-            binding.gumbUredi.hide()
         }
         webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiOdradenuKompetenciju(specijalizacija!!, kompetencija!!, stupanj!!){
-                parent.findNavController().popBackStack()
-            }
-        }
 
         return OdradeneKompetencijeViewHolder(binding)
     }

@@ -1,6 +1,7 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,22 @@ class UnosOdradeneKompetencije : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
+        var odradenaKompetencijaZaUrediti = args.argOdradenaKompetencija
+        var uredi = false
+        if(odradenaKompetencijaZaUrediti!=null)
+        {
+            uredi = true
+            var godina = odradenaKompetencijaZaUrediti.datum!!.split("-")[0].toInt()
+            var mjesec = odradenaKompetencijaZaUrediti.datum!!.split("-")[1].toInt()
+            var dan = odradenaKompetencijaZaUrediti.datum!!.split("-")[2].toInt()
+            datePicker.updateDate(godina, mjesec - 1, dan)
+            Log.d("Datum", "${godina} - ${mjesec} - ${dan}")
+            Log.d("poslije", odradenaKompetencijaZaUrediti.toString())
+            _binding!!.inputStupanjKompetencije.editText?.setText(odradenaKompetencijaZaUrediti.stupanj!!.toString())
+            _binding!!.inputBrojKompetencije.editText?.setText(odradenaKompetencijaZaUrediti.kompetencija!!.toString())
+            _binding!!.inputStupanjKompetencije.setVisibility(View.GONE)
+            _binding!!.inputBrojKompetencije.setVisibility(View.GONE)
+        }
 
 
         _binding!!.gumbPotvrdiSlucajBolesnika.setOnClickListener {
@@ -47,8 +64,14 @@ class UnosOdradeneKompetencije : Fragment() {
 
             val odradenaKompetencija = OdradenaKompetencija(idSpecijlizacije, brojKompetencije, stupanj, current, null)
 
-            webServis.dodajOdradenuKompetenciju(odradenaKompetencija) {
 
+
+            if(uredi==false){
+                webServis.dodajOdradenuKompetenciju(odradenaKompetencija) {
+                }
+            } else{
+                webServis.urediOdradenuKompetenciju(odradenaKompetencija) {
+                }
             }
 
             val action =

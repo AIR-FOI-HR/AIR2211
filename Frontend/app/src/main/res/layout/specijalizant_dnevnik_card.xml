@@ -40,22 +40,12 @@
             android:id="@+id/gumbObrisi"
             android:layout_width="wrap_content"
             android:layout_height="67dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="@android:color/holo_red_light"
             app:icon="@android:drawable/ic_menu_delete"
-            android:layout_toRightOf="@id/gumbUredi"/>
+            android:layout_toEndOf="@id/dnevnikNaslov"/>
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/gumbUredi"
-            android:layout_width="wrap_content"
-            android:layout_height="67dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="@android:color/darker_gray"
-            app:icon="@android:drawable/ic_menu_edit"
-            android:layout_toRightOf="@id/dnevnikNaslov"/>
 
     </RelativeLayout>
 

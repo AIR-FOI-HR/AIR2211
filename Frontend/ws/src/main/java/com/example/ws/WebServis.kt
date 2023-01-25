@@ -1212,4 +1212,25 @@ class WebServis {
         )
     }
 
+    fun obrisiIspit(ispitId: Int, onResult: (Long?) -> Unit) {
+        val serviceAPI = retrofit.create(ObrisiIspitApi::class.java)
+        serviceAPI.obrisiIspit(ispitId).enqueue(
+            object : Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val obrisanIspit = response.body()
+                        onResult(obrisanIspit)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
 }

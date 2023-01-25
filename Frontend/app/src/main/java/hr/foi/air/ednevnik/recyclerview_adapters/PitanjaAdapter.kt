@@ -16,7 +16,6 @@ class PitanjaAdapter (
 ) : RecyclerView.Adapter<PitanjaAdapter.PitanjaViewHolder>(){
 
     var mentor : Boolean = true
-    var pitanjeId : Int? = null
 
     lateinit var webServis: WebServis
 
@@ -25,9 +24,14 @@ class PitanjaAdapter (
         : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(pitanje: Pitanje) {
-            pitanjeId = pitanje.idPitanje
             binding.dnevnikNaslov.text = pitanje.sadrzajPitanja
             binding.tipUnosaDnevnik.text = ""
+            binding.gumbObrisi.setOnClickListener{
+                webServis.obrisiPitanje(pitanje.idPitanje!!){
+                    pitanjaArrayList.remove(pitanje)
+                    notifyDataSetChanged()
+                }
+            }
         }
     }
 
@@ -37,15 +41,8 @@ class PitanjaAdapter (
 
         if(mentor) {
             binding.gumbObrisi.hide()
-            binding.gumbUredi.hide()
         }
         webServis = WebServis()
-
-        binding.gumbObrisi.setOnClickListener{
-            webServis.obrisiPitanje(pitanjeId!!){
-                parent.findNavController().popBackStack()
-            }
-        }
 
         return PitanjaViewHolder(binding)
     }
