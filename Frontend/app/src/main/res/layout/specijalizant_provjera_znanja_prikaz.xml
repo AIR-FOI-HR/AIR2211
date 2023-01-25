@@ -52,6 +52,17 @@
 
     </RelativeLayout>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/gumbUredi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:icon="@android:drawable/ic_menu_edit"
+        android:backgroundTint="@android:color/darker_gray"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

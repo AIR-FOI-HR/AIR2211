@@ -82,6 +82,10 @@
         <argument
             android:name="argSlucajBolesnika"
             app:argType="com.example.core.entities.SlucajBolesnika" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/PrikazUnosaStrucniRadDnevnikFragment"
@@ -90,6 +94,10 @@
         <argument
             android:name="argStrucniRad"
             app:argType="com.example.core.entities.StrucniRad" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/strucniRadoviFragment"
@@ -120,6 +128,10 @@
         <argument
             android:name="argDnevnaAktivnost"
             app:argType="com.example.core.entities.DnevnaAktivnost" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/provjereZnanjaFragment"
@@ -169,6 +181,10 @@
         <argument
             android:name="argOdradenaKompetencija"
             app:argType="com.example.core.entities.OdradenaKompetencija" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/odradeniZahvatiFragment"
@@ -188,6 +204,10 @@
         <argument
             android:name="argOdradeniZahvat"
             app:argType="com.example.core.entities.OdradeniZahvat" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/prikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment"
@@ -195,6 +215,10 @@
         android:label="PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment" >
         <argument android:name="argOdradeniDioSpecijalizacije"
             app:argType="com.example.core.entities.OdradeniDioSpecijalizacije" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/odradeniDijeloviSpecijalizacijeFragment"
@@ -501,6 +525,10 @@
         <argument
             android:name="argIspit"
             app:argType="com.example.core.entities.Ispit" />
+        <argument
+            android:name="argMentor"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantIspiti"

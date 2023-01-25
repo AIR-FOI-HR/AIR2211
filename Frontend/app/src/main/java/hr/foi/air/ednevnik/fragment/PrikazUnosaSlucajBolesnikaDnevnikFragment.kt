@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 import java.text.SimpleDateFormat
 
@@ -15,6 +17,9 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
     private val binding: MentorDnevnikPrikazUnosaBinding
         get() = _binding!!
 
+
+    lateinit var webServis: WebServis
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,7 +28,7 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
 
         var opis = "";
         var slucajBolesnika = args.argSlucajBolesnika
-
+        var mentor = args.argMentor
         _binding = MentorDnevnikPrikazUnosaBinding.inflate(inflater, container, false)
         _binding!!.naslovUnosaDnevnika.text = slucajBolesnika.datumSlucaj
 
@@ -35,6 +40,20 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
         { opis += "\nPotpis mentora: Da" }
 
         _binding!!.opisDnevnika.text = opis
+
+        if(!mentor || slucajBolesnika.potpisMentora=="1"){
+            binding.gumbPotpisi.hide()
+        }
+        if(mentor){
+            binding.gumbUredi.hide()
+        }
+
+        binding.gumbPotpisi.setOnClickListener{
+            slucajBolesnika.potpisMentora = "1"
+            webServis.urediSlucajBolesnika(slucajBolesnika){
+                this.findNavController().popBackStack()
+            }
+        }
 
         return binding.root
     }

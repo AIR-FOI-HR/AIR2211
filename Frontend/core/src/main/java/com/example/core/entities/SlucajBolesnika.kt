@@ -22,5 +22,5 @@ data class SlucajBolesnika(
     var opisSlucaj : String?,
 
     @SerializedName("potpisMentora")
-    var potpisMentora : java.lang.Byte?
+    var potpisMentora : String?
 ) : Parcelable

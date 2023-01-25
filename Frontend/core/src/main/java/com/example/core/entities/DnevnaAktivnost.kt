@@ -28,5 +28,5 @@ data class DnevnaAktivnost(
     var brZahvataSamostalno : Int?,
 
     @SerializedName("potpisMentora")
-    var potpisMentora : java.lang.Byte?
+    var potpisMentora : String?
 ) : Parcelable

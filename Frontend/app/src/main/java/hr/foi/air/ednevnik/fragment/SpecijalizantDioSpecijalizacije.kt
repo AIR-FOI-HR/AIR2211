@@ -56,7 +56,7 @@ class SpecijalizantDioSpecijalizacije : Fragment(){
         dioSpecijalizacijeAdapter = OdradeniDijeloviSpecijalizacijeAdapter()
         dioSpecijalizacijeAdapter.mentor=false
         dioSpecijalizacijeAdapter.onItemClick = {dioSpecijalizacije ->
-            val action = SpecijalizantDioSpecijalizacijeDirections.actionSpecijalizantDioSpecijalizacijeToPrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment(dioSpecijalizacije)
+            val action = SpecijalizantDioSpecijalizacijeDirections.actionSpecijalizantDioSpecijalizacijeToPrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment(dioSpecijalizacije, false)
             this.findNavController().navigate(action)
         }
 

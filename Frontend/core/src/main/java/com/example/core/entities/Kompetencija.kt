@@ -16,5 +16,5 @@ data class Kompetencija(
     var nazivKompetencija : String?,
 
     @SerializedName("posebna")
-    var posebna : java.lang.Byte?
+    var posebna : String?
 ) : Parcelable

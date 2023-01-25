@@ -57,9 +57,8 @@ class SpecijlizantStrucniRadovi : Fragment(){
     private fun initRecyclerView() {
         strucniRadoviListAdapter = StrucniRadoviAdapter()
 
-        strucniRadoviListAdapter.mentor = false
         strucniRadoviListAdapter.onItemClick = {strucniRad ->
-            val action = SpecijlizantStrucniRadoviDirections.actionSpecijlizantStrucniRadoviToPrikazUnosaStrucniRadDnevnikFragment(strucniRad)
+            val action = SpecijlizantStrucniRadoviDirections.actionSpecijlizantStrucniRadoviToPrikazUnosaStrucniRadDnevnikFragment(strucniRad, false)
             this.findNavController().navigate(action)
         }
 

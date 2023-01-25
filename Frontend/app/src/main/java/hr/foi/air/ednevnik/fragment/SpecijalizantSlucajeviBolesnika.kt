@@ -59,7 +59,7 @@ class SpecijalizantSlucajeviBolesnika : Fragment(){
         slucajBolesnikaListAdapter.mentor = false
         slucajBolesnikaListAdapter.onItemClick = {slucajBolesnika ->
             Log.d("SpecTAG", "${slucajBolesnika.idSlucaj}")
-            val action = SpecijalizantSlucajeviBolesnikaDirections.actionSpecijalizantSlucajeviBolesnikaToPrikazUnosaSlucajBolesnikaDnevnikFragment(slucajBolesnika)
+            val action = SpecijalizantSlucajeviBolesnikaDirections.actionSpecijalizantSlucajeviBolesnikaToPrikazUnosaSlucajBolesnikaDnevnikFragment(slucajBolesnika, false)
             this.findNavController().navigate(action)
         }
 
