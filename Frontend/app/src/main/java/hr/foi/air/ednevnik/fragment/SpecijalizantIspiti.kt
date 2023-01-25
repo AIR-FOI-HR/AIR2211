@@ -53,11 +53,12 @@ class SpecijalizantIspiti : Fragment(){
 
 
         //Modularnost:
+        // ----------------------------------
 
         //fragment = ObavijestiFragment1()
         fragment = ObavijestiFragment2()
 
-        //
+        // ----------------------------------
         webServis.nadolazeciIspiti.observe(viewLifecycleOwner) {
             fragment.setData(it)
         }

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.entities.Ispit
 import com.example.ws.WebServis
+import com.google.android.material.snackbar.Snackbar
 import hr.foi.air.ednevnik.databinding.MentorListaDnevnikBinding
 import hr.foi.air.ednevnik.recyclerview_adapters.ObavijestiAdapter
 import hr.foi.air.ednevnik.recyclerview_adapters.ProvjereZnanjaAdapter
@@ -40,7 +41,11 @@ class ObavijestiFragment1 : Fragment(), PrikazObavijesti{
     private fun initRecyclerView() {
         obavijestiListAdapter = ObavijestiAdapter()
 
-        obavijestiListAdapter.setData(ispitiLista!!)
+        if(ispitiLista!=null) { obavijestiListAdapter.setData(ispitiLista!!) }
+        else{
+            val snackbar = Snackbar.make(requireView(), "Nema nadolazećih ispita!", Snackbar.LENGTH_LONG)
+            snackbar.show()
+        }
 
         binding.dnevnikRecycler.adapter = obavijestiListAdapter
         binding.dnevnikRecycler.layoutManager = LinearLayoutManager(context)
