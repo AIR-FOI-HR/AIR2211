@@ -29,23 +29,34 @@
             android:textColor="@color/black"
             android:textSize="16sp"/>
 
-        <TextView
-            android:id="@+id/labelSpinnerVrstaSpecijalizacije"
-            android:layout_below="@+id/specijalizantSlika"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/vrsta_specijalizacije"/>
-
-        <Spinner
-            android:id="@+id/dropdownVrstaSpecijlizacije"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputProgramSpecijalizacije"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/input_background"
-            android:layout_below="@+id/labelSpinnerVrstaSpecijalizacije"
-            android:spinnerMode="dropdown"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/labelProgramSpecijalizacije"
+            android:layout_below="@+id/specijalizantSlika">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputOdobrenoZa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/labelOdobrenoZa"
+            android:layout_below="@+id/inputProgramSpecijalizacije">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/gumbPotvrdiSpecijlizaciju"

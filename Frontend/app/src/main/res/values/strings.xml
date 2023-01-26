@@ -66,4 +66,6 @@
     <string name="mentorPrijava">Mentor Prijava</string>
     <string name="labelZatvoriSpecijalizaciju">Zatvori specijalizaciju</string>
     <string name="labelZavrsnoMisljenje">Završno mišljenje</string>
+    <string name="labelOdobrenoZa">Pravna osoba:</string>
+    <string name="labelProgramSpecijalizacije">Program specijalizacije:</string>
 </resources>

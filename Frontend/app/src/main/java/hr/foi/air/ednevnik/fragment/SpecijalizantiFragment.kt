@@ -61,7 +61,6 @@ class SpecijalizantiFragment : Fragment(){
 
     private fun initRecyclerView() {
         specijalizantListAdapter = SpecijalizantAdapter()
-
         specijalizantListAdapter.onItemClick = {specijalizant ->
             Log.d("SpecTAG", "${specijalizant.id_specijalizant}")
             val action = SpecijalizantiFragmentDirections.actionSpecijalizantiFragmentToPracenjeSpecijalizantaFragment(specijalizant.ime, specijalizant.prezime, specijalizant.id_specijalizant.toString())
