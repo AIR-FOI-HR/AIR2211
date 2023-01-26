@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.core.entities.Specijalizacija
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.MainActivity
+import hr.foi.air.ednevnik.R
 import hr.foi.air.ednevnik.databinding.MentorUnosParametaraSpecijalizacijeBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +26,7 @@ class UnosSpecijalizacijeFragment : Fragment() {
         get() = _binding!!
 
     lateinit var webServis: WebServis
+    val programiSpecijalizacije = listOf<Int>(1, 2, 3, 4)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +36,16 @@ class UnosSpecijalizacijeFragment : Fragment() {
         _binding = MentorUnosParametaraSpecijalizacijeBinding.inflate(inflater, container, false)
 
         _binding!!.spcijalizantIme.text = "${args.argSpecijlizant.ime} ${args.argSpecijlizant.prezime}"
+
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, programiSpecijalizacije)
+        _binding!!.spinner.setAdapter(adapter)
+
         _binding!!.gumbPotvrdiSpecijlizaciju.setOnClickListener {
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             val current = formatter.format(Date())
-            val programSpecijalizacije = _binding!!.inputProgramSpecijalizacije.editText?.text.toString()
+            val programSpecijalizacije = _binding!!.spinner.text?.toString()
             val odobrenaZa = _binding!!.inputOdobrenoZa.editText?.text.toString()
-            var specijalizacija = Specijalizacija(null, args.argSpecijlizant.id_specijalizant, programSpecijalizacije.toInt(), MainActivity.mentor!!.idMentor, odobrenaZa, current, null, null, null)
+            var specijalizacija = Specijalizacija(null, args.argSpecijlizant.id_specijalizant, programSpecijalizacije?.toInt(), MainActivity.mentor!!.idMentor, odobrenaZa, current, null, null, null)
             webServis.dodajSpecijalizaciju(specijalizacija) {
                 if(it == null){
                     Log.d("Tag", "Error pri dodavanju nove specke")

@@ -30,20 +30,6 @@
             android:textSize="16sp"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputProgramSpecijalizacije"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/labelProgramSpecijalizacije"
-            android:layout_below="@+id/specijalizantSlika">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputOdobrenoZa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,10 +37,30 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:hint="@string/labelOdobrenoZa"
-            android:layout_below="@+id/inputProgramSpecijalizacije">
+            android:layout_below="@+id/programSpecijalizacijeDropdown">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/programSpecijalizacijeDropdown"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelProgramSpecijalizacije"
+            android:layout_below="@id/specijalizantSlika"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
