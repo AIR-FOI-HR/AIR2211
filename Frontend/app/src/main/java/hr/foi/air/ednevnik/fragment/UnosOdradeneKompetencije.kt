@@ -1,7 +1,6 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core.entities.OdradenaKompetencija
-import com.example.core.entities.OdradeniZahvat
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.databinding.SpecijalizantDodajOdradenuKompetencijuBinding
-import hr.foi.air.ednevnik.databinding.SpecijalizantDodajZahvatBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,25 +30,23 @@ class UnosOdradeneKompetencije : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
-        var odradenaKompetencijaZaUrediti = args.argOdradenaKompetencija
+        var unesenaOdradenaKompetencija = args.argOdradenaKompetencija
         var uredi = false
-        if(odradenaKompetencijaZaUrediti!=null)
+        if(unesenaOdradenaKompetencija!=null)
         {
             uredi = true
-            var godina = odradenaKompetencijaZaUrediti.datum!!.split("-")[0].toInt()
-            var mjesec = odradenaKompetencijaZaUrediti.datum!!.split("-")[1].toInt()
-            var dan = odradenaKompetencijaZaUrediti.datum!!.split("-")[2].toInt()
+            var godina = unesenaOdradenaKompetencija.datum!!.split("-")[0].toInt()
+            var mjesec = unesenaOdradenaKompetencija.datum!!.split("-")[1].toInt()
+            var dan = unesenaOdradenaKompetencija.datum!!.split("-")[2].toInt()
             datePicker.updateDate(godina, mjesec - 1, dan)
-            Log.d("Datum", "${godina} - ${mjesec} - ${dan}")
-            Log.d("poslije", odradenaKompetencijaZaUrediti.toString())
-            _binding!!.inputStupanjKompetencije.editText?.setText(odradenaKompetencijaZaUrediti.stupanj!!.toString())
-            _binding!!.inputBrojKompetencije.editText?.setText(odradenaKompetencijaZaUrediti.kompetencija!!.toString())
+            _binding!!.inputStupanjKompetencije.editText?.setText(unesenaOdradenaKompetencija.stupanj!!.toString())
+            _binding!!.inputBrojKompetencije.editText?.setText(unesenaOdradenaKompetencija.kompetencija!!.toString())
             _binding!!.inputStupanjKompetencije.setVisibility(View.GONE)
             _binding!!.inputBrojKompetencije.setVisibility(View.GONE)
         }
 
 
-        _binding!!.gumbPotvrdiSlucajBolesnika.setOnClickListener {
+        _binding!!.gumbPotvrdi.setOnClickListener {
             val godina = datePicker.year - 1900
             val mjesec = datePicker.month
             val dan = datePicker.dayOfMonth
@@ -64,12 +59,11 @@ class UnosOdradeneKompetencije : Fragment() {
 
             val odradenaKompetencija = OdradenaKompetencija(idSpecijlizacije, brojKompetencije, stupanj, current, null)
 
-
-
             if(uredi==false){
                 webServis.dodajOdradenuKompetenciju(odradenaKompetencija) {
                 }
             } else{
+                if(unesenaOdradenaKompetencija!!.potpisMentora!=null) { odradenaKompetencija.potpisMentora = unesenaOdradenaKompetencija!!.potpisMentora }
                 webServis.urediOdradenuKompetenciju(odradenaKompetencija) {
                 }
             }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import hr.foi.air.ednevnik.databinding.MentorDnevnikPrikazUnosaBinding
 
@@ -39,6 +40,10 @@ class PrikazUnosaIspitiDnevnikFragment : Fragment() {
         binding.gumbPotpisi.hide()
         if(!mentor){
             binding.gumbUredi.hide()
+        }
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaIspitiDnevnikFragmentDirections.actionPrikazUnosaIspitiDnevnikFragmentToUnosIspita(ispit.specijalizacija.toString(), ispit)
+            this.findNavController().navigate(action)
         }
 
         return binding.root

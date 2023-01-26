@@ -20,13 +20,11 @@ class PrikazUnosaDnevnaAktivnostDnevnikFragment : Fragment(){
 
     lateinit var webServis: WebServis
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        webServis = WebServis()
         var dnevnaAktivnost = args.argDnevnaAktivnost
         var mentor = args.argMentor
         var opis = "";
@@ -70,11 +68,16 @@ class PrikazUnosaDnevnaAktivnostDnevnikFragment : Fragment(){
             }
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaDnevnaAktivnostDnevnikFragmentDirections.actionPrikazUnosaDnevnaAktivnostDnevnikFragmentToUnosDnevneAktivnosti(dnevnaAktivnost.specijalizacijaId.toString(), dnevnaAktivnost)
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        webServis = WebServis()
     }
 }

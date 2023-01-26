@@ -83,6 +83,11 @@ class PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragment : Fragment(){
             }
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragmentDirections.actionPrikazUnosaOdradeniDioSpecijalizacijeDnevnikFragmentToUnosOdradenogDijelaSpecijalizacije(odradeniDioSpecijalizacije.specijalizacija.toString(), odradeniDioSpecijalizacije)
+            this.findNavController().navigate(action)
+        }
+
         return opis;
     }
 

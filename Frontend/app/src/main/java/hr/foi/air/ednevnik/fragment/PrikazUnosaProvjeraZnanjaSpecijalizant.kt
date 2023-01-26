@@ -59,6 +59,11 @@ class PrikazUnosaProvjeraZnanjaSpecijalizant : Fragment(){
             this.findNavController().navigate(action)
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaProvjeraZnanjaSpecijalizantDirections.actionPrikazUnosaProvjeraZnanjaSpecijalizantToUnosProvjereZnanja(provjeraZnanja.specijalizacija.toString(), provjeraZnanja)
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

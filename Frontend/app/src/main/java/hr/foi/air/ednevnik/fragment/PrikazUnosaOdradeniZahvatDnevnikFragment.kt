@@ -70,6 +70,11 @@ class PrikazUnosaOdradeniZahvatDnevnikFragment : Fragment(){
             }
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaOdradeniZahvatDnevnikFragmentDirections.actionPrikazUnosaOdradeniZahvatDnevnikFragmentToUnosOdrađenogZahvata(odradeniZahvat.specijalizacija.toString(), odradeniZahvat)
+            this.findNavController().navigate(action)
+        }
+
         return opis;
     }
 

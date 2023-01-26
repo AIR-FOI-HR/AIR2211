@@ -35,24 +35,22 @@ class UnosDnevneAktivnosti : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
-        var dnevnaAktivnost = args.argDnevnaAktivnost
+        var unesenaDnevnaAktivnost = args.argDnevnaAktivnost
         var uredi = false
-        var idAktivnost : Int? = null
-        if(dnevnaAktivnost!=null)
+        if(unesenaDnevnaAktivnost!=null)
         {
-            idAktivnost = dnevnaAktivnost.idAktivnost
             uredi = true
-            var godina = dnevnaAktivnost.datumAktivnost!!.split("-")[0].toInt()
-            var mjesec = dnevnaAktivnost.datumAktivnost!!.split("-")[1].toInt()
-            var dan = dnevnaAktivnost.datumAktivnost!!.split("-")[2].toInt()
+            var godina = unesenaDnevnaAktivnost.datumAktivnost!!.split("-")[0].toInt()
+            var mjesec = unesenaDnevnaAktivnost.datumAktivnost!!.split("-")[1].toInt()
+            var dan = unesenaDnevnaAktivnost.datumAktivnost!!.split("-")[2].toInt()
             datePicker.updateDate(godina, mjesec - 1, dan)
-            _binding!!.inputNazivAktivnosti.editText?.setText(dnevnaAktivnost.nazivAktivnost)
-            if(dnevnaAktivnost.opisAktivnost!=null) { _binding!!.inputOpisAktivnosti.editText?.setText(dnevnaAktivnost.opisAktivnost) }
-            if(dnevnaAktivnost.brZahvataNadzor!=null) { _binding!!.inputBrojZahvataNadzor.editText?.setText(dnevnaAktivnost.brZahvataNadzor.toString()) }
-            if(dnevnaAktivnost.brZahvataSamostalno!=null) { _binding!!.inputBrojZahvataSamostalno.editText?.setText(dnevnaAktivnost.brZahvataSamostalno.toString()) }
+            _binding!!.inputNazivAktivnosti.editText?.setText(unesenaDnevnaAktivnost.nazivAktivnost)
+            if(unesenaDnevnaAktivnost.opisAktivnost!=null) { _binding!!.inputOpisAktivnosti.editText?.setText(unesenaDnevnaAktivnost.opisAktivnost) }
+            if(unesenaDnevnaAktivnost.brZahvataNadzor!=null) { _binding!!.inputBrojZahvataNadzor.editText?.setText(unesenaDnevnaAktivnost.brZahvataNadzor.toString()) }
+            if(unesenaDnevnaAktivnost.brZahvataSamostalno!=null) { _binding!!.inputBrojZahvataSamostalno.editText?.setText(unesenaDnevnaAktivnost.brZahvataSamostalno.toString()) }
         }
 
-        _binding!!.gumbPotvrdiSlucajBolesnika.setOnClickListener {
+        _binding!!.gumbPotvrdi.setOnClickListener {
             val godina = datePicker.year - 1900
             val mjesec = datePicker.month
             val dan = datePicker.dayOfMonth
@@ -74,12 +72,11 @@ class UnosDnevneAktivnosti : Fragment() {
                 webServis.dodajDnevnuAktivnost(dnevnaAktivnost) {
                 }
             } else{
-                dnevnaAktivnost.idAktivnost = idAktivnost
+                if(unesenaDnevnaAktivnost!!.potpisMentora!=null) { dnevnaAktivnost.potpisMentora = unesenaDnevnaAktivnost!!.potpisMentora }
+                dnevnaAktivnost.idAktivnost = unesenaDnevnaAktivnost.idAktivnost
                 webServis.urediDnevnuAktivnost(dnevnaAktivnost) {
                 }
             }
-
-
             val action = UnosDnevneAktivnostiDirections.actionUnosDnevneAktivnostiToSpecijalizantPracenjeSpecijlizacije()
             this.findNavController().navigate(action)
         }
