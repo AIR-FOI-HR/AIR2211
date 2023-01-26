@@ -1,6 +1,8 @@
 package com.example.core.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import java.sql.Date
 
 /*
@@ -18,6 +20,7 @@ API:
 }
  */
 
+@Parcelize
 data class Specijalizacija(
     @SerializedName("idSpecijalizacija")
     var id_specijalizacija : Int? = null,
@@ -38,11 +41,11 @@ data class Specijalizacija(
     var datumPocetka : String = "",
 
     @SerializedName("datumZavrsetka")
-    var datumZavrsetka : java.util.Date?,
+    var datumZavrsetka : String?,
 
     @SerializedName("potpisMentora")
     var potpisMentora : String?,
 
     @SerializedName("zavrsnoMisljenje")
     var zavrsnoMisljenje : String?,
-)
+) : Parcelable

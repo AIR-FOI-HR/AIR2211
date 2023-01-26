@@ -118,5 +118,14 @@ class PracenjeSpecijalizantaFragment : Fragment() {
                 _binding!!.spcijalizantTrenutniOdjel.text = "${webServis.ustrojstvenaJedinica.value!!.nazivUstanova}\n${webServis.ustrojstvenaJedinica.value!!.nazivJedinica}"
             }
         }
+
+        webServis.specijalizacija.observe(viewLifecycleOwner) {
+            var specijalizacija = it
+            binding.gumbZatvoriSpecijalizaciju.setOnClickListener() {
+                val action = PracenjeSpecijalizantaFragmentDirections.actionPracenjeSpecijalizantaFragmentToMentorZatvaranjeSpecijalizacijeFragment(specijalizacija)
+                this.findNavController().navigate(action)
+            }
+        }
+
     }
 }

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.core.entities.ProvjeraZnanja
+import com.example.core.entities.Specijalizacija
 import com.example.ws.WebServis
 import hr.foi.air.ednevnik.MainActivity
 import hr.foi.air.ednevnik.R
@@ -25,6 +27,9 @@ class SpecijalizantPracenjeSpecijalizacije : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = SpecijalizantPracenjeSpecijalizacijeBinding.inflate(inflater, container, false)
+
+        webServis = WebServis()
+        webServis.getSpecijalizacija(MainActivity.specijalizant?.id_specijalizant!!)
 
         var gumbSlucajBolesnika = _binding!!.slucajBolesnika
 
@@ -89,16 +94,29 @@ class SpecijalizantPracenjeSpecijalizacije : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        webServis.specijalizacija.observe(viewLifecycleOwner){
+            OsvjeziGumbove(_binding!!, it)
+
+        }
+
         return binding.root
+    }
+
+    private fun OsvjeziGumbove(binding: SpecijalizantPracenjeSpecijalizacijeBinding, specijalizacija : Specijalizacija?){
+            if(specijalizacija==null){
+                binding.ispiti.setVisibility(View.GONE)
+                binding.dnevnaAktivnost.setVisibility(View.GONE)
+                binding.provjeraZnanja.setVisibility(View.GONE)
+                binding.slucajBolesnika.setVisibility(View.GONE)
+                binding.strucniRad.setVisibility(View.GONE)
+                binding.kompetencija.setVisibility(View.GONE)
+                binding.zahvat.setVisibility(View.GONE)
+                binding.dioSpecijalizacije.setVisibility(View.GONE)
+            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        webServis = WebServis()
-
         MainActivity.homeAction = R.id.action_global_specijalizantPracenjeSpecijalizacije
-
-        webServis.getSpecijalizacija(MainActivity.specijalizant?.id_specijalizant!!)
     }
 }

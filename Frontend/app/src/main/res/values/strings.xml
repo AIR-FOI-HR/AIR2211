@@ -64,4 +64,6 @@
     <string name="Lozinka">Lozinka:</string>
     <string name="prijavaSpecijalizant">Specijalizant Prijava</string>
     <string name="mentorPrijava">Mentor Prijava</string>
+    <string name="labelZatvoriSpecijalizaciju">Zatvori specijalizaciju</string>
+    <string name="labelZavrsnoMisljenje">Završno mišljenje</string>
 </resources>

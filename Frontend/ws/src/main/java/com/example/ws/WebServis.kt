@@ -109,6 +109,7 @@ class WebServis {
 
                 override fun onFailure(call: Call<Specijalizacija>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
+                    _specijalizacija.value = null
                 }
             }
         )
