@@ -70,6 +70,11 @@ class PrikazUnosaOdradenaKompetencijaDnevnikFragment : Fragment(){
             }
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaOdradenaKompetencijaDnevnikFragmentDirections.actionPrikazUnosaOdradenaKompetencijaDnevnikFragmentToUnosOdradeneKompetencije(odradenaKompetencija.specijalizacija.toString(), odradenaKompetencija)
+            this.findNavController().navigate(action)
+        }
+
         return opis;
     }
 

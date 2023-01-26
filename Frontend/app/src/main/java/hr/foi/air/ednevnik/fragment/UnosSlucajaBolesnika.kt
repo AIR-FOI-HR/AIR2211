@@ -34,9 +34,21 @@ class UnosSlucajaBolesnika : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
+        var unesenSlucajBolesnika = args.argSlucajBolesnika
+        var uredi = false
+        if(unesenSlucajBolesnika!=null)
+        {
+            uredi = true
+            var godina = unesenSlucajBolesnika.datumSlucaj!!.split("-")[0].toInt()
+            var mjesec = unesenSlucajBolesnika.datumSlucaj!!.split("-")[1].toInt()
+            var dan = unesenSlucajBolesnika.datumSlucaj!!.split("-")[2].toInt()
+            datePicker.updateDate(godina, mjesec - 1, dan)
+            if(unesenSlucajBolesnika.opisSlucaj!=null) { _binding!!.inputOpisSlucaja.editText?.setText(unesenSlucajBolesnika.opisSlucaj) }
+            if(unesenSlucajBolesnika.dijagnozaSlucaj!=null) { _binding!!.inputDijagnoza.editText?.setText(unesenSlucajBolesnika.dijagnozaSlucaj) }
+        }
 
 
-        _binding!!.gumbPotvrdiSlucajBolesnika.setOnClickListener {
+        _binding!!.gumbPotvrdi.setOnClickListener {
             val godina = datePicker.year - 1900
             val mjesec = datePicker.month
             val dan = datePicker.dayOfMonth
@@ -52,6 +64,16 @@ class UnosSlucajaBolesnika : Fragment() {
 
             webServis.dodajSlucajBolesnika(slucajBolesnika) {
 
+            }
+
+            if(uredi==false){
+                webServis.dodajSlucajBolesnika(slucajBolesnika) {
+                }
+            } else{
+                if(unesenSlucajBolesnika!!.potpisMentora!=null) { slucajBolesnika.potpisMentora = unesenSlucajBolesnika!!.potpisMentora }
+                slucajBolesnika.idSlucaj = unesenSlucajBolesnika.idSlucaj
+                webServis.urediSlucajBolesnika(slucajBolesnika) {
+                }
             }
 
             val action = UnosSlucajaBolesnikaDirections.actionUnosSlucajaBolesnikaToSpecijalizantPracenjeSpecijlizacije()

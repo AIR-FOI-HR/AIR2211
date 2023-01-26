@@ -25,7 +25,6 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         var opis = "";
         var slucajBolesnika = args.argSlucajBolesnika
         var mentor = args.argMentor
@@ -55,11 +54,16 @@ class PrikazUnosaSlucajBolesnikaDnevnikFragment : Fragment() {
             }
         }
 
+        binding.gumbUredi.setOnClickListener{
+            val action = PrikazUnosaSlucajBolesnikaDnevnikFragmentDirections.actionPrikazUnosaSlucajBolesnikaDnevnikFragmentToUnosSlucajaBolesnika(slucajBolesnika.specijalizacijaId.toString(), slucajBolesnika)
+            this.findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        webServis = WebServis()
     }
 }

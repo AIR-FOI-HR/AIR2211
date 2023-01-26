@@ -30,9 +30,23 @@ class UnosOdrađenogZahvata : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
+        var uneseniOdradeniZahvat = args.argOdradeniZahvat
+        var uredi = false
+        if(uneseniOdradeniZahvat!=null)
+        {
+            uredi = true
+            var godina = uneseniOdradeniZahvat.datum!!.split("-")[0].toInt()
+            var mjesec = uneseniOdradeniZahvat.datum!!.split("-")[1].toInt()
+            var dan = uneseniOdradeniZahvat.datum!!.split("-")[2].toInt()
+            datePicker.updateDate(godina, mjesec - 1, dan)
+            _binding!!.inputStupanj.editText?.setText(uneseniOdradeniZahvat.stupanj!!.toString())
+            _binding!!.inputBrojZahvat.editText?.setText(uneseniOdradeniZahvat.zahvat!!.toString())
+            _binding!!.inputStupanj.setVisibility(View.GONE)
+            _binding!!.inputBrojZahvat.setVisibility(View.GONE)
+        }
 
 
-        _binding!!.gumbPotvrdiSlucajBolesnika.setOnClickListener {
+        _binding!!.gumbPotvrdi.setOnClickListener {
             val godina = datePicker.year - 1900
             val mjesec = datePicker.month
             val dan = datePicker.dayOfMonth
@@ -45,8 +59,13 @@ class UnosOdrađenogZahvata : Fragment() {
 
             val odradeniZahvat = OdradeniZahvat(idSpecijlizacije, brojZahvata, stupanj, current, null)
 
-            webServis.dodajOdradeniZahvat(odradeniZahvat) {
-
+            if(uredi==false){
+                webServis.dodajOdradeniZahvat(odradeniZahvat) {
+                }
+            } else{
+                if(uneseniOdradeniZahvat!!.potpisMentora!=null) { odradeniZahvat.potpisMentora = uneseniOdradeniZahvat!!.potpisMentora }
+                webServis.urediOdradeniZahvat(odradeniZahvat) {
+                }
             }
 
             val action = UnosOdrađenogZahvataDirections.actionUnosOdrađenogZahvataToSpecijalizantPracenjeSpecijlizacije()
