@@ -31,11 +31,11 @@
     <string name="provjera_znanja">Provjera znanja</string>
     <string name="loginSpecijlizant">Login Specijalizant</string>
     <string name="loginMentor">Login Mentor</string>
-    <string name="napredakZahvatti">Zahvati: 3/6</string>
-    <string name="napredakKompetencije">Kompetencije: 3/6</string>
-    <string name="napredakSlucajBolesnika">Slučajevi bolensika: 3</string>
-    <string name="napredakDioSpec">Dijelovi specijlizacije: 2</string>
-    <string name="napredakDnevneAktivnosti">Dnevne aktivnosti: 5</string>
+    <string name="napredakZahvatti">Zahvati: -</string>
+    <string name="napredakKompetencije">Kompetencije: -</string>
+    <string name="napredakSlucajBolesnika">Slučajevi bolensika: -</string>
+    <string name="napredakDioSpec">Dijelovi specijlizacije: -</string>
+    <string name="napredakDnevneAktivnosti">Dnevne aktivnosti: -</string>
     <string name="labelOpisSlucaja">Opis slučaja:</string>
     <string name="dijagnoza">Dijagnoza:</string>
     <string name="labelNaslovRada">Naslov rada:</string>
