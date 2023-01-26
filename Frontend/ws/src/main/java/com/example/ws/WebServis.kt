@@ -154,6 +154,35 @@ class WebServis {
         )
     }
 
+    private val _brojUvjeta = MutableLiveData<Int>()
+    val brojUvjeta: LiveData<Int>
+        get() = _brojUvjeta
+
+    fun getBrojUvjeta(programSpecijalizacijeId : Int)
+    {
+        val serviceAPI = retrofit.create(BrojUvjetaApi::class.java)
+        val call : Call<Int> = serviceAPI.getBrojUvjeta(programSpecijalizacijeId)
+
+        call.enqueue (
+            object : Callback<Int>{
+                override fun onResponse(
+                    call: Call<Int>,
+                    response: Response<Int>,
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                         _brojUvjeta.value = response.body()
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
     //Slucaj bolesnika
     private val _slucajeviBolesnika = MutableLiveData<List<SlucajBolesnika>>()
     val slucajeviBolesnika: LiveData<List<SlucajBolesnika>>

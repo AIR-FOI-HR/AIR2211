@@ -118,5 +118,36 @@ class PracenjeSpecijalizantaFragment : Fragment() {
                 _binding!!.spcijalizantTrenutniOdjel.text = "${webServis.ustrojstvenaJedinica.value!!.nazivUstanova}\n${webServis.ustrojstvenaJedinica.value!!.nazivJedinica}"
             }
         }
+
+        webServis.specijalizacija.observe(viewLifecycleOwner) {
+            webServis.getBrojUvjeta(webServis.specijalizacija.value?.programSpecijalizacijeId!!)
+            webServis.getAllOdradeniZahvati(webServis.specijalizacija.value?.id_specijalizacija!!)
+            webServis.getAllOdradeniDijeloviSpecijalizacije(webServis.specijalizacija.value?.id_specijalizacija!!)
+            webServis.getAllOdradeneKompetencije(webServis.specijalizacija.value?.id_specijalizacija!!)
+        }
+
+        val progressBar = _binding!!.napredakSpecijalizacije
+        var rijeseno = 0
+
+        webServis.brojUvjeta.observe(viewLifecycleOwner) {
+            progressBar.max = webServis.brojUvjeta.value!!
+        }
+        webServis.odradeniZahvati.observe(viewLifecycleOwner) {
+            rijeseno += webServis.odradeniZahvati.value!!.count()
+            _binding!!.napredakZahvati.text = "Zahvati: ${webServis.odradeniZahvati.value!!.count()}"
+            progressBar.progress = rijeseno
+        }
+        webServis.odradeniDijeloviSpecijalizacije.observe(viewLifecycleOwner) {
+            rijeseno += webServis.odradeniDijeloviSpecijalizacije.value!!.count()
+            _binding!!.napredakDioSpec.text = "Dijelovi specijalizacije: ${webServis.odradeniDijeloviSpecijalizacije.value!!.count()}"
+            progressBar.progress = rijeseno
+        }
+        webServis.odradeneKompetencije.observe(viewLifecycleOwner) {
+            rijeseno += webServis.odradeneKompetencije.value!!.count()
+            _binding!!.napredakKompetencije.text = "Kompetencije: ${webServis.odradeneKompetencije.value!!.count()}"
+            progressBar.progress = rijeseno
+        }
+
+        progressBar.progress = rijeseno
     }
 }
