@@ -1233,4 +1233,44 @@ class WebServis {
         )
     }
 
+    //Prijava
+    fun mentorPrijava(prijava: Prijava, onResult: (Mentor?) -> Unit){
+        val serviceAPI = retrofit.create(MentorPrijavaApi::class.java)
+        serviceAPI.mentorPrijava(prijava).enqueue(
+            object : Callback<Mentor> {
+                override fun onFailure(call: Call<Mentor>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Mentor>, response: Response<Mentor>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanIspit = response.body()
+                        onResult(dodanIspit)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
+
+    fun specijalizantPrijava(prijava: Prijava, onResult: (Specijalizant?) -> Unit){
+        val serviceAPI = retrofit.create(SpecijalizantPrijavaApi::class.java)
+        serviceAPI.specijalizantPrijava(prijava).enqueue(
+            object : Callback<Specijalizant> {
+                override fun onFailure(call: Call<Specijalizant>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Specijalizant>, response: Response<Specijalizant>) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    if (response.isSuccessful) {
+                        val dodanIspit = response.body()
+                        onResult(dodanIspit)
+                        Log.d("TAG", "onResponse success: ${response.body()}")
+                    }
+                }
+            }
+        )
+    }
 }

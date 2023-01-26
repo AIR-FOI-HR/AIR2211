@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ws.WebServis
+import hr.foi.air.ednevnik.MainActivity
 import hr.foi.air.ednevnik.databinding.MentorListaSpecijalizanataBinding
 import hr.foi.air.ednevnik.recyclerview_adapters.SpecijalizantAdapter
 
@@ -43,7 +44,7 @@ class SpecijalizantiFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         specijalizantWebServis = WebServis()
 
-        specijalizantWebServis.getAllSpecijalizantiByMentorId(1)
+        specijalizantWebServis.getAllSpecijalizantiByMentorId(MainActivity.mentor?.idMentor!!)
 
         initRecyclerView()
         observeLiveData()

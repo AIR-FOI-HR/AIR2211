@@ -8,24 +8,59 @@
     android:padding="5dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/loginSpecijalizant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="100dp"
-        android:text="@string/loginSpecijlizant"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/loginMentor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/loginSpecijalizant"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="140dp"
-        android:text="@string/loginMentor"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="@string/Email"
+            android:layout_marginTop="200dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLozinka"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/Lozinka"
+            android:layout_below="@id/inputEmail">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginSpecijalizant"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/prijavaSpecijalizant"
+            android:layout_below="@id/inputLozinka" />
+
+        <Button
+            android:id="@+id/loginMentor"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/loginSpecijalizant"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/mentorPrijava"
+            android:layout_below="@id/loginSpecijalizant"/>
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

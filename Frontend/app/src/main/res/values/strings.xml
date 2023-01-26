@@ -59,4 +59,8 @@
     <string name="nijeOdredeno">Nije definirano</string>
     <string name="labelLokacijaIspita">Lokacija:</string>
     <string name="labelOcjena">Ocjena:</string>
+    <string name="Email">Email:</string>
+    <string name="Lozinka">Lozinka:</string>
+    <string name="prijavaSpecijalizant">Specijalizant Prijava</string>
+    <string name="mentorPrijava">Mentor Prijava</string>
 </resources>

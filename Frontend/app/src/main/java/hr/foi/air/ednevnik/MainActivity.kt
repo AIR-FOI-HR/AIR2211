@@ -3,10 +3,16 @@ package hr.foi.air.ednevnik
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.core.entities.Mentor
+import com.example.core.entities.Specijalizant
 import hr.foi.air.ednevnik.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        var mentor : Mentor? = null
+        var specijalizant : Specijalizant? = null
+    }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

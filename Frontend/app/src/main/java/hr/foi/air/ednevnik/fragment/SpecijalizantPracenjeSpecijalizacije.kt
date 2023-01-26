@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.ws.WebServis
+import hr.foi.air.ednevnik.MainActivity
 import hr.foi.air.ednevnik.databinding.SpecijalizantPracenjeSpecijalizacijeBinding
 
 class SpecijalizantPracenjeSpecijalizacije : Fragment() {
@@ -95,6 +96,6 @@ class SpecijalizantPracenjeSpecijalizacije : Fragment() {
 
         webServis = WebServis()
 
-        webServis.getSpecijalizacija(1)
+        webServis.getSpecijalizacija(MainActivity.specijalizant?.id_specijalizant!!)
     }
 }
