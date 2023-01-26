@@ -1,6 +1,7 @@
 package hr.foi.air.ednevnik.fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,17 @@ class UnosProvjereZnanja : Fragment() {
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
+        var unesenaProvjeraZnanja = args.argProvjeraZnanja
+        var uredi = false
+        if(unesenaProvjeraZnanja!=null)
+        {
+            uredi = true
+            var godina = unesenaProvjeraZnanja.datumProvjera!!.split("-")[0].toInt()
+            var mjesec = unesenaProvjeraZnanja.datumProvjera!!.split("-")[1].toInt()
+            var dan = unesenaProvjeraZnanja.datumProvjera!!.split("-")[2].toInt()
+            datePicker.updateDate(godina, mjesec - 1, dan)
+            if(unesenaProvjeraZnanja.ocjenaProvjera!=null) { _binding!!.inputOcjenaProvjere.editText?.setText(unesenaProvjeraZnanja.ocjenaProvjera.toString()) }
+        }
 
 
         _binding!!.gumbPotvrdiProvjeruZnanja.setOnClickListener {
@@ -41,7 +53,7 @@ class UnosProvjereZnanja : Fragment() {
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             val current = formatter.format(datum)
             var ocjena : Int?
-            if(_binding!!.inputOcjenaProvjere.editText?.text.toString()!="") {
+            if(TextUtils.isDigitsOnly(_binding!!.inputOcjenaProvjere.editText?.text.toString()) && _binding!!.inputOcjenaProvjere.editText?.text.toString()!="") {
                 ocjena = _binding!!.inputOcjenaProvjere.editText?.text.toString().toInt()
             }else{
                 ocjena = null
@@ -51,8 +63,16 @@ class UnosProvjereZnanja : Fragment() {
 
             val provjeraZnanja = ProvjeraZnanja(null, idSpecijlizacije, current, ocjena, null)
 
-            webServis.dodajProvjeruZnanja(provjeraZnanja) {
 
+
+            if(uredi==false){
+                webServis.dodajProvjeruZnanja(provjeraZnanja) {
+                }
+            } else{
+                if(unesenaProvjeraZnanja!!.potpisMentora!=null) { provjeraZnanja.potpisMentora = unesenaProvjeraZnanja!!.potpisMentora }
+                provjeraZnanja.idProvjera = unesenaProvjeraZnanja.idProvjera
+                webServis.urediProvjeruZnanja(provjeraZnanja) {
+                }
             }
 
             val action = UnosProvjereZnanjaDirections.actionUnosProvjereZnanjaToSpecijalizantPracenjeSpecijalizacije()

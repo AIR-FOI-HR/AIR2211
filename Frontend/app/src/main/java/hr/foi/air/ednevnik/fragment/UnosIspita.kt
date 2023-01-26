@@ -33,6 +33,27 @@ class UnosIspita : Fragment() {
         val datePicker = _binding!!.datePicker
         val timePicker = _binding!!.timePicker
         datePicker.updateDate(2023, 0, 1)
+        var unesenIspit = args.argIspit
+        var uredi = false
+        if(unesenIspit!=null)
+        {
+            uredi = true
+            var godina = unesenIspit.datum!!.split("-")[0].toInt()
+            var mjesec = unesenIspit.datum!!.split("-")[1].toInt()
+            var dan = unesenIspit.datum!!.split("-")[2].toInt()
+            datePicker.updateDate(godina, mjesec - 1, dan)
+            _binding!!.inputNazivUstanove.editText?.setText(unesenIspit.nazivUstanove)
+            if(unesenIspit.prosao=="1") { _binding!!.prosao.isChecked=true }
+            else if(unesenIspit.prosao=="0"){ _binding!!.nijeProsao.isChecked=true }
+            else{
+                _binding!!.prosao.isChecked = false
+                _binding!!.nijeProsao.isChecked = false
+            }
+            var sat = unesenIspit.vrijemeOdrzavanja.split(":")[0].toInt()
+            var minuta = unesenIspit.vrijemeOdrzavanja.split(":")[1].toInt()
+            timePicker.hour = sat
+            timePicker.minute = minuta
+        }
 
 
         _binding!!.gumbPotvrdiIspit.setOnClickListener {
@@ -56,8 +77,18 @@ class UnosIspita : Fragment() {
 
             val ispit = Ispit(null, idSpecijlizacije, current, currentTime, ustanova, prosao)
 
-            webServis.dodajIspit(ispit) {
-                this.findNavController().popBackStack()
+
+
+            if(uredi==false){
+                webServis.dodajIspit(ispit) {
+                    this.findNavController().popBackStack()
+                }
+            } else{
+                ispit.idIspit = unesenIspit!!.idIspit
+                webServis.urediIspit(ispit) {
+                    val action = UnosIspitaDirections.actionUnosIspitaToIspitiFragment(ispit.specijalizacija.toString())
+                    this.findNavController().navigate(action)
+                }
             }
 
         }

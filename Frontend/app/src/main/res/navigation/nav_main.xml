@@ -508,6 +508,9 @@
         <action
             android:id="@+id/action_prikazUnosaProvjeraZnanjaSpecijalizant_to_unosPitanja"
             app:destination="@id/unosPitanja" />
+        <action
+            android:id="@+id/action_prikazUnosaProvjeraZnanjaSpecijalizant_to_unosProvjereZnanja"
+            app:destination="@id/unosProvjereZnanja" />
     </fragment>
     <fragment
         android:id="@+id/unosPitanja"
@@ -547,6 +550,9 @@
             android:name="argMentor"
             app:argType="boolean"
             android:defaultValue="true" />
+        <action
+            android:id="@+id/action_prikazUnosaIspitiDnevnikFragment_to_unosIspita"
+            app:destination="@id/unosIspita" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantIspiti"
