@@ -139,7 +139,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_margin="20dp"
                         android:background="@drawable/rounded_corner"
-                        android:drawableLeft="@drawable/ic_outline_personal_injury_24"
+                        android:drawableLeft="@drawable/ic_baseline_mode_edit_outline_24"
                         android:elevation="10dp"
                         android:text="@string/provjera_znanja"
                         android:textSize="12sp" />
@@ -152,7 +152,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_margin="20dp"
                         android:background="@drawable/rounded_corner"
-                        android:drawableLeft="@drawable/ic_outline_personal_injury_24"
+                        android:drawableLeft="@drawable/ic_baseline_mode_edit_outline_24"
                         android:elevation="10dp"
                         android:text="@string/ispiti"
                         android:textSize="12sp" />
@@ -233,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
                         android:background="@drawable/rounded_corner"
-                        android:drawableLeft="@drawable/ic_baseline_library_books_24"
+                        android:drawableLeft="@drawable/ic_baseline_medical_services_24"
                         android:elevation="10dp"
                         android:text="@string/zahvat"
                         android:textSize="12sp" />
@@ -245,7 +245,7 @@
                         android:layout_below="@id/zahvat"
                         android:layout_margin="20dp"
                         android:background="@drawable/rounded_corner"
-                        android:drawableLeft="@drawable/ic_baseline_pending_actions_24"
+                        android:drawableLeft="@drawable/ic_baseline_medical_information_24"
                         android:elevation="10dp"
                         android:text="@string/kompetencija"
                         android:textSize="12sp" />
@@ -257,7 +257,7 @@
                         android:layout_margin="20dp"
                         android:layout_below="@+id/kompetencija"
                         android:background="@drawable/rounded_corner"
-                        android:drawableLeft="@drawable/ic_outline_personal_injury_24"
+                        android:drawableLeft="@drawable/ic_outline_local_hospital_24"
                         android:elevation="10dp"
                         android:text="@string/dioSpecijalizacije"
                         android:textSize="12sp" />
