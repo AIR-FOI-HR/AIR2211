@@ -17,4 +17,8 @@ data class Kompetencija(
 
     @SerializedName("posebna")
     var posebna : String?
-) : Parcelable
+) : Parcelable {
+    override fun toString(): String {
+        return "${idKompetencija} - ${nazivKompetencija}"
+    }
+}
