@@ -12,12 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star_of_life2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_below="@id/star"
+            android:layout_centerHorizontal="true"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="12dp"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
+            android:layout_centerInParent="true"
             android:hint="@string/Email"
             android:layout_marginTop="200dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -47,9 +66,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="80dp"
+            android:textSize="16sp"
             android:layout_centerHorizontal="true"
             android:text="@string/prijavaSpecijalizant"
-            android:layout_below="@id/inputLozinka" />
+            android:layout_below="@id/inputLozinka"
+            android:background="@drawable/input_background"/>
 
         <Button
             android:id="@+id/loginMentor"
@@ -60,7 +81,9 @@
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
             android:text="@string/mentorPrijava"
-            android:layout_below="@id/loginSpecijalizant"/>
+            android:textSize="16sp"
+            android:layout_below="@id/loginSpecijalizant"
+            android:background="@drawable/input_background"/>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
