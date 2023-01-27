@@ -56,6 +56,7 @@ class SpecijalizantDnevneAktivnosti : Fragment(){
 
     private fun initRecyclerView() {
         dnevneAktivnostiAdapter = DnevneAktivnostiAdapter()
+        dnevneAktivnostiAdapter.mentor = false
         dnevneAktivnostiAdapter.onItemClick = {dnevnaAktivnost ->
             val action = SpecijalizantDnevneAktivnostiDirections.actionSpecijalizantDnevneAktivnostiToPrikazUnosaDnevnaAktivnostDnevnikFragment(dnevnaAktivnost, argMentor = false)
             this.findNavController().navigate(action)

@@ -54,6 +54,7 @@ class SpecijalizantKompetencije : Fragment(){
 
     private fun initRecyclerView() {
         kompetencijeAdapter = OdradeneKompetencijeAdapter()
+        kompetencijeAdapter.mentor = false
         kompetencijeAdapter.onItemClick = {kompetencija ->
             val action = SpecijalizantKompetencijeDirections.actionSpecijalizantKompetencijeToPrikazUnosaOdradenaKompetencijaDnevnikFragment(kompetencija, false)
             this.findNavController().navigate(action)

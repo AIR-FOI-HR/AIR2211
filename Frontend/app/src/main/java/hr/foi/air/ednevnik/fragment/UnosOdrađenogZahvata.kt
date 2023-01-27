@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core.entities.OdradeniZahvat
 import com.example.ws.WebServis
+import hr.foi.air.ednevnik.R
 import hr.foi.air.ednevnik.databinding.SpecijalizantDodajZahvatBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,6 +22,7 @@ class UnosOdrađenogZahvata : Fragment() {
         get() = _binding!!
 
     lateinit var webServis: WebServis
+    val stupnjevi = listOf<Int>(1, 2, 3)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +30,9 @@ class UnosOdrađenogZahvata : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = SpecijalizantDodajZahvatBinding.inflate(inflater, container, false)
+
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, stupnjevi)
+        _binding!!.spinner.setAdapter(adapter)
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
@@ -54,7 +60,7 @@ class UnosOdrađenogZahvata : Fragment() {
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             val current = formatter.format(datum)
             val brojZahvata = _binding!!.inputBrojZahvat.editText?.text.toString().toInt()
-            val stupanj = _binding!!.inputStupanj.editText?.text.toString().toInt()
+            val stupanj = _binding!!.spinner.text?.toString()?.toInt()
             val idSpecijlizacije = args.argSpecijalizacijaId.toInt()
 
             val odradeniZahvat = OdradeniZahvat(idSpecijlizacije, brojZahvata, stupanj, current, null)
