@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core.entities.ProvjeraZnanja
 import com.example.ws.WebServis
+import hr.foi.air.ednevnik.R
 import hr.foi.air.ednevnik.databinding.SpecijalizantDodajProvjeruZnanjaBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +24,7 @@ class UnosProvjereZnanja : Fragment() {
         get() = _binding!!
 
     lateinit var webServis: WebServis
+    val ocjene = listOf<Int>(0, 1, 2, 3, 4, 5)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +32,9 @@ class UnosProvjereZnanja : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = SpecijalizantDodajProvjeruZnanjaBinding.inflate(inflater, container, false)
+
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, ocjene)
+        _binding!!.spinner.setAdapter(adapter)
 
         val datePicker = _binding!!.datePicker
         datePicker.updateDate(2023, 0, 1)
@@ -41,7 +47,14 @@ class UnosProvjereZnanja : Fragment() {
             var mjesec = unesenaProvjeraZnanja.datumProvjera!!.split("-")[1].toInt()
             var dan = unesenaProvjeraZnanja.datumProvjera!!.split("-")[2].toInt()
             datePicker.updateDate(godina, mjesec - 1, dan)
-            if(unesenaProvjeraZnanja.ocjenaProvjera!=null) { _binding!!.inputOcjenaProvjere.editText?.setText(unesenaProvjeraZnanja.ocjenaProvjera.toString()) }
+            if(unesenaProvjeraZnanja.ocjenaProvjera!=null) { _binding!!.spinner.setText(unesenaProvjeraZnanja.ocjenaProvjera.toString()) }
+        }
+
+        _binding!!.spinner.setOnClickListener{
+            _binding!!.spinner.setText("")
+            _binding!!.spinner.setOnClickListener{
+
+            }
         }
 
 
@@ -53,8 +66,13 @@ class UnosProvjereZnanja : Fragment() {
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             val current = formatter.format(datum)
             var ocjena : Int?
-            if(TextUtils.isDigitsOnly(_binding!!.inputOcjenaProvjere.editText?.text.toString()) && _binding!!.inputOcjenaProvjere.editText?.text.toString()!="") {
-                ocjena = _binding!!.inputOcjenaProvjere.editText?.text.toString().toInt()
+            if(_binding!!.spinner.text?.toString()!=""){
+                if(_binding!!.spinner.text?.toString()?.toInt()!=0)
+                {
+                    ocjena = _binding!!.spinner.text?.toString()?.toInt()
+                }else{
+                    ocjena = null
+                }
             }else{
                 ocjena = null
             }
