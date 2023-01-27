@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DioSpecijalizacije(
-    @SerializedName("idDioSpecijalizacije")
-    var idDioSpecijalizacije : Int? = null,
+    @SerializedName("idDioSpecjalizacije")
+    var idDioSpecjalizacije : Int? = null,
 
     @SerializedName("programSpecijalizacije")
     var programSpecijalizacije : Int,
@@ -15,4 +15,9 @@ data class DioSpecijalizacije(
     @SerializedName("ustrojstvenaJedinica")
     var ustrojstvenaJedinica : Int
 
-) : Parcelable
+) : Parcelable{
+    override fun toString(): String {
+        return "${idDioSpecjalizacije}"
+    }
+}
+

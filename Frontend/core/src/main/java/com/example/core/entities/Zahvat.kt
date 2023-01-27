@@ -14,4 +14,8 @@ data class Zahvat(
 
     @SerializedName("nazivZahvat")
     var nazivZahvat : String
-) : Parcelable
+) : Parcelable{
+    override fun toString(): String {
+        return "${idZahvat} - ${nazivZahvat}"
+    }
+}
