@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         logoutGumb.setOnClickListener {
             var f = supportFragmentManager.findFragmentById(R.id.host_fragment)
             f?.findNavController()?.navigate(R.id.action_global_loginFragment)
+            specijalizant = null
         }
     }
 

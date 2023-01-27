@@ -31,6 +31,11 @@ class SpecijalizantPracenjeSpecijalizacije : Fragment() {
         webServis = WebServis()
         webServis.getSpecijalizacija(MainActivity.specijalizant?.id_specijalizant!!)
 
+        _binding!!.specijalizantSlika.setOnClickListener{
+            val action = SpecijalizantPracenjeSpecijalizacijeDirections.actionSpecijalizantPracenjeSpecijalizacijeToProfilSpecijalizantaFragment()
+            this.findNavController().navigate(action)
+        }
+
         var gumbSlucajBolesnika = _binding!!.slucajBolesnika
 
         gumbSlucajBolesnika.setOnClickListener() {
