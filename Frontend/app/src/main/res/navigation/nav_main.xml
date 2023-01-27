@@ -291,6 +291,9 @@
         <action
             android:id="@+id/action_specijalizantPracenjeSpecijalizacije_to_specijalizantIspiti"
             app:destination="@id/specijalizantIspiti" />
+        <action
+            android:id="@+id/action_specijalizantPracenjeSpecijalizacije_to_profilSpecijalizantaFragment"
+            app:destination="@id/profilSpecijalizantaFragment" />
     </fragment>
     <fragment
         android:id="@+id/specijalizantSlucajeviBolesnika"
@@ -592,5 +595,17 @@
             android:name="argSpecijalizacija"
             app:argType="com.example.core.entities.Specijalizacija" />
     </fragment>
+    <fragment
+        android:id="@+id/profilSpecijalizantaFragment"
+        android:name="hr.foi.air.ednevnik.fragment.ProfilSpecijalizantaFragment"
+        android:label="ProfilSpecijalizantaFragment" >
+        <action
+            android:id="@+id/action_profilSpecijalizantaFragment_to_urediProfilFragment"
+            app:destination="@id/urediProfilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/urediProfilFragment"
+        android:name="hr.foi.air.ednevnik.fragment.UrediProfilFragment"
+        android:label="UrediProfilFragment" />
 
 </navigation>
