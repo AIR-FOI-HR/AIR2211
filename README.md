@@ -1,5 +1,9 @@
 # e-Dnevnik o specijalističkom usavršavanju doktora medicine
 
+<p align="center">
+  <img src="https://play-lh.googleusercontent.com/u5U1XXE9uwxkwztp3nWgwc03ot354dj6ymWTsAK0YYFjbgoReEy1eoc_nzAfmKoMHbM" width="300">
+</p>
+
 #### Informacije o projektu
 **e-Dnevnik** je projekt koji će omogućiti, te digitalno unaprijediti specijalističko usavršavanje doktora medicine. Projekt je izrađen za potrebe Ministarstva zdravstva i Ministarstva znanosti i obrazovanja Republike Hrvatske na temelju predloška koje je izradilo _Povjerenstvo za mlade liječnike
 Hrvatske liječničke komore_.
